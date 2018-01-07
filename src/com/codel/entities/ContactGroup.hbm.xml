@@ -12,14 +12,12 @@
 		</id>
 
 		<property name="groupName" column="group_name" type="string" />
-		<set name="contacts" table="CONTACT" cascade="all">
-			<key>
-				<column name="group_id" not-null="true" />
-			</key>
-			<many-to-many entity-name="com.codel.entities.Contact">
-				<column name="contact_id" not-null="true" />
-			</many-to-many>
-		</set>
+
+		<set name="contacts" table="GROUP_CONTACT_GROUP"  cascade="save-update">
+			<key column="group_id"/>
+			<many-to-many column="contact_id" class="com.codel.entities.Contact"/>
+		</set>  
+		
 	</class>
 
 </hibernate-mapping>

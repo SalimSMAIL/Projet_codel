@@ -7,6 +7,10 @@
 
 	<class name="com.codel.entities.Contact" table="CONTACT">
 		
+		<meta attribute="class-description">
+			This class contains the contact detail.
+		</meta>		
+				
 		<id name="contactId" type="long" column="contact_id">
 			<generator class="increment" />
 		</id>
@@ -14,25 +18,21 @@
 		<property name="firstName" column="first_name"  type="string" />
 		<property name="lastName" column="last_name"  type="string" />
 		<property name="email" column="email"  type="string" />
-		<property name="password" column="password"  type="string"/>
+		<property name="password" column="password"  type="string" />
+
+		<many-to-one name="address" column="address_id" class="com.codel.entities.Address" not-null="true"/>
 		
-		<many-to-one name="address" column="address_id" class="Address" lazy="false" unique="true" />
-		
-		<set name="phones" table="PHONE_NUMBER" cascade="all" lazy="false" inverse="true" fetch="select">
+<!-- 		<set name="phones" table="PHONE_NUMBER" cascade="all" lazy="false" inverse="true" fetch="select">
 			<key>
 				<column name="contact_id" not-null="true" />
 			</key>
 			<one-to-many class="com.codel.entities.PhoneNumber"/>
-		</set> 
+		</set> -->
 
-		<set name="books" table="CONTACT_GROUP"  cascade="all" inverse="false" lazy="true" fetch="select">
-			<key>
-				<column name="contact_id" not-null="true" />
-			</key>
-			<many-to-many entity-name="com.codel.entities.ContactGroup">
-				<column name="group_id" not-null="true" />
-			</many-to-many>
-		</set>
+		<set name="books" table="GROUP_CONTACT_GROUP"  cascade="save-update">
+			<key column="contact_id"/>
+			<many-to-many column="group_id" class="com.codel.entities.ContactGroup"/>
+		</set>  
 	
 	</class>
 

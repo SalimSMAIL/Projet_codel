@@ -5,22 +5,22 @@ import java.util.Set;
 public class Contact {
 	
 	private long contactId;
-	private String firstname;
-	private String lastname;
+	private String firstName;
+	private String lastName;
 	private String email;
 	private String password;
 	private Address address;
 	private Set<ContactGroup> books;
-	private Set<PhoneNumber> phones;
+//	private Set<PhoneNumber> phones;
 	
 	public Contact() {
 		super();
 	}
 
-	public Contact(String firstname, String lastname, String email, String password, Address address) {
+	public Contact(String firstName, String lastName, String email, String password, Address address) {
 		super();
-		this.firstname = firstname;
-		this.lastname = lastname;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
 		this.address = address;
@@ -34,20 +34,20 @@ public class Contact {
 		this.contactId = contactId;
 	}
 
-	public String getFirstname() {
-		return firstname;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getLastname() {
-		return lastname;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getEmail() {
@@ -65,7 +65,7 @@ public class Contact {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
 	public Address getAddress() {
 		return address;
 	}
@@ -82,13 +82,13 @@ public class Contact {
 		this.books = books;
 	}
 
-	public Set<PhoneNumber> getPhones() {
-		return phones;
-	}
-
-	public void setPhones(Set<PhoneNumber> phones) {
-		this.phones = phones;
-	}
+//	public Set<PhoneNumber> getPhones() {
+//		return phones;
+//	}
+//
+//	public void setPhones(Set<PhoneNumber> phones) {
+//		this.phones = phones;
+//	}
 	
 
 

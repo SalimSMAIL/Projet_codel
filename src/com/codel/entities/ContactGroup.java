@@ -11,10 +11,9 @@ public class ContactGroup {
 		super();
 	}
 
-	public ContactGroup(String groupName, Set<Contact> contacts) {
+	public ContactGroup(String groupName) {
 		super();
 		this.groupName = groupName;
-		this.contacts = contacts;
 	}
 
 	public long getGroupId() {
@@ -39,7 +38,6 @@ public class ContactGroup {
 
 	public void setContacts(Set<Contact> contacts) {
 		this.contacts = contacts;
-	}
-
+	}	
 
 }

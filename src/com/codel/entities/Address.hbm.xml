@@ -6,6 +6,10 @@
 <hibernate-mapping>
 
 	<class name="com.codel.entities.Address" table="ADDRESS">
+				
+		<meta attribute="class-description">
+			This class contains the address detail.
+		</meta>
 		
 		<id name="addressId" type="long" column="address_id">
 			<generator class="increment" />
