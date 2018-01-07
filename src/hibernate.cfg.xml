@@ -1,25 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC
-		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
-<hibernate-configuration>
-    <session-factory>
-    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://sql11.freesqldatabase.com:3306/sql11205122?characterEncoding=UTF-8</property>
-    <property name="hibernate.connection.username">sql11205122</property>
-    <property name="hibernate.connection.password">l5albfPLja</property>
-    <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
-    <property name="hibernate.show_sql">true</property>
-    <property name="hibernate.hbm2ddl.auto">update</property>
-    <property name="hibernate.current_session_context_class">thread</property>
-    <property name="hibernate.id.new_generator_mappings">false</property>
-    <mapping class="Beans.Cinephile" />
-    <mapping class="Beans.Message" />
-    <mapping class="Beans.Element" />
-    <mapping class="Beans.Comment" />
-    <mapping class="Beans.ListCinephile" />
-    <mapping class="Beans.Evenement" />
-    <mapping class="Beans.Seance" />
-    </session-factory>
-</hibernate-configuration>
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 
+<hibernate-configuration>
+
+    <session-factory>
+
+        <!-- JDBC Database connection settings -->
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/bdd_codel?useSSL=false</property>
+        <property name="connection.username">codel</property>
+        <property name="connection.password">codel_secret</property>
+
+        <!-- JDBC connection pool settings ... using built-in test pool -->
+        <property name="connection.pool_size">1</property>
+
+        <!-- Select our SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+
+        <!-- Echo the SQL to stdout -->
+        <property name="show_sql">true</property>
+        
+        <property name="hbm2ddl.auto">create</property>
+		<property name="current_session_context_class">thread</property>
+        <property name="id.new_geerator_mappings">false</property>
+        <property name="connection.provider_disables_autocommit">false</property>
+
+		
+		<mapping resource="com.codel.entities.Address.hbm.xml" />
+    </session-factory>
+
+</hibernate-configuration>

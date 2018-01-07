@@ -19,7 +19,7 @@
 		<many-to-one name="address" column="address_id" class="Address" not-null="true" />
 		
 		<set name="phones" table="PHONE_NUMBER" cascade="all" lazy="false">
-			<key column="contact_id">
+			<key>
 				<column name="contact_id" not-null="true" />
 			</key>
 			<one-to-many class="com.codel.entities.PhoneNumber"/>
