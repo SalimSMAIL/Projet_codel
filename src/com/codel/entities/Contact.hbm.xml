@@ -16,16 +16,16 @@
 		<property name="email" column="email"  type="string" />
 		<property name="password" column="password"  type="string"/>
 		
-		<many-to-one name="address" column="address_id" class="Address" not-null="true" />
+		<many-to-one name="address" column="address_id" class="Address" lazy="false" unique="true" />
 		
-		<set name="phones" table="PHONE_NUMBER" cascade="all" lazy="false">
+		<set name="phones" table="PHONE_NUMBER" cascade="all" lazy="false" inverse="true" fetch="select">
 			<key>
 				<column name="contact_id" not-null="true" />
 			</key>
 			<one-to-many class="com.codel.entities.PhoneNumber"/>
 		</set> 
 
-		<set name="books" table="CONTACT_GROUP"  cascade="all">
+		<set name="books" table="CONTACT_GROUP"  cascade="all" inverse="false" lazy="true" fetch="select">
 			<key>
 				<column name="contact_id" not-null="true" />
 			</key>
