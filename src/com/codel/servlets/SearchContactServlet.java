@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.codel.services.ContactServices;
 
-public class AddContactServlet extends HttpServlet {
+public class SearchContactServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-    public AddContactServlet() {
+    public SearchContactServlet() {
         super();
     }
 
