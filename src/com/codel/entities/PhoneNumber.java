@@ -1,47 +1,64 @@
 package com.codel.entities;
 
-import java.util.Collection;
-
 public class PhoneNumber {
-	private long id;
-	private String phoneKind;
-	private String phoneNumber;
-	private Contact contact;
 	
-	public PhoneNumber(long id, String phoneKind, String phoneNumber, Contact contact) {
+	private long phoneId;
+	private String mobilePhone;
+	private String homePhone;
+	private String workPhone;
+	
+	private Contact contact;
+
+	public PhoneNumber() {
 		super();
-		this.id = id;
-		this.phoneKind = phoneKind;
-		this.phoneNumber = phoneNumber;
+	}
+
+	public PhoneNumber(String mobilePhone, String homePhone, String workPhone, Contact contact) {
+		super();
+		this.mobilePhone = mobilePhone;
+		this.homePhone = homePhone;
+		this.workPhone = workPhone;
 		this.contact = contact;
 	}
-	
-	public long getId() {
-		return id;
+
+	public long getPhoneId() {
+		return phoneId;
 	}
-	public void setId(long id) {
-		this.id = id;
+
+	public void setPhoneId(long phoneId) {
+		this.phoneId = phoneId;
 	}
-	public String getPhoneKind() {
-		return phoneKind;
+
+	public String getMobilePhone() {
+		return mobilePhone;
 	}
-	public void setPhoneKind(String phoneKind) {
-		this.phoneKind = phoneKind;
+
+	public void setMobilePhone(String mobilePhone) {
+		this.mobilePhone = mobilePhone;
 	}
-	public String getPhoneNumber() {
-		return phoneNumber;
+
+	public String getHomePhone() {
+		return homePhone;
 	}
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+
+	public void setHomePhone(String homePhone) {
+		this.homePhone = homePhone;
 	}
+
+	public String getWorkPhone() {
+		return workPhone;
+	}
+
+	public void setWorkPhone(String workPhone) {
+		this.workPhone = workPhone;
+	}
+
 	public Contact getContact() {
 		return contact;
 	}
+
 	public void setContact(Contact contact) {
 		this.contact = contact;
 	}
-
-	
-	
 
 }

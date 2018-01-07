@@ -1,36 +1,45 @@
 package com.codel.entities;
 
-import java.util.Collection;
+import java.util.Set;
 
 public class ContactGroup {
 	private long groupId;
 	private String groupName;
-	private Collection<Contact> contact;
+	private Set<Contact> contacts;
 	
-	public ContactGroup(long groupId, String groupName, Collection<Contact> contact) {
+	public ContactGroup() {
 		super();
-		this.groupId = groupId;
-		this.groupName = groupName;
-		this.contact = contact;
 	}
+
+	public ContactGroup(String groupName, Set<Contact> contacts) {
+		super();
+		this.groupName = groupName;
+		this.contacts = contacts;
+	}
+
 	public long getGroupId() {
 		return groupId;
 	}
+
 	public void setGroupId(long groupId) {
 		this.groupId = groupId;
 	}
+
 	public String getGroupName() {
 		return groupName;
 	}
+
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
 	}
-	public Collection<Contact> getContact() {
-		return contact;
+
+	public Set<Contact> getContacts() {
+		return contacts;
 	}
-	public void setContact(Collection<Contact> contact) {
-		this.contact = contact;
+
+	public void setContacts(Set<Contact> contacts) {
+		this.contacts = contacts;
 	}
-	
+
 
 }

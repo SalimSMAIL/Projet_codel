@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.codel.entities.Contact" table="CONTACT">
+		
+		<id name="contactId" type="long" column="contact_id">
+			<generator class="increment" />
+		</id>
+
+		<property name="firstName" column="first_name"  type="string" />
+		<property name="lastName" column="last_name"  type="string" />
+		<property name="email" column="email"  type="string" />
+		<property name="password" column="password"  type="string"/>
+		
+		<many-to-one name="address" column="address_id" class="Address" not-null="true" />
+		
+		<set name="phones" table="PHONE_NUMBER" cascade="all" lazy="false">
+			<key column="contact_id">
+				<column name="contact_id" not-null="true" />
+			</key>
+			<one-to-many class="com.codel.entities.PhoneNumber"/>
+		</set> 
+
+		<set name="books" table="CONTACT_GROUP"  cascade="all">
+			<key>
+				<column name="contact_id" not-null="true" />
+			</key>
+			<many-to-many entity-name="com.codel.entities.ContactGroup">
+				<column name="group_id" not-null="true" />
+			</many-to-many>
+		</set>
+	
+	</class>
+
+</hibernate-mapping>

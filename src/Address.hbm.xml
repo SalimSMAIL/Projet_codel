@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.codel.entities.Address" table="ADDRESS">
+		
+		<id name="addressId" type="long" column="address_id">
+			<generator class="increment" />
+		</id>
+
+		<property name="streetNumber" column="street_number"  type="long" />
+		<property name="streetType" column="street_type"  type="string" />
+		<property name="streetName" column="street_name"  type="string" />
+		<property name="codePostal" column="code_postal"  type="string" />
+		<property name="city" column="city"  type="string" />
+		<property name="country" column="country"  type="string" />
+		
+	</class>
+
+</hibernate-mapping>

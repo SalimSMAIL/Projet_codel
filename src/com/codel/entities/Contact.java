@@ -1,61 +1,97 @@
 package com.codel.entities;
 
-import java.util.Collection;
+import java.util.Set;
 
 public class Contact {
 	
-	//pk ya pas de password .... ??
-	private long contact_id;
+	private long contactId;
 	private String firstname;
 	private String lastname;
 	private String email;
-	private Adress adress;
-	private Collection<ContactGroup> contactGroup;
-	private Collection<PhoneNumber> phoneNumber;
+	private String password;
+	private Address address;
+	private Set<ContactGroup> books;
+	private Set<PhoneNumber> phones;
 	
+	public Contact() {
+		super();
+	}
 
-	public Collection<ContactGroup> getContactGroup() {
-		return contactGroup;
+	public Contact(String firstname, String lastname, String email, String password, Address address) {
+		super();
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.password = password;
+		this.address = address;
 	}
-	public void setContactGroup(Collection<ContactGroup> contactGroup) {
-		this.contactGroup = contactGroup;
+
+	public long getContactId() {
+		return contactId;
 	}
-	public Collection<PhoneNumber> getPhoneNumber() {
-		return phoneNumber;
+
+	public void setContactId(long contactId) {
+		this.contactId = contactId;
 	}
-	public void setPhoneNumber(Collection<PhoneNumber> phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-	public long getContact_id() {
-		return contact_id;
-	}
-	public void setContact_id(long contact_id) {
-		this.contact_id = contact_id;
-	}
-	public Adress getAdress() {
-		return adress;
-	}
-	public void setAdress(Adress adress) {
-		this.adress = adress;
-	}
+
 	public String getFirstname() {
 		return firstname;
 	}
+
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
+
 	public String getLastname() {
 		return lastname;
 	}
+
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public Set<ContactGroup> getBooks() {
+		return books;
+	}
+
+	public void setBooks(Set<ContactGroup> books) {
+		this.books = books;
+	}
+
+	public Set<PhoneNumber> getPhones() {
+		return phones;
+	}
+
+	public void setPhones(Set<PhoneNumber> phones) {
+		this.phones = phones;
+	}
+	
+
+
 	
 	
 }
