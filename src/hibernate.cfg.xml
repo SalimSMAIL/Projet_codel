@@ -27,7 +27,7 @@
         <property name="connection.provider_disables_autocommit">false</property>
 
 		
-		<mapping resource="com.codel.entities.Address.hbm.xml" />
+		<mapping resource="com/codel/entities/Address.hbm.xml" />
     </session-factory>
 
 </hibernate-configuration>
