@@ -1,11 +1,12 @@
 package com.codel.entities;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class ContactGroup {
 	private long groupId;
 	private String groupName;
-	private Set<Contact> contacts;
+	private Set<Contact> contacts = new HashSet<>();
 	
 	public ContactGroup() {
 		super();

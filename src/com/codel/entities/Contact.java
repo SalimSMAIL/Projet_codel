@@ -1,5 +1,6 @@
 package com.codel.entities;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Contact {
@@ -10,8 +11,8 @@ public class Contact {
 	private String email;
 	private String password;
 	private Address address;
-	private Set<ContactGroup> books;
-	private Set<PhoneNumber> phones;
+	private Set<ContactGroup> books = new HashSet<>();
+	private Set<PhoneNumber> phones = new HashSet<>();
 	
 	public Contact() {
 		super();

@@ -12,9 +12,8 @@ public class PhoneNumber {
 		super();
 	}
 
-	public PhoneNumber(long phoneId, String phoneNumber, String phoneKind, Contact contact) {
+	public PhoneNumber(String phoneNumber, String phoneKind, Contact contact) {
 		super();
-		this.phoneId = phoneId;
 		this.phoneNumber = phoneNumber;
 		this.phoneKind = phoneKind;
 		this.contact = contact;
