@@ -11,7 +11,7 @@ public class Contact {
 	private String password;
 	private Address address;
 	private Set<ContactGroup> books;
-//	private Set<PhoneNumber> phones;
+	private Set<PhoneNumber> phones;
 	
 	public Contact() {
 		super();
@@ -82,13 +82,13 @@ public class Contact {
 		this.books = books;
 	}
 
-//	public Set<PhoneNumber> getPhones() {
-//		return phones;
-//	}
-//
-//	public void setPhones(Set<PhoneNumber> phones) {
-//		this.phones = phones;
-//	}
+	public Set<PhoneNumber> getPhones() {
+		return phones;
+	}
+
+	public void setPhones(Set<PhoneNumber> phones) {
+		this.phones = phones;
+	}
 	
 
 

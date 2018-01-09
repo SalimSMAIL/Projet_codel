@@ -22,14 +22,12 @@
 
 		<many-to-one name="address" column="address_id" class="com.codel.entities.Address" not-null="true"/>
 		
-<!-- 		<set name="phones" table="PHONE_NUMBER" cascade="all" lazy="false" inverse="true" fetch="select">
-			<key>
-				<column name="contact_id" not-null="true" />
-			</key>
-			<one-to-many class="com.codel.entities.PhoneNumber"/>
-		</set> -->
+ 		<set name="phones" table="PHONE_NUMBER" cascade="all">
+			<key  column="contact_id" />
+			<one-to-many class="com.codel.entities.PhoneNumber" />
+		</set> 
 
-		<set name="books" table="GROUP_CONTACT_GROUP"  cascade="save-update">
+		<set name="books" table="CONTACT_GROUP_CONTACT"  cascade="save-update">
 			<key column="contact_id"/>
 			<many-to-many column="group_id" class="com.codel.entities.ContactGroup"/>
 		</set>  

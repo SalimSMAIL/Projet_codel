@@ -3,9 +3,8 @@ package com.codel.entities;
 public class PhoneNumber {
 	
 	private long phoneId;
-	private String mobilePhone;
-	private String homePhone;
-	private String workPhone;
+	private String phoneNumber;
+	private String phoneKind;
 	
 	private Contact contact;
 
@@ -13,11 +12,11 @@ public class PhoneNumber {
 		super();
 	}
 
-	public PhoneNumber(String mobilePhone, String homePhone, String workPhone, Contact contact) {
+	public PhoneNumber(long phoneId, String phoneNumber, String phoneKind, Contact contact) {
 		super();
-		this.mobilePhone = mobilePhone;
-		this.homePhone = homePhone;
-		this.workPhone = workPhone;
+		this.phoneId = phoneId;
+		this.phoneNumber = phoneNumber;
+		this.phoneKind = phoneKind;
 		this.contact = contact;
 	}
 
@@ -29,28 +28,20 @@ public class PhoneNumber {
 		this.phoneId = phoneId;
 	}
 
-	public String getMobilePhone() {
-		return mobilePhone;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setMobilePhone(String mobilePhone) {
-		this.mobilePhone = mobilePhone;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
-	public String getHomePhone() {
-		return homePhone;
+	public String getPhoneKind() {
+		return phoneKind;
 	}
 
-	public void setHomePhone(String homePhone) {
-		this.homePhone = homePhone;
-	}
-
-	public String getWorkPhone() {
-		return workPhone;
-	}
-
-	public void setWorkPhone(String workPhone) {
-		this.workPhone = workPhone;
+	public void setPhoneKind(String phoneKind) {
+		this.phoneKind = phoneKind;
 	}
 
 	public Contact getContact() {
@@ -61,4 +52,5 @@ public class PhoneNumber {
 		this.contact = contact;
 	}
 
+	
 }

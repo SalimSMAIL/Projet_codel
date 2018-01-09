@@ -30,7 +30,7 @@
 		<mapping resource="com/codel/entities/Address.hbm.xml" />
 		<mapping resource="com/codel/entities/Contact.hbm.xml" />
  	 	<mapping resource="com/codel/entities/ContactGroup.hbm.xml" />
-	<!-- <mapping resource="com/codel/entities/PhoneNumber.hbm.xml" /> -->
+	    <mapping resource="com/codel/entities/PhoneNumber.hbm.xml" /> 
     </session-factory>
 
 </hibernate-configuration>
