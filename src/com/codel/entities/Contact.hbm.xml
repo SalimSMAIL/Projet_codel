@@ -14,13 +14,15 @@
 		<id name="contactId" type="long" column="contact_id">
 			<generator class="increment" />
 		</id>
-
+		
+		<version name="version" access="field" column="version"/> 
+		
 		<property name="firstName" column="first_name"  type="string" />
 		<property name="lastName" column="last_name"  type="string" />
 		<property name="email" column="email"  type="string" />
 		<property name="password" column="password"  type="string" />
 
-		<many-to-one name="address" column="address_id" class="com.codel.entities.Address" cascade="persist" not-null="true"/>
+		<many-to-one name="address" column="address_id" class="com.codel.entities.Address" cascade="all" not-null="true"/>
 		
  		<set name="phones" table="PHONE_NUMBER" cascade="all">
 			<key  column="contact_id" />

@@ -14,6 +14,8 @@ public class Contact {
 	private Set<ContactGroup> books = new HashSet<>();
 	private Set<PhoneNumber> phones = new HashSet<>();
 	
+	private int version;
+	
 	public Contact() {
 		super();
 	}
