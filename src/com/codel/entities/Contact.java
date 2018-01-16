@@ -82,6 +82,20 @@ public class Contact {
 	public void setBooks(Set<ContactGroup> books) {
 		this.books = books;
 	}
+	
+	public void addBooks(ContactGroup book){
+		books.add(book);
+		if(!book.getContacts().contains(this)){
+			book.addContact(this);
+		}
+	}
+	
+	public void removeBook(ContactGroup book){
+		books.remove(book);
+		if(book.getContacts().contains(this)){
+			book.removeContact(this);
+		}
+	}
 
 	public Set<PhoneNumber> getPhones() {
 		return phones;
@@ -91,8 +105,15 @@ public class Contact {
 		this.phones = phones;
 	}
 	
-
-
+	public void addPhone(PhoneNumber phone){
+		phones.add(phone);
+		if(!phone.getContact().equals(this)){
+			phone.setContact(this);
+		}
+	}
 	
+	public void removePhone(PhoneNumber phone){
+		phones.remove(phone);
+	}
 	
 }

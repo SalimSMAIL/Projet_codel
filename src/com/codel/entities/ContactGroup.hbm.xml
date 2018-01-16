@@ -13,7 +13,7 @@
 
 		<property name="groupName" column="group_name" type="string" />
 
-		<set name="contacts" table="CONTACT_GROUP_CONTACT" inverse="true">
+		<set name="contacts" table="CONTACT_GROUP_CONTACT" cascade="persist" inverse="true">
 			<key column="group_id"/>
 			<many-to-many column="contact_id" class="com.codel.entities.Contact"/>
 		</set>  

@@ -31,6 +31,11 @@
 			<key column="contact_id"/>
 			<many-to-many column="group_id" class="com.codel.entities.ContactGroup"/>
 		</set>  
+		
+		<joined-subclass name="com.codel.entities.Entreprise" table="ENTREPRISE">
+			<key column="contact_id"/>
+			<property name="numSiret" column="num_siret"/>
+		</joined-subclass>
 	
 	</class>
 

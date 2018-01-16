@@ -17,6 +17,10 @@ public class PhoneNumber {
 		this.phoneNumber = phoneNumber;
 		this.phoneKind = phoneKind;
 		this.contact = contact;
+		
+		if(!contact.getPhones().contains(this)){
+			contact.addPhone(this);
+		}
 	}
 
 	public long getPhoneId() {
