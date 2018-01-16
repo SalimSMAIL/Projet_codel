@@ -11,7 +11,9 @@
 			This class contains the contact detail.
 		</meta>		
 		
+		<!-- CACHE -->
 		<cache usage="read-write"/>
+		
 		<id name="contactId" type="long" column="contact_id">
 			<generator class="increment" />
 		</id>

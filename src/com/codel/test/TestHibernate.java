@@ -16,7 +16,7 @@ public class TestHibernate {
 		Session session = sessionFactory.getCurrentSession();
 		session.beginTransaction();
 		
-		c1 = session.load(Contact.class, 1l);
+		c1 = (Contact) session.load(Contact.class, 1l);
 		c1.setFirstName("blabla");
 		
 		try {
