@@ -13,19 +13,12 @@ public class TestHibernate {
 		Contact c1;
 		
 		SessionFactory sessionFactory = HibernateUtility.getSessionFactory();
-		Session session = sessionFactory.getCurrentSession();
+		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
 		c1 = (Contact) session.load(Contact.class, 1l);
-		c1.setFirstName("blabla");
-		
-		try {
-			Thread.sleep(30000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-
-		System.out.println("je commiteeeeeeeeeeeeee");
+//		session.delete(c1);
+		System.out.println(c1.getFirstName());
 		session.getTransaction().commit();
 		session.close();
 	}

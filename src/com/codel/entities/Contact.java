@@ -9,7 +9,6 @@ public class Contact {
 	private String firstName;
 	private String lastName;
 	private String email;
-	private String password;
 	private Address address;
 	private Set<ContactGroup> books = new HashSet<>();
 	private Set<PhoneNumber> phones = new HashSet<>();
@@ -20,12 +19,10 @@ public class Contact {
 		super();
 	}
 
-	public Contact(String firstName, String lastName, String email, String password, Address address) {
-		super();
+	public Contact(String firstName, String lastName, String email, Address address) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.password = password;
 		this.address = address;
 	}
 
@@ -61,14 +58,6 @@ public class Contact {
 		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
 	public Address getAddress() {
 		return address;
 	}

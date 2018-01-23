@@ -15,7 +15,6 @@ public class Address {
 	}
 	public Address(long streetNumber, String streetType, String streetName, String codePostal, String city,
 			String country) {
-		super();
 		this.streetNumber = streetNumber;
 		this.streetType = streetType;
 		this.streetName = streetName;

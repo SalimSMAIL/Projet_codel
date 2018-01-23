@@ -1,28 +1,36 @@
 package com.codel.services;
 
-import com.codel.daos.DAOContact;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.codel.daos.ContactDAO;
+import com.codel.entities.Address;
+import com.codel.entities.Contact;
+import com.codel.enumeration.Response;
 
 public class ContactServices {
 	
-	private final static DAOContact daoContact = new DAOContact();
+	private static ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+	private final static ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
+	
+	public static Response addContact(String firstName, String lastName, String email, 
+				String streetNumber, String streetType, String streetName, String codePostal, String city, String country){
 
-	public static boolean login(String email, String password){
-		return daoContact.checkContact(email, password);
+		if(firstName==null || firstName.equals("")) return Response.FIRSTNAME_NOT_FOUND;
+		if(lastName==null || lastName.equals("")) return Response.LASTTNAME_NOT_FOUND;
+		if(email==null || email.equals("")) return Response.EMAIL_NOT_FOND;
+		if(streetNumber==null || streetNumber.equals("")) return Response.STREETNUMBER_NOT_FOUND;
+		if(streetType==null || streetType.equals("")) return Response.STREETTYPE_NOT_FOUND;
+		if(streetName==null || streetName.equals("")) return Response.STREETNAME_NOT_FOUND;
+		if(codePostal==null || codePostal.equals("")) return Response.CODEPOSTAL_NOT_FOUND;
+		if(city==null || city.equals("")) return Response.CITY_NOT_FOUND;
+		if(country==null || country.equals("")) return Response.COUNTRY_NOT_FOUND;
+		
+		Contact contact = new Contact(firstName, lastName, email, new Address(Long.parseLong(streetNumber), 
+									streetType, streetName, codePostal, city, country));
+		contactDAO.save(contact);
+		return Response.OK;
+		
 	}
 	
-	public static void add(String id, String firstName, String lastName, String email){
-		daoContact.add(id, firstName, lastName, email);
-	}
-	
-	public static void search(String id, String firstName, String lastName, String email){
-		daoContact.search(id, firstName, lastName, email);
-	}
-	
-	public static void remove(String id){
-		daoContact.remove(id);
-	}
-	
-	public static void update(String id, String firstName, String lastName, String email){
-		daoContact.update(id, firstName, lastName, email);
-	}
 }

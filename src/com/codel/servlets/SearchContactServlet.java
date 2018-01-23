@@ -23,7 +23,7 @@ public class SearchContactServlet extends HttpServlet {
 		String lastName = request.getParameter("last_name");
 		String email = request.getParameter("email");
 		
-		ContactServices.add(id, firstName, lastName, email);
+//		ContactServices.add(id, firstName, lastName, email);
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/accueil.jsp");
 		dispatcher.forward(request,response);
