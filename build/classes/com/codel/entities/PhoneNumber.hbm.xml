@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.codel.entities.PhoneNumber" table="PHONE_NUMBER">
+		
+		<id name="phoneId" type="long" column="phone_id">
+			<generator class="increment" />
+		</id>
+
+		<property name="phoneNumber" column="phone_number"  type="string" />
+		<property name="phoneKind" column="phone_kind"  type="string" />
+		
+		<many-to-one name="contact" column="contact_id" class="com.codel.entities.Contact" not-null="true" />
+		
+	</class>
+
+</hibernate-mapping>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.codel.entities.ContactGroup" table="CONTACT_GROUP">
+
+		<id name="groupId" type="long" column="group_id">
+			<generator class="increment" />
+		</id>
+
+		<property name="groupName" column="group_name" type="string" />
+
+		<set name="contacts" table="CONTACT_GROUP_CONTACT" cascade="persist" inverse="true">
+			<key column="group_id"/>
+			<many-to-many column="contact_id" class="com.codel.entities.Contact"/>
+		</set>  
+		
+	</class>
+
+</hibernate-mapping>

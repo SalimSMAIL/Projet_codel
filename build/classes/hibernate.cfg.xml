@@ -1,0 +1,41 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <session-factory>
+
+        <!-- JDBC Database connection settings -->
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/bdd_codel?useSSL=false</property>
+        <property name="connection.username">codel</property>
+        <property name="connection.password">codel_secret</property>
+
+        <!-- JDBC connection pool settings ... using built-in test pool -->
+        <property name="connection.pool_size">1</property>
+        
+        <!-- EHCACHE -->
+		<property name="hibernate.cache.use_second_level_cache">true</property>
+<!-- 		<property name="hibernate.cache.use_query_cache">true</property> -->
+		<property name="net.sf.ehcache.configurationResourceName">ehcache.xml</property> 
+		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+		
+        <!-- Select our SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+
+        <!-- Echo the SQL to stdout -->
+        <property name="show_sql">true</property>
+        
+        <property name="hbm2ddl.auto">update</property>
+        <property name="id.new_generator_mappings">false</property>
+        <property name="connection.provider_disables_autocommit">false</property>
+
+		
+		<mapping resource="com/codel/entities/Address.hbm.xml" />
+		<mapping resource="com/codel/entities/Contact.hbm.xml" />
+ 	 	<mapping resource="com/codel/entities/ContactGroup.hbm.xml" />
+	    <mapping resource="com/codel/entities/PhoneNumber.hbm.xml" />
+    </session-factory>
+
+</hibernate-configuration>
