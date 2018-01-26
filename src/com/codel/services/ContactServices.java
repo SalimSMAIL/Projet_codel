@@ -10,11 +10,12 @@ import com.codel.entities.Contact;
 
 public class ContactServices {
 	
-	private ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-	private ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
 	
 	public JSONObject addContact(String firstName, String lastName, String email, 
 				String streetNumber, String streetType, String streetName, String codePostal, String city, String country){
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		private ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
 		
 //		if(firstName==null || firstName.equals("")) return Response.FIRSTNAME_NOT_FOUND;
 //		if(lastName==null || lastName.equals("")) return Response.LASTTNAME_NOT_FOUND;

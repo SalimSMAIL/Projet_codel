@@ -13,4 +13,9 @@ public class CheckServices {
 			
 	}
 	
+	public String test(ProceedingJoinPoint pjp, String c){
+		System.out.println("Je suis dans l'aspect");
+		return "aspect";
+	}
+	
 }
