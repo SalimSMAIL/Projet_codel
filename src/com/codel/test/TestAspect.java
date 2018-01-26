@@ -1,5 +1,6 @@
 package com.codel.test;
 
+import org.json.JSONException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -9,11 +10,11 @@ import com.codel.services.ContactServices;
 
 public class TestAspect  {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws JSONException {
 
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		ContactServices d = (ContactServices) context.getBean("myContactServices");
-		System.out.println(d.addContact("firstName", "lastName", "email", "0", "streetType", "streetName", "codePostal", "city", "country"));
+		System.out.println(d.addContact("firstName", "lastName", "email@gmail.com", "", "", "", "", "", ""));
 		
 		
 	}
