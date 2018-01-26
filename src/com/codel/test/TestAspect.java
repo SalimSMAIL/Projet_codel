@@ -4,13 +4,15 @@ import org.aspectj.lang.ProceedingJoinPoint;
 
 public class TestAspect {
 
-	public void test(ProceedingJoinPoint pjp, Object c){
+	public Object test(ProceedingJoinPoint pjp, Object c){
 		System.out.println("je suis dans l'aspect");
 		try {
-			pjp.proceed();
+		Object result =  pjp.proceed();
+		System.out.println(result);
+		return result;
 		} catch (Throwable e) {
 			e.printStackTrace();
+			return null;
 		}
-		
 	}
 }

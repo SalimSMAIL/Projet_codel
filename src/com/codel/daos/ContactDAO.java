@@ -19,7 +19,7 @@ public class ContactDAO extends HibernateDaoSupport implements IContactDAO{
 
 	@Override
 	public void update(Object entity) {
-		// TODO Auto-generated method stub
+		System.out.println("je suis dans le update");
 		
 	}
 
