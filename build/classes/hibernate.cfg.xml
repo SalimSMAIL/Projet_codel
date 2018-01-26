@@ -15,9 +15,12 @@
         <!-- JDBC connection pool settings ... using built-in test pool -->
         <property name="connection.pool_size">1</property>
         
+        <!-- Set the current session context -->
+        <!-- Ne pas utilisé dans l'integration avec spring -->
+		<!-- <property name="current_session_context_class">thread</property> -->
+        
         <!-- EHCACHE -->
 		<property name="hibernate.cache.use_second_level_cache">true</property>
-<!-- 		<property name="hibernate.cache.use_query_cache">true</property> -->
 		<property name="net.sf.ehcache.configurationResourceName">ehcache.xml</property> 
 		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
 		

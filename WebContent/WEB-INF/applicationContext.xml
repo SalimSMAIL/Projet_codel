@@ -46,29 +46,16 @@
 		<constructor-arg type="java.lang.String" value="France"/>
 	</bean>
 	
-	<bean id="myDataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
+ 	<bean id="myDataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://localhost:3306/bdd_codel?useSSL=false"/>
 		<property name="username" value="codel"/>
 		<property name="password" value="codel_secret"/>
-	</bean>
+	</bean> 
 	
 	<bean id="mySessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="myDataSource"/>
         <property name="configLocation" value="classpath:hibernate.cfg.xml" />
-        <property name="mappingResources">
-			<list>
-				<value>com/codel/entities/Address.hbm.xml</value> 
-				<value>com/codel/entities/Contact.hbm.xml</value> 
-		 	 	<value>com/codel/entities/ContactGroup.hbm.xml</value> 
-			    <value>com/codel/entities/PhoneNumber.hbm.xml</value> 
-			</list>
-		</property>
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
-			</props>
-		</property>
 	</bean>
 	
 <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
