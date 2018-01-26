@@ -14,7 +14,7 @@ public class TextCouplageSpringHibernate {
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
-		d.save(new Contact("salim", "SMAIL", "salim@gail.com", new Address(0, "h", "h", "003", "g", "g")));
+		d.update(new Contact("salim", "SMAIL", "salim@gail.com", new Address(0, "h", "h", "003", "g", "g")));
 				
 	}
 }

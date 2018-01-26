@@ -46,11 +46,12 @@
 </aop:config>
 
 <aop:config>
-	<aop:aspect id="TestAspect" ref="testAspect">
-		<aop:around pointcut="execution(* save(Object)) and args(c)"
+	<aop:aspect id="checkAddContactBean" ref="checkAddContact">
+		<aop:around pointcut="execution(* com.codel.daos.ContactDAO.update(Object)) 
+						and args(c)"
 			method="test" arg-names="pjp, c"/>
 		</aop:aspect>
 	</aop:config>
-<bean id="testAspect" class="com.codel.test.TestAspect"/>
+<bean id="checkAddContact" class="com.codel.test.TestAspect"/>
 
 </beans>

@@ -11,11 +11,11 @@ import com.codel.enumeration.Response;
 public class ContactServices {
 	
 	private static ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-	private final static ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
+	private static final ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
 	
 	public static Response addContact(String firstName, String lastName, String email, 
 				String streetNumber, String streetType, String streetName, String codePostal, String city, String country){
-
+		
 		if(firstName==null || firstName.equals("")) return Response.FIRSTNAME_NOT_FOUND;
 		if(lastName==null || lastName.equals("")) return Response.LASTTNAME_NOT_FOUND;
 		if(email==null || email.equals("")) return Response.EMAIL_NOT_FOND;
