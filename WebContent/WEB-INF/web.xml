@@ -48,8 +48,6 @@
   <servlet-mapping>
     <servlet-name>PeuplerServlet</servlet-name>
     <url-pattern>/peupler</url-pattern>
-  </servlet-mapping>
-  
-  
+  </servlet-mapping>  
 
 </web-app>

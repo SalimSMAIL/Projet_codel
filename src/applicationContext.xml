@@ -34,10 +34,10 @@
 
 <tx:advice id="txAdvice" transaction-manager="transactionManager">
 	<tx:attributes>
-		<tx:method name="get*" read-only="true" timeout="-1" />
+		<tx:method name="get*" read-only="true" />
 		<tx:method name="sav*" propagation="REQUIRED" />
 		<tx:method name="find*" read-only="true" />
-		<tx:method name="*" propagation="REQUIRED" timeout="1"/>
+		<tx:method name="*" propagation="REQUIRED" />
 	</tx:attributes>
 </tx:advice>
 
@@ -45,13 +45,24 @@
 	<aop:advisor pointcut="execution(* com.codel.daos.*.*(..))" advice-ref="txAdvice"/>
 </aop:config>
 
-<aop:config>
+<bean id="myContactServices" class="com.codel.services.ContactServices"/>
+
+<!-- <aop:config>
 	<aop:aspect id="checkAddContactBean" ref="checkAddContact">
-		<aop:around pointcut="execution(* com.codel.daos.ContactDAO.update(Object)) 
+		<aop:around pointcut="execution(* com.codel.services.ContactServices.testAspect(*)) 
 						and args(c)"
 			method="test" arg-names="pjp, c"/>
 		</aop:aspect>
 	</aop:config>
-<bean id="checkAddContact" class="com.codel.test.TestAspect"/>
+<bean id="checkAddContact" class="com.codel.test.TestAspect"/> -->
+
+<aop:config>
+	<aop:aspect id="checkAddContactBean" ref="checkAddContact">
+		<aop:around pointcut="execution(* com.codel.services.ContactServices.addContact(*)) 
+						and args(firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country)"
+			method="checkAddContact" arg-names="pjp, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country"/>
+		</aop:aspect>
+	</aop:config>
+<bean id="checkAddContact" class="com.codel.services.aspect.CheckServices"/>
 
 </beans>

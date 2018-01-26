@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import com.codel.daos.interfaces.IContactDAO;
+import com.codel.entities.Contact;
 
 public class ContactDAO extends HibernateDaoSupport implements IContactDAO{
 	
@@ -19,14 +20,12 @@ public class ContactDAO extends HibernateDaoSupport implements IContactDAO{
 
 	@Override
 	public void update(Object entity) {
-		System.out.println("je suis dans le update");
-		
+
 	}
 
 	@Override
 	public Object findById(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return getHibernateTemplate().get(Contact.class, 1l);
 	}
 
 	@Override
