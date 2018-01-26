@@ -1,11 +1,21 @@
 package com.codel.test;
 
-import org.aspectj.lang.ProceedingJoinPoint;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class TestAspect {
+import com.codel.entities.Address;
+import com.codel.entities.Contact;
+import com.codel.services.ContactServices;
 
-	public String test(ProceedingJoinPoint pjp, String name){
-		System.out.println("je suis dans l'aspect");
-		return "aspect";
+public class TestAspect  {
+
+	public static void main(String[] args) {
+
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ContactServices d = (ContactServices) context.getBean("myContactServices");
+		System.out.println(d.addContact("firstName", "lastName", "email", "0", "streetType", "streetName", "codePostal", "city", "country"));
+		
+		
 	}
+
 }

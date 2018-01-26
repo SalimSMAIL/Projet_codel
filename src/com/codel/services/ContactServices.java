@@ -15,7 +15,7 @@ public class ContactServices {
 				String streetNumber, String streetType, String streetName, String codePostal, String city, String country){
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		private ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
+		ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
 		
 //		if(firstName==null || firstName.equals("")) return Response.FIRSTNAME_NOT_FOUND;
 //		if(lastName==null || lastName.equals("")) return Response.LASTTNAME_NOT_FOUND;
@@ -27,16 +27,14 @@ public class ContactServices {
 //		if(city==null || city.equals("")) return Response.CITY_NOT_FOUND;
 //		if(country==null || country.equals("")) return Response.COUNTRY_NOT_FOUND;
 		
-//		Contact contact = new Contact(firstName, lastName, email, new Address(Long.parseLong(streetNumber), 
-//									streetType, streetName, codePostal, city, country));
-//		contactDAO.save(contact);
+		System.out.println("je suis dans add");
+		
+		Contact contact = new Contact(firstName, lastName, email, new Address(Long.parseLong(streetNumber), 
+									streetType, streetName, codePostal, city, country));
+		contactDAO.save(contact);
 		return new JSONObject();
 		
 	}
-	
-	public String testAspect(String name){
-		System.out.println("je suis dans la méthode");
-		return "methode";
-	}
+
 	
 }
