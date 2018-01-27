@@ -39,6 +39,17 @@
     <url-pattern>/add</url-pattern>
   </servlet-mapping>
   
+    <servlet>
+    <description></description>
+    <display-name>UpdateContactServlet</display-name>
+    <servlet-name>UpdateContactServlet</servlet-name>
+    <servlet-class>com.codel.servlets.UpdateContactServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateContactServlet</servlet-name>
+    <url-pattern>/update</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>PeuplerServlet</display-name>

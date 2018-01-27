@@ -2,12 +2,17 @@ package com.codel.servlets;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
+import com.codel.entities.Contact;
 import com.codel.services.ContactServices;
 
 public class UpdateContactServlet extends HttpServlet {
@@ -17,16 +22,46 @@ public class UpdateContactServlet extends HttpServlet {
         super();
     }
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String id  = request.getParameter("id");
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		ContactServices contactServices = (ContactServices) context.getBean("myContactServices");
+		Contact c = contactServices.find(Long.parseLong(id));
+		
+		if(c != null) {
+			request.getSession(true).setAttribute("contact", c);
+			getServletContext().getRequestDispatcher("/updateContact.jsp").forward(request, response);
+		}else {
+			System.out.println("ABOUCHE");
+		}
+	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
+		
+		String id  = request.getParameter("id");
 		String firstName = request.getParameter("first_name");
 		String lastName = request.getParameter("last_name");
 		String email = request.getParameter("email");
+		String streetNumber = request.getParameter("street_number");
+		String streetName = request.getParameter("street_name");
+		String streetType = request.getParameter("street_nype");
+		String codePostal = request.getParameter("code_postal");
+		String city = request.getParameter("city");
+		String country = request.getParameter("country");
 		
-//		ContactServices.add(id, firstName, lastName, email);
-		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/accueil.jsp");
-		dispatcher.forward(request,response);
+
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		ContactServices contactServices = (ContactServices) context.getBean("myContactServices");
+		Contact c = (Contact) request.getSession().getAttribute("contact");
+		try {
+			JSONObject result = contactServices.updateContact(c, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country);
+			if(result.has("errors")) {
+				request.setAttribute("errors", "veuillez remplir correctement ces champs : "+result.getString("errors"));
+				getServletContext().getRequestDispatcher("/updateContact.jsp").forward(request, response);
+			}
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

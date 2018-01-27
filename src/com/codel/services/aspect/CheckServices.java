@@ -3,11 +3,26 @@ package com.codel.services.aspect;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.json.JSONObject;
 
+import com.codel.entities.Contact;
+
 public class CheckServices {
 	
 	public JSONObject checkAddContact(ProceedingJoinPoint pjp, String firstName, String lastName, String email, 
 			String streetNumber, String streetType, String streetName, String codePostal, String city, String country) throws Throwable {
 		
+		return checkInfoContact(pjp, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country);
+			
+	}
+	
+	public JSONObject checkUpdateContact(ProceedingJoinPoint pjp, Contact contact, String firstName, String lastName, String email, 
+			String streetNumber, String streetType, String streetName, String codePostal, String city, String country) throws Throwable {
+		
+		return checkInfoContact(pjp, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country);
+			
+	}
+	
+	private JSONObject checkInfoContact(ProceedingJoinPoint pjp, String firstName, String lastName, String email, 
+			String streetNumber, String streetType, String streetName, String codePostal, String city, String country) throws Throwable{
 		JSONObject error = new JSONObject();
 
 		if(firstName == null || !firstName.matches("^[a-zA-Z]{2,}$")){
@@ -19,7 +34,7 @@ public class CheckServices {
 		if(email == null || !email.matches("^[A-Za-z][A-Za-z0-9._-]+@[A-Za-z0-9-_]+\\.?[A-Za-z0-9-_]+\\.[A-Za-z]{2,6}$")){
 			error.accumulate("errors", "email");
 		}
-		if(streetNumber == null || !streetNumber.matches("^[0-9]+$")){
+		if(streetNumber == null || !streetNumber.matches("^[0-9]{1,3}$")){
 			error.accumulate("errors", "streetNumber");
 		}
 		if(streetType == null || !streetType.matches("^[A-Za-z]{2,}$")){
@@ -43,7 +58,6 @@ public class CheckServices {
 		}else{
 			return (JSONObject) pjp.proceed();
 		}
-			
 	}
 	
 }

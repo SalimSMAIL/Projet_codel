@@ -45,7 +45,7 @@
 		<constructor-arg type="java.lang.String" value="Neuilly Plaisance"/>
 		<constructor-arg type="java.lang.String" value="France"/>
 	</bean>
-	
+
  	<bean id="myDataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://localhost:3306/bdd_codel?useSSL=false"/>
@@ -66,10 +66,10 @@
 
 <tx:advice id="txAdvice" transaction-manager="transactionManager">
 	<tx:attributes>
-		<tx:method name="get*" read-only="true" timeout="-1" />
+		<tx:method name="get*" read-only="true" />
 		<tx:method name="sav*" propagation="REQUIRED" />
 		<tx:method name="find*" read-only="true" />
-		<tx:method name="*" propagation="REQUIRED" timeout="1"/>
+		<tx:method name="*" propagation="REQUIRED" />
 	</tx:attributes>
 </tx:advice>
 
@@ -77,5 +77,26 @@
 	<aop:advisor pointcut="execution(* com.codel.daos.*.*(..))" advice-ref="txAdvice"/>
 </aop:config>
 
+<bean id="myContactServices" class="com.codel.services.ContactServices"/>
+
+ <aop:config>
+	<aop:aspect id="checkAddContactBean" ref="checkAddContact">
+		<aop:around pointcut="execution(* com.codel.services.ContactServices.addContact(*,*,*,*,*,*,*,*,*)) 
+						and args(firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country)"
+			method="checkAddContact" arg-names="pjp, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country"/>
+		</aop:aspect>
+	</aop:config>
+
+
+ <aop:config>
+	<aop:aspect id="checkUpdateContactBean" ref="checkUpdateContact">
+		<aop:around pointcut="execution(* com.codel.services.ContactServices.updateContact(*,*,*,*,*,*,*,*,*,*)) 
+						and args(contact, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country)"
+			method="checkUpdateContact" arg-names="pjp, contact, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<bean id="checkAddContact" class="com.codel.services.aspect.CheckServices"/> 
+	<bean id="checkUpdateContact" class="com.codel.services.aspect.CheckServices"/> 
 </beans>
 

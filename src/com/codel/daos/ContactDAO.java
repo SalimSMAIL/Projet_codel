@@ -20,7 +20,7 @@ public class ContactDAO extends HibernateDaoSupport implements IContactDAO{
 
 	@Override
 	public void update(Object entity) {
-
+		getHibernateTemplate().update(entity);
 	}
 
 	@Override

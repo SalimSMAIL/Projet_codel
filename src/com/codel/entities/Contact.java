@@ -25,7 +25,7 @@ public class Contact {
 		this.email = email;
 		this.address = address;
 	}
-
+	
 	public long getContactId() {
 		return contactId;
 	}

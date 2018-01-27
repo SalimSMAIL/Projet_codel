@@ -14,7 +14,7 @@ public class TestAspect  {
 
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		ContactServices d = (ContactServices) context.getBean("myContactServices");
-		System.out.println(d.addContact("firstName", "lastName", "email@gmail.com", "", "", "", "", "", ""));
+		System.out.println(d.updateContact(d.find(1),"firstName", "lastName", "email@gmail.com", "12", "streetType", "streetName", "93000", "city", "country"));
 		
 		
 	}
