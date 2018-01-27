@@ -26,13 +26,11 @@ public class UpdateContactServlet extends HttpServlet {
 		String id  = request.getParameter("id");
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 		ContactServices contactServices = (ContactServices) context.getBean("myContactServices");
-		Contact c = contactServices.find(Long.parseLong(id));
+		Contact contact = contactServices.find(Long.parseLong(id));
 		
-		if(c != null) {
-			request.getSession(true).setAttribute("contact", c);
+		if(contact != null) {
+			request.getSession(true).setAttribute("contact", contact);
 			getServletContext().getRequestDispatcher("/updateContact.jsp").forward(request, response);
-		}else {
-			System.out.println("ABOUCHE");
 		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -51,9 +49,9 @@ public class UpdateContactServlet extends HttpServlet {
 
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 		ContactServices contactServices = (ContactServices) context.getBean("myContactServices");
-		Contact c = (Contact) request.getSession().getAttribute("contact");
+		Contact contact = (Contact) request.getSession().getAttribute("contact");
 		try {
-			JSONObject result = contactServices.updateContact(c, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country);
+			JSONObject result = contactServices.updateContact(contact, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country);
 			if(result.has("errors")) {
 				request.setAttribute("errors", "veuillez remplir correctement ces champs : "+result.getString("errors"));
 				getServletContext().getRequestDispatcher("/updateContact.jsp").forward(request, response);
