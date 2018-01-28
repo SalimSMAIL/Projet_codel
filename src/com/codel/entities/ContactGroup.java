@@ -57,5 +57,7 @@ public class ContactGroup {
 			contact.removeBook(this);
 		}
 	}
+	
+
 
 }

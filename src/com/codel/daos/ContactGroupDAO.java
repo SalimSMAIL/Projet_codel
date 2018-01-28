@@ -29,7 +29,7 @@ public class ContactGroupDAO extends HibernateDaoSupport implements IContactGrou
 
 	@Override
 	public Object findById(long id) {
-		return getHibernateTemplate().get(ContactGroup.class, 1l);
+		return getHibernateTemplate().get(ContactGroup.class,id);
 	}
 
 	@Override

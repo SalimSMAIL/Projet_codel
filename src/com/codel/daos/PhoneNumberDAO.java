@@ -24,7 +24,7 @@ public class PhoneNumberDAO extends HibernateDaoSupport implements IPhoneNumberD
 
 	@Override
 	public Object findById(long id) {
-		return getHibernateTemplate().get(PhoneNumber.class, 1l);
+		return getHibernateTemplate().get(PhoneNumber.class,id);
 	}
 
 	@Override

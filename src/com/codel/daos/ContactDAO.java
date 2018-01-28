@@ -31,7 +31,7 @@ public class ContactDAO extends HibernateDaoSupport implements IContactDAO{
 
 	@Override
 	public Object findById(long id) {
-		return getHibernateTemplate().get(Contact.class, 1l);
+		return getHibernateTemplate().get(Contact.class, id);
 	}
 
 	@Override

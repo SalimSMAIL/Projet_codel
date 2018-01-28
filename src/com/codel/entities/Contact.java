@@ -103,7 +103,7 @@ public class Contact {
 	
 	public void addPhone(PhoneNumber phone){
 		phones.add(phone);
-		if(!phone.getContact().equals(this)){
+		if(phone.getContact()==null || !phone.equals(this)){
 			phone.setContact(this);
 		}
 	}

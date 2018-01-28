@@ -6,9 +6,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.codel.daos.ContactDAO;
 import com.codel.daos.ContactGroupDAO;
+import com.codel.daos.PhoneNumberDAO;
 import com.codel.entities.Address;
 import com.codel.entities.Contact;
 import com.codel.entities.ContactGroup;
+import com.codel.entities.PhoneNumber;
 
 public class TestAspect  {
 
@@ -28,14 +30,14 @@ public class TestAspect  {
 //		d.delete(1L);
 		
 		// phone number supp un phone number
-//		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
-//		Contact c = new Contact("salim", "SMAIL", "salim@gail.com", new Address(0, "h", "h", "003", "g", "g"));
-//		
-//		PhoneNumberDAO p = (PhoneNumberDAO) context.getBean("myPhoneDao");
-//		PhoneNumber pn = new PhoneNumber("phoneNumber","phoneKind",c);
-//		PhoneNumber p1 = new PhoneNumber("bn","mine",c);
-//		d.save(c);
-//		p.delete(2L);
+		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
+		Contact c = new Contact("salim", "SMAIL", "salim@gail.com", new Address(0, "h", "h", "003", "g", "g"));
+		
+		PhoneNumberDAO p = (PhoneNumberDAO) context.getBean("myPhoneDao");
+		PhoneNumber pn = new PhoneNumber("phoneNumber","phoneKind",c);
+		PhoneNumber p1 = new PhoneNumber("bn","mine",c);
+		c.addPhone(p1);
+		d.save(c);
 		
 		// supp un contact et verfiei que ça supp tt ses nums
 		
@@ -69,14 +71,13 @@ public class TestAspect  {
 		
 		
 		//dernier test
-		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
-		Contact c1 = new Contact("salism", "SdMAIL", "salim@gail.com", new Address(1, "h", "h", "003", "g", "g"));
-		ContactGroupDAO cg = (ContactGroupDAO) context.getBean("myContactGroupDAO");
-		ContactGroup c2 = new ContactGroup("amis");
-		c1.addBooks(c2);
-		d.save(c1);
-		cg.findAll().get(0).removeContact(d.findAll().get(0));
-		cg.update(c2);
+//		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
+//		Contact c1 = new Contact("salism", "SdMAIL", "salim@gail.com", new Address(1, "h", "h", "003", "g", "g"));
+//		ContactGroupDAO cg = (ContactGroupDAO) context.getBean("myContactGroupDAO");
+//		ContactGroup c2 = new ContactGroup("amis");
+//		c1.addBooks(c2);
+//		d.save(c1);
+//		d.delete(1L);
 		
 		
 		// llll
