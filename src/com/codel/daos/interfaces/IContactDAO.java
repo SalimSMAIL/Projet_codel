@@ -1,5 +1,7 @@
 package com.codel.daos.interfaces;
 
-public interface IContactDAO extends IDAO{
+import com.codel.entities.Contact;
+
+public interface IContactDAO extends IDAO<Contact>{
 
 }

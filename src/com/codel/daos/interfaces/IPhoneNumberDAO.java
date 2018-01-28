@@ -1,5 +1,7 @@
 package com.codel.daos.interfaces;
 
-public interface IPhoneNumberDAO extends IDAO{
+import com.codel.entities.PhoneNumber;
+
+public interface IPhoneNumberDAO extends IDAO<PhoneNumber>{
 
 }

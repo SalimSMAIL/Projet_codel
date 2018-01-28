@@ -1,5 +1,7 @@
 package com.codel.daos.interfaces;
 
-public interface IEntrepriseDAO extends IDAO{
+import com.codel.entities.Entreprise;
+
+public interface IEntrepriseDAO extends IDAO<Entreprise>{
 
 }

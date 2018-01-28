@@ -31,14 +31,14 @@ public class TestAspect  {
 //		d.delete(1L);
 		
 		// phone number supp un phone number
-		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
-		Contact c = new Contact("salim", "SMAIL", "salim@gail.com", new Address(0, "h", "h", "003", "g", "g"));
-		
-		PhoneNumberDAO p = (PhoneNumberDAO) context.getBean("myPhoneDao");
-		PhoneNumber pn = new PhoneNumber("phoneNumber","phoneKind",c);
-		PhoneNumber p1 = new PhoneNumber("bn","mine",c);
-		c.addPhone(p1);
-		d.save(c);
+//		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
+//		Contact c = new Contact("salim", "SMAIL", "salim@gail.com", new Address(0, "h", "h", "003", "g", "g"));
+//		
+//		PhoneNumberDAO p = (PhoneNumberDAO) context.getBean("myPhoneDao");
+//		PhoneNumber pn = new PhoneNumber("phoneNumber","phoneKind",c);
+//		PhoneNumber p1 = new PhoneNumber("bn","mine",c);
+//		c.addPhone(p1);
+//		d.save(c);
 		
 		// supp un contact et verfiei que ça supp tt ses nums
 		
@@ -108,7 +108,11 @@ public class TestAspect  {
 //		System.out.println(p.getContact().getContactId());
 //		c1.addPhone(p);
 		
-		
+//		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
+//		d.save(new Contact("salism", "SdMAIL", "salim@gail.com", new Address(1, "h", "h", "003", "g", "g")));	
+//		d.save(new Contact("salism", "SdMAIL", "salim@gail.com", new Address(1, "h", "h", "003", "g", "g")));	
+//		d.save(new Contact("salism", "SdMAIL", "salim@gail.com", new Address(1, "h", "h", "003", "g", "g")));	
+//		d.deleteAll();
 		
 	}
 	
