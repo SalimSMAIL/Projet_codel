@@ -25,7 +25,7 @@ public class AddressDAO implements IAddressDAO{
 	}
 
 	@Override
-	public void delete(Object entity) {
+	public void delete(long entity) {
 		// TODO Auto-generated method stub
 		
 	}

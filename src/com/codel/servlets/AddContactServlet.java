@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.codel.enumeration.Response;
 import com.codel.services.ContactServices;
 
@@ -30,9 +33,15 @@ public class AddContactServlet extends HttpServlet {
 		String city = request.getParameter("city");
 		String country = request.getParameter("country");
 		
-		Response result = ContactServices.addContact(firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country);
+		JSONObject result = null;
+		try {
+			result = ContactServices.addContact(firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		request.setAttribute("response", result);
-		if(result != Response.OK){
+		if(result.equals(Response.OK)){
 			request.setAttribute("first_name", firstName);
 			request.setAttribute("last_name", lastName);
 			request.setAttribute("email", email);
