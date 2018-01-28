@@ -60,5 +60,16 @@
     <servlet-name>PeuplerServlet</servlet-name>
     <url-pattern>/peupler</url-pattern>
   </servlet-mapping>  
+  
+  <servlet>
+    <description></description>
+    <display-name>DisplayContactGroupServlet</display-name>
+    <servlet-name>DisplayContactGroupServlet</servlet-name>
+    <servlet-class>com.codel.servlets.DisplayContactGroupServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DisplayContactGroupServlet</servlet-name>
+    <url-pattern>/displayContactGroup</url-pattern>
+  </servlet-mapping>  
 
 </web-app>

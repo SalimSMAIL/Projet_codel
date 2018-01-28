@@ -17,7 +17,7 @@ public class ContactServices {
 		return (Contact)contactDAO.findById(id);
 	}
 	
-	public JSONObject addContact(String firstName, String lastName, String email, 
+	public static JSONObject addContact(String firstName, String lastName, String email, 
 				String streetNumber, String streetType, String streetName, String codePostal, String city, String country) throws JSONException{
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");

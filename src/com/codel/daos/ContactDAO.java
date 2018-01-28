@@ -2,15 +2,20 @@ package com.codel.daos;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import com.codel.daos.interfaces.IContactDAO;
 import com.codel.entities.Contact;
+import com.codel.utils.HibernateUtility;
+
 
 public class ContactDAO extends HibernateDaoSupport implements IContactDAO{
 	
-	SessionFactory sessionFactory;
+	//
 	
 	@Override
 	public long save(Object entity) {
@@ -18,6 +23,7 @@ public class ContactDAO extends HibernateDaoSupport implements IContactDAO{
 		return t;
 	}
 
+	
 	@Override
 	public void update(Object entity) {
 		getHibernateTemplate().update(entity);
@@ -29,21 +35,25 @@ public class ContactDAO extends HibernateDaoSupport implements IContactDAO{
 	}
 
 	@Override
-	public void delete(Object entity) {
-		// TODO Auto-generated method stub
-		
+	public void delete(long entity) {
+		Contact c = (Contact)findById(entity);
+		this.getHibernateTemplate().delete(c);
 	}
+	
 
+	// Utiliser une instance de critéria avec restriction sur l'ordre des resultats 
 	@Override
-	public List findAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Contact> findAll() {
+		List<Contact> contacts =	getHibernateTemplate().getSessionFactory().getCurrentSession().createCriteria(Contact.class)
+	    .addOrder( Order.asc("firstName") )
+	    .list();
+		return contacts;
 	}
 
+	// requetes HQL query 
 	@Override
 	public void deleteAll() {
-		// TODO Auto-generated method stub
-		
+		getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery("DELETE FROM Contact").executeUpdate();
 	}
 
 }
