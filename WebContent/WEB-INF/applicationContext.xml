@@ -9,7 +9,7 @@
         				http://www.springframework.org/schema/tx/spring-tx.xsd
         				http://www.springframework.org/schema/aop
         				http://www.springframework.org/schema/aop/spring-aop.xsd">
-
+		
 	<bean id="myContactDao" class="com.codel.daos.ContactDAO">
 		<property name="sessionFactory" ref="mySessionFactory" />
 	</bean>
@@ -17,7 +17,7 @@
 		<property name="sessionFactory" ref="mySessionFactory" />
 	</bean>
 	
-	<bean id="myPhoneDao" class="com.codel.daos.phoneNumberDAO">
+	<bean id="myPhoneDao" class="com.codel.daos.PhoneNumberDAO">
 		<property name="sessionFactory" ref="mySessionFactory" />
 	</bean>
  	<bean id="myDataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
@@ -74,4 +74,35 @@
 	<bean id="checkAddContact" class="com.codel.services.aspect.CheckServices"/> 
 	<bean id="checkUpdateContact" class="com.codel.services.aspect.CheckServices"/> 
 
+<bean id="myContact" class="com.codel.entities.Contact">
+		<property name="firstName" value="Sara"/>
+		<property name="lastName" value="BENALLA"/>
+		<property name="email" value="sara@gmail.Com"/>
+		<property name="address" ref="myAddress"/>
+	</bean>
+
+	<bean id="myAddress" class="com.codel.entities.Address">
+		<property name="streetNumber" value="254"/>
+		<property name="streetType" value="rue"/>
+		<property name="streetName" value="Faubourg Saint Antoine"/>
+		<property name="codePostal" value="75012"/>
+		<property name="city" value="Paris"/>
+		<property name="country" value="France"/>
+	</bean>
+	
+ 	<bean id="myContactBis" class="com.codel.entities.Contact">
+		<constructor-arg type="java.lang.String" value="Salim"/>
+		<constructor-arg type="java.lang.String" value="SMAIL"/>
+		<constructor-arg type="java.lang.String" value="salim@gmail.Com"/>
+		<constructor-arg ref="myAddressBis"></constructor-arg>
+	</bean> 
+	
+		<bean id="myAddressBis" class="com.codel.entities.Address">
+		<constructor-arg type="long" value="33"/>
+		<constructor-arg type="java.lang.String" value="Boulevard"/>
+		<constructor-arg type="java.lang.String" value="Gallieni"/>
+		<constructor-arg type="java.lang.String" value="93360"/>
+		<constructor-arg type="java.lang.String" value="Neuilly Plaisance"/>
+		<constructor-arg type="java.lang.String" value="France"/>
+		</bean>
 </beans>

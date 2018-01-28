@@ -26,12 +26,28 @@ public class TestAspect  {
 //		c1.addBooks(c2);
 //		d.save(c1);
 //		d.delete(1L);
-		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
-		Contact c = new Contact("salim", "SMAIL", "salim@gail.com", new Address(0, "h", "h", "003", "g", "g"));
-		d.save(c);
-		PhoneNumberDAO p = (PhoneNumberDAO) context.getBean("myPhoneDao");
-		PhoneNumber pn = new PhoneNumber("phoneNumber","phoneKind",c);
-		p.save(pn);
+		
+		// phone number supp un phone number
+//		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
+//		Contact c = new Contact("salim", "SMAIL", "salim@gail.com", new Address(0, "h", "h", "003", "g", "g"));
+//		
+//		PhoneNumberDAO p = (PhoneNumberDAO) context.getBean("myPhoneDao");
+//		PhoneNumber pn = new PhoneNumber("phoneNumber","phoneKind",c);
+//		PhoneNumber p1 = new PhoneNumber("bn","mine",c);
+//		d.save(c);
+//		p.delete(2L);
+		
+		// supp un contact et verfiei que ça supp tt ses nums
+		
+//		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
+//		Contact c = new Contact("salim", "SMAIL", "salim@gail.com", new Address(0, "h", "h", "003", "g", "g"));
+//		
+//		PhoneNumberDAO p = (PhoneNumberDAO) context.getBean("myPhoneDao");
+//		PhoneNumber pn = new PhoneNumber("phoneNumber","phoneKind",c);
+//		PhoneNumber p1 = new PhoneNumber("bn","mine",c);
+//		d.save(c);
+//		d.delete(1L);
+		
 		
 		
 	}
