@@ -16,7 +16,6 @@ public class TestVersionning1 {
 		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
 		Contact c = (Contact) d.findById(1l);
 		
-		
 		ContactServices serv = (ContactServices)context.getBean("myContactServices");
 		serv.updateContact(c, "firstName", "lastName", "email@gmail.com", "12", "streetType", "streetName", "93000", "city", "country");
 		

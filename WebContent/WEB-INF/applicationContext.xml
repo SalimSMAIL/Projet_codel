@@ -1,108 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-    xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 						http://www.springframework.org/schema/beans/spring-beans.xsd
 						http://www.springframework.org/schema/tx
         				http://www.springframework.org/schema/tx/spring-tx.xsd
         				http://www.springframework.org/schema/aop
         				http://www.springframework.org/schema/aop/spring-aop.xsd">
-		
+
 	<bean id="myContactDao" class="com.codel.daos.ContactDAO">
 		<property name="sessionFactory" ref="mySessionFactory" />
 	</bean>
 	<bean id="myContactGroupDAO" class="com.codel.daos.ContactGroupDAO">
 		<property name="sessionFactory" ref="mySessionFactory" />
 	</bean>
-	
+
 	<bean id="myPhoneDao" class="com.codel.daos.PhoneNumberDAO">
 		<property name="sessionFactory" ref="mySessionFactory" />
 	</bean>
- 	<bean id="myDataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://localhost:3306/codelprojet"/>
-		<property name="username" value="root"/>
-		<property name="password" value=""/>
-	</bean> 
-	
-	<bean id="mySessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-        <property name="dataSource" ref="myDataSource"/>
-        <property name="configLocation" value="classpath:hibernate.cfg.xml" />
+	<bean id="myDataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/bdd_codel?useSSL=false" />
+		<property name="username" value="codel" />
+		<property name="password" value="codel_secret" />
 	</bean>
-	
-<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-    <property name="sessionFactory" ref="mySessionFactory" />
-</bean>
 
-<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+	<bean id="mySessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource" />
+		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
+	</bean>
 
-<tx:advice id="txAdvice" transaction-manager="transactionManager">
-	<tx:attributes>
-		<tx:method name="get*" read-only="true" />
-		<tx:method name="sav*" propagation="REQUIRED" />
-		<tx:method name="find*" read-only="true" />
-		<tx:method name="*" propagation="REQUIRED" />
-	</tx:attributes>
-</tx:advice>
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="mySessionFactory" />
+	</bean>
 
-<aop:config>
-	<aop:advisor pointcut="execution(* com.codel.daos.*.*(..))" advice-ref="txAdvice"/>
-</aop:config>
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="true" />
 
-<bean id="myContactServices" class="com.codel.services.ContactServices"/>
-<bean id="myContactGroupServices" class="com.codel.services.GroupServices"/>
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="sav*" propagation="REQUIRED" />
+			<tx:method name="find*" read-only="true" />
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
 
- <aop:config>
-	<aop:aspect id="checkAddContactBean" ref="checkAddContact">
-		<aop:around pointcut="execution(* com.codel.services.ContactServices.addContact(*,*,*,*,*,*,*,*,*)) 
+	<aop:config>
+		<aop:advisor pointcut="execution(* com.codel.daos.*.*(..))"
+			advice-ref="txAdvice" />
+	</aop:config>
+
+	<bean id="myContactServices" class="com.codel.services.ContactServices" />
+	<bean id="myContactGroupServices" class="com.codel.services.GroupServices" />
+
+	<aop:config>
+		<aop:aspect id="checkAddContactBean" ref="checkAddContact">
+			<aop:around
+				pointcut="execution(* com.codel.services.ContactServices.addContact(*,*,*,*,*,*,*,*,*)) 
 						and args(firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country)"
-			method="checkAddContact" arg-names="pjp, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country"/>
+				method="checkAddContact"
+				arg-names="pjp, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country" />
 		</aop:aspect>
 	</aop:config>
 
 
- <aop:config>
-	<aop:aspect id="checkUpdateContactBean" ref="checkUpdateContact">
-		<aop:around pointcut="execution(* com.codel.services.ContactServices.updateContact(*,*,*,*,*,*,*,*,*,*)) 
+	<aop:config>
+		<aop:aspect id="checkUpdateContactBean" ref="checkUpdateContact">
+			<aop:around
+				pointcut="execution(* com.codel.services.ContactServices.updateContact(*,*,*,*,*,*,*,*,*,*)) 
 						and args(contact, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country)"
-			method="checkUpdateContact" arg-names="pjp, contact, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country"/>
+				method="checkUpdateContact"
+				arg-names="pjp, contact, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country" />
 		</aop:aspect>
 	</aop:config>
-	
-	<bean id="checkAddContact" class="com.codel.services.aspect.CheckServices"/> 
-	<bean id="checkUpdateContact" class="com.codel.services.aspect.CheckServices"/> 
 
-<bean id="myContact" class="com.codel.entities.Contact">
-		<property name="firstName" value="Sara"/>
-		<property name="lastName" value="BENALLA"/>
-		<property name="email" value="sara@gmail.Com"/>
-		<property name="address" ref="myAddress"/>
+	<bean id="checkAddContact" class="com.codel.services.aspect.CheckServices" />
+	<bean id="checkUpdateContact" class="com.codel.services.aspect.CheckServices" />
+
+	<bean id="myContact" class="com.codel.entities.Contact">
+		<property name="firstName" value="Sara" />
+		<property name="lastName" value="BENALLA" />
+		<property name="email" value="sara@gmail.Com" />
+		<property name="address" ref="myAddress" />
+		<property name="phones">
+			<set> <ref bean="myPhoneNumber"/></set>
+		</property>
+ 		<property name="books">
+			<set> <ref bean="myContactGroup"/></set>
+		</property> 
 	</bean>
 
 	<bean id="myAddress" class="com.codel.entities.Address">
-		<property name="streetNumber" value="254"/>
-		<property name="streetType" value="rue"/>
-		<property name="streetName" value="Faubourg Saint Antoine"/>
-		<property name="codePostal" value="75012"/>
-		<property name="city" value="Paris"/>
-		<property name="country" value="France"/>
+		<property name="streetNumber" value="254" />
+		<property name="streetType" value="rue" />
+		<property name="streetName" value="Faubourg Saint Antoine" />
+		<property name="codePostal" value="75012" />
+		<property name="city" value="Paris" />
+		<property name="country" value="France" />
 	</bean>
 	
- 	<bean id="myContactBis" class="com.codel.entities.Contact">
-		<constructor-arg type="java.lang.String" value="Salim"/>
-		<constructor-arg type="java.lang.String" value="SMAIL"/>
-		<constructor-arg type="java.lang.String" value="salim@gmail.Com"/>
-		<constructor-arg ref="myAddressBis"></constructor-arg>
-	</bean> 
+	<bean id="myPhoneNumber" class="com.codel.entities.PhoneNumber">
+		<property name="phoneNumber" value="0785283923" />
+		<property name="phoneKind" value="mobile" />
+		<property name="contact" ref="myContact" />
+	</bean>
 	
-		<bean id="myAddressBis" class="com.codel.entities.Address">
-		<constructor-arg type="long" value="33"/>
-		<constructor-arg type="java.lang.String" value="Boulevard"/>
-		<constructor-arg type="java.lang.String" value="Gallieni"/>
-		<constructor-arg type="java.lang.String" value="93360"/>
-		<constructor-arg type="java.lang.String" value="Neuilly Plaisance"/>
-		<constructor-arg type="java.lang.String" value="France"/>
-		</bean>
+	<bean id="myContactGroup" class="com.codel.entities.ContactGroup">
+		<property name="groupName" value="amis" />
+<!--  		<property name="contacts">
+			<set> <ref bean="myContact"/></set>
+		</property> -->
+	</bean>
+
+	<bean id="myContactBis" class="com.codel.entities.Contact">
+		<constructor-arg type="java.lang.String" value="Salim" />
+		<constructor-arg type="java.lang.String" value="SMAIL" />
+		<constructor-arg type="java.lang.String" value="salim@gmail.Com" />
+		<constructor-arg ref="myAddressBis"/>
+ 		<property name="books">
+			<set> <ref bean="myContactGroupBis"/></set>
+		</property> 
+	</bean>
+
+	<bean id="myAddressBis" class="com.codel.entities.Address">
+		<constructor-arg type="long" value="33" />
+		<constructor-arg type="java.lang.String" value="Boulevard" />
+		<constructor-arg type="java.lang.String" value="Gallieni" />
+		<constructor-arg type="java.lang.String" value="93360" />
+		<constructor-arg type="java.lang.String" value="Neuilly Plaisance" />
+		<constructor-arg type="java.lang.String" value="France" />
+	</bean>
+	
+	<bean id="myPhoneNumberBis" class="com.codel.entities.PhoneNumber">
+		<constructor-arg type="java.lang.String" value="0785283900" />
+		<constructor-arg type="java.lang.String" value="mobile" />
+		<constructor-arg ref="myContactBis" />
+	</bean>
+	
+	<bean id="myContactGroupBis" class="com.codel.entities.ContactGroup">
+		<constructor-arg type="java.lang.String" value="ennemis" />
+	</bean>
 </beans>

@@ -17,8 +17,9 @@ public class TestAspect  {
 	public static void main(String[] args) throws JSONException {
 
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		//	ContactServices d = (ContactServices) context.getBean("myContactServices");
-		//System.out.println(d.updateContact(d.find(1),"firstName", "lastName", "email@gmail.com", "12", "streetType", "streetName", "93000", "city", "country"));
+		
+//	ContactServices d = (ContactServices) context.getBean("myContactServices");
+//	System.out.println(d.updateContact(d.find(1),"firstName", "lastName", "email@gmail.com", "12", "streetType", "streetName", "93000", "city", "country"));
 //		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
 //		Contact c = new Contact("salim", "SMAIL", "salim@gail.com", new Address(0, "h", "h", "003", "g", "g"));
 //		Contact c1 = new Contact("salism", "SdMAIL", "salim@gail.com", new Address(1, "h", "h", "003", "g", "g"));
@@ -51,7 +52,7 @@ public class TestAspect  {
 //		d.delete(1L);
 		
 		// ze erreur
-		
+//		
 //		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
 //		Contact c1 = new Contact("salism", "SdMAIL", "salim@gail.com", new Address(1, "h", "h", "003", "g", "g"));
 //		ContactGroupDAO cg = (ContactGroupDAO) context.getBean("myContactGroupDAO");
@@ -73,14 +74,19 @@ public class TestAspect  {
 		//dernier test
 //		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
 //		Contact c1 = new Contact("salism", "SdMAIL", "salim@gail.com", new Address(1, "h", "h", "003", "g", "g"));
+
+//		
 //		ContactGroupDAO cg = (ContactGroupDAO) context.getBean("myContactGroupDAO");
 //		ContactGroup c2 = new ContactGroup("amis");
+//
 //		c1.addBooks(c2);
 //		d.save(c1);
-//		d.delete(1L);
+//		
+//		c2 = cg.findAll().get(0);		
+//		c1= d.findAll().get(0);
+//		c1.removeBook(c2);
+//		d.update(c1);
 		
-		
-		// llll
 		
 //		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
 //		Contact c1 = new Contact("salism", "SdMAIL", "salim@gail.com", new Address(1, "h", "h", "003", "g", "g"));
@@ -88,6 +94,22 @@ public class TestAspect  {
 //		ContactGroup c2 = new ContactGroup("amis");
 //		c2.addContact(c1);
 //		cg.save(c2);
+		
+		
+//		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
+//		Contact c1 = new Contact("salism", "SdMAIL", "salim@gail.com", new Address(1, "h", "h", "003", "g", "g"));
+//		
+//		PhoneNumber p = new PhoneNumber();
+//		p.setPhoneKind("mobile");
+//		p.setPhoneNumber("002U5302834");
+//
+//		c1.addPhone(p);
+//
+//		System.out.println(p.getContact().getContactId());
+//		c1.addPhone(p);
+		
+		
+		
 	}
 	
 

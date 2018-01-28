@@ -16,12 +16,6 @@ public class ContactGroup {
 		super();
 		this.groupName = groupName;
 	}
-	
-//	public ContactGroup(String groupName,Contact c) {
-//		super();
-//		this.groupName = groupName;
-//		this.contacts.add(c);
-//	}
 
 	public long getGroupId() {
 		return groupId;
@@ -58,6 +52,22 @@ public class ContactGroup {
 		}
 	}
 	
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if ( !(other instanceof ContactGroup) ) return false;
 
+        final ContactGroup contactGroup = (ContactGroup) other;
+
+        if ( contactGroup.getGroupId()!=getGroupId() ) return false;
+
+        return true;
+    }
+
+    public int hashCode() {
+        int result;
+        result = getGroupName().hashCode();
+        result = (int) (29 * result + getGroupId());
+        return result;
+    }
 
 }

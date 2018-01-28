@@ -41,7 +41,7 @@ public class UpdateContactServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String streetNumber = request.getParameter("street_number");
 		String streetName = request.getParameter("street_name");
-		String streetType = request.getParameter("street_nype");
+		String streetType = request.getParameter("street_type");
 		String codePostal = request.getParameter("code_postal");
 		String city = request.getParameter("city");
 		String country = request.getParameter("country");

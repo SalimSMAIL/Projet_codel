@@ -112,4 +112,21 @@ public class Contact {
 		phones.remove(phone);
 	}
 	
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if ( !(other instanceof Contact) ) return false;
+
+        final Contact contact = (Contact) other;
+
+        if ( contact.getContactId()!=getContactId() ) return false;
+
+        return true;
+    }
+
+    public int hashCode() {
+        int result;
+        result = getFirstName().hashCode();
+        result = (int) (29 * result + getContactId());
+        return result;
+    }
 }
