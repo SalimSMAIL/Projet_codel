@@ -17,7 +17,7 @@ public class ContactGroupDAO extends HibernateDaoSupport implements IContactGrou
 	
 	@Override
 	public long save(Object entity) {
-		// TODO Auto-generated method stub
+		getHibernateTemplate().save(entity);
 		return 0;
 	}
 
@@ -29,14 +29,13 @@ public class ContactGroupDAO extends HibernateDaoSupport implements IContactGrou
 
 	@Override
 	public Object findById(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return getHibernateTemplate().get(ContactGroup.class, 1l);
 	}
 
 	@Override
 	public void delete(long entity) {
-		// TODO Auto-generated method stub
-		
+		ContactGroup c = (ContactGroup)findById(entity);
+		this.getHibernateTemplate().delete(c);
 	}
 
 	@Override
