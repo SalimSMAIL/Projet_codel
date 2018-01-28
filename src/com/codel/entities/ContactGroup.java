@@ -43,9 +43,6 @@ public class ContactGroup {
 	
 	public void addContact(Contact contact){
 		contacts.add(contact);
-		if(!contact.getBooks().contains(this)){
-			contact.addBooks(this);
-		}
 	}
 	
 	public void removeContact(Contact contact){

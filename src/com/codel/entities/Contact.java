@@ -84,9 +84,6 @@ public class Contact {
 	
 	public void addBooks(ContactGroup book){
 		books.add(book);
-		if(!book.getContacts().contains(this)){
-			book.addContact(this);
-		}
 	}
 	
 	public void removeBook(ContactGroup book){

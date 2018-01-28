@@ -31,7 +31,7 @@
 			<one-to-many class="com.codel.entities.PhoneNumber" />
 		</set> 
 
-		<set name="books" table="CONTACT_GROUP_CONTACT" cascade="persist">
+		<set name="books" table="CONTACT_GROUP_CONTACT" cascade="save-update">
 			<key column="contact_id"/>
 			<many-to-many column="group_id" class="com.codel.entities.ContactGroup"/>
 		</set>  

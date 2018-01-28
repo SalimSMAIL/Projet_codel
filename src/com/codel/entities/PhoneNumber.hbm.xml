@@ -14,7 +14,7 @@
 		<property name="phoneNumber" column="phone_number"  type="string" />
 		<property name="phoneKind" column="phone_kind"  type="string" />
 		
-		<many-to-one name="contact" column="contact_id" class="com.codel.entities.Contact" not-null="true" />
+		<many-to-one name="contact" column="contact_id" class="com.codel.entities.Contact"  cascade="save-update" not-null="true" />
 		
 	</class>
 
