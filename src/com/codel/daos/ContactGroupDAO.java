@@ -23,7 +23,7 @@ public class ContactGroupDAO extends HibernateDaoSupport implements IContactGrou
 
 	@Override
 	public void update(Object entity) {
-		// TODO Auto-generated method stub
+		this.getHibernateTemplate().update(entity);
 		
 	}
 
@@ -41,7 +41,7 @@ public class ContactGroupDAO extends HibernateDaoSupport implements IContactGrou
 	@Override
 	public List<ContactGroup> findAll() {
 		List<ContactGroup> contacts =getHibernateTemplate().getSessionFactory().getCurrentSession().createCriteria(ContactGroup.class)
-			    .addOrder( Order.asc("firstName") )
+			    .addOrder( Order.asc("groupName") )
 			    .list();
 				return contacts;
 	}

@@ -16,6 +16,12 @@ public class ContactGroup {
 		super();
 		this.groupName = groupName;
 	}
+	
+//	public ContactGroup(String groupName,Contact c) {
+//		super();
+//		this.groupName = groupName;
+//		this.contacts.add(c);
+//	}
 
 	public long getGroupId() {
 		return groupId;
@@ -43,9 +49,6 @@ public class ContactGroup {
 	
 	public void addContact(Contact contact){
 		contacts.add(contact);
-		if(!contact.getBooks().contains(this)){
-			contact.addBooks(this);
-		}
 	}
 	
 	public void removeContact(Contact contact){
