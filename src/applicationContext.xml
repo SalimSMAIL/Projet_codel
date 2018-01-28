@@ -16,6 +16,10 @@
 	<bean id="myContactGroupDAO" class="com.codel.daos.ContactGroupDAO">
 		<property name="sessionFactory" ref="mySessionFactory" />
 	</bean>
+	
+	<bean id="myPhoneDao" class="com.codel.daos.PhoneNumberDAO">
+		<property name="sessionFactory" ref="mySessionFactory" />
+	</bean>
  	<bean id="myDataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://localhost:3306/bdd_codel?useSSL=false"/>
