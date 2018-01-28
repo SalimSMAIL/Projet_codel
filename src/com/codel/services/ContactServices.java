@@ -11,10 +11,16 @@ import com.codel.entities.Contact;
 
 public class ContactServices {
 	
-	public Contact find(long id){
+	public Contact findById(long id){
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
-		return (Contact)contactDAO.findById(id);
+		return contactDAO.findById(id);
+	}
+	
+	public void deleteContactbyId(long id){
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
+		contactDAO.delete(id);
 	}
 	
 	public static JSONObject addContact(String firstName, String lastName, String email, 
@@ -25,9 +31,9 @@ public class ContactServices {
 		
 		Contact contact = new Contact(firstName, lastName, email, new Address(Long.parseLong(streetNumber), 
 									streetType, streetName, codePostal, city, country));
-		contactDAO.save(contact);
+		long id = contactDAO.save(contact);
 		
-		return new JSONObject();
+		return new JSONObject().put("id", id);
 		
 	}
 	
@@ -48,7 +54,7 @@ public JSONObject updateContact(Contact contact, String firstName, String lastNa
 	
 	contactDAO.update(contact);
 	
-	return new JSONObject();
+	return new JSONObject().put("id", contact.getContactId());
 	
 }
 

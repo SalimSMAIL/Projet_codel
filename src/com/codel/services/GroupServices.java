@@ -14,6 +14,7 @@ import com.codel.entities.ContactGroup;
 
 public class GroupServices {
 
+	@SuppressWarnings("finally")
 	public JSONObject findAll(){
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		ContactGroupDAO groupDao = (ContactGroupDAO)context.getBean("myContactGroupDAO");
@@ -25,20 +26,25 @@ public class GroupServices {
 			if(group_list.size()==0) {
 				json_element.put("result", 404);
 			}else {
-			for (ContactGroup gl : group_list) {
-				JSONObject groupListJSON = new JSONObject();
-				groupListJSON.put("name",gl.getGroupName());
+				for (ContactGroup gl : group_list) {
+					JSONObject groupListJSON = new JSONObject();
+					groupListJSON.put("name",gl.getGroupName());
 
-				array.put(groupListJSON);
-			}
-			json_element = new JSONObject().put("result", array);
-			json_element.put("response", 200);
+					array.put(groupListJSON);
+				}
+				json_element = new JSONObject().put("result", array);
+				json_element.put("response", 200);
 			}
 
-	
+
 		} catch (JSONException e) {
 			e.printStackTrace();
 		} finally {
 			return json_element;	
 		}
-}}
+	}
+	
+	public void viderGroup(){
+		
+	}
+}
