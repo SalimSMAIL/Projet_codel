@@ -14,7 +14,6 @@ public class TestVersionning2 {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
 		Contact c = (Contact) d.findById(1l);
-		System.out.println(c.getVersion());
 		Thread.sleep(10000);
 		
 		ContactServices serv = (ContactServices)context.getBean("myContactServices");
