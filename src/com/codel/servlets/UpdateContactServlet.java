@@ -24,8 +24,10 @@ public class UpdateContactServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id  = request.getParameter("id");
+		
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 		ContactServices contactServices = (ContactServices) context.getBean("myContactServices");
+		
 		Contact contact = contactServices.findById(Long.parseLong(id));
 		
 		if(contact != null) {
