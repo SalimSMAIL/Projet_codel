@@ -33,7 +33,7 @@ public class ContactGroupDAO extends HibernateDaoSupport implements IContactGrou
 	@Override
 	public void delete(long id) {
 		getHibernateTemplate().execute(session -> {
-			String hql = "delete from ContactGroup where contactId= "+id;
+			String hql = "delete from ContactGroup where groupId= "+id;
 			session.createQuery(hql).executeUpdate();
 			return null;
 		});

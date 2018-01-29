@@ -21,7 +21,7 @@
 	
 	<div class="menu">
 	<h1>Menu</h1>
-      <button name="displayContacts" type="button" onclick="displayContacts">Display contacts</button>
+      <button name="displayContacts" type="button" onclick="location.href='group';">Display contacts</button>
       <button name="searchContact" type="button" onclick="location.href='searchContact.jsp';">Search contact</button>
       <button name="addContact" type="button" onclick="location.href='addContact.jsp';">Add contact</button>
       <div class="line-separator"></div>

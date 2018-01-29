@@ -1,5 +1,7 @@
 package com.codel.services;
 
+import java.util.List;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.context.ApplicationContext;
@@ -15,6 +17,12 @@ public class ContactServices {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
 		return contactDAO.findById(id);
+	}
+	
+	public List<Contact> findAll(){
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
+		return contactDAO.findAll();
 	}
 	
 	public void deleteContactbyId(long id){

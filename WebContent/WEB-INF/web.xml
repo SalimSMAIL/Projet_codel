@@ -14,21 +14,8 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
-  
-<!--    <servlet>
-    <servlet-name>AccueilJSP</servlet-name>
-    <jsp-file>/accueil.jsp</jsp-file>
-</servlet>
-mapping
-<servlet-mapping>
-    <servlet-name>AccueilJSP</servlet-name>
-    <url-pattern>/accueil</url-pattern>   
-</servlet-mapping>
-   -->
-  
-  
   <servlet>
-     <description></description>
+    <description></description>
     <display-name>AddContactServlet</display-name>
     <servlet-name>AddContactServlet</servlet-name>
     <servlet-class>com.codel.servlets.AddContactServlet</servlet-class>
@@ -57,7 +44,6 @@ mapping
     <servlet-name>AccueilServlet</servlet-name>
     <url-pattern>/accueil</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>PeuplerServlet</display-name>
@@ -87,5 +73,25 @@ mapping
   <servlet-mapping>
     <servlet-name>DisplayGroup</servlet-name>
     <url-pattern>/group</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteServlet</display-name>
+    <servlet-name>DeleteServlet</servlet-name>
+    <servlet-class>com.codel.servlets.DeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteServlet</servlet-name>
+    <url-pattern>/delete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteGroupServlet</display-name>
+    <servlet-name>DeleteGroupServlet</servlet-name>
+    <servlet-class>com.codel.servlets.DeleteGroupServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteGroupServlet</servlet-name>
+    <url-pattern>/deleteGroup</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -111,7 +111,8 @@ public class TestAspect  {
 //		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
 //		d.deleteAll();
 //		
-//		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
+		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
+		d.delete(4l);
 //		Contact c1 = new Contact("salis1", "SdMAIL", "salim@gail.com", new Address(1, "h", "h", "003", "g", "g"));	
 //		Contact c2 = new Contact("salis2", "SdMAIL", "salim@gail.com", new Address(1, "h", "h", "003", "g", "g"));	
 //		Contact c3 = new Contact("salis3", "SdMAIL", "salim@gail.com", new Address(1, "h", "h", "003", "g", "g"));
