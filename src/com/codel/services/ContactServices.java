@@ -23,13 +23,18 @@ public class ContactServices {
 		contactDAO.delete(id);
 	}
 	
-	public static JSONObject addContact(String firstName, String lastName, String email, 
+	public JSONObject addContact(String firstName, String lastName, String email, 
 				String streetNumber, String streetType, String streetName, String codePostal, String city, String country) throws JSONException{
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
-		
-		Contact contact = new Contact(firstName, lastName, email, new Address(Long.parseLong(streetNumber), 
+		long sn;
+		try{
+			sn = Long.parseLong(streetNumber);
+		}catch(Exception e){
+			sn=1000;
+		}
+		Contact contact = new Contact(firstName, lastName, email, new Address(sn, 
 									streetType, streetName, codePostal, city, country));
 		long id = contactDAO.save(contact);
 		

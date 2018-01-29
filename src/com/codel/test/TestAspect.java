@@ -109,10 +109,30 @@ public class TestAspect  {
 //		c1.addPhone(p);
 		
 //		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
-//		d.save(new Contact("salism", "SdMAIL", "salim@gail.com", new Address(1, "h", "h", "003", "g", "g")));	
-//		d.save(new Contact("salism", "SdMAIL", "salim@gail.com", new Address(1, "h", "h", "003", "g", "g")));	
-//		d.save(new Contact("salism", "SdMAIL", "salim@gail.com", new Address(1, "h", "h", "003", "g", "g")));	
 //		d.deleteAll();
+//		
+//		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
+//		Contact c1 = new Contact("salis1", "SdMAIL", "salim@gail.com", new Address(1, "h", "h", "003", "g", "g"));	
+//		Contact c2 = new Contact("salis2", "SdMAIL", "salim@gail.com", new Address(1, "h", "h", "003", "g", "g"));	
+//		Contact c3 = new Contact("salis3", "SdMAIL", "salim@gail.com", new Address(1, "h", "h", "003", "g", "g"));
+//		
+//		ContactGroupDAO cgd =  (ContactGroupDAO) context.getBean("myContactGroupDAO");
+//		ContactGroup cg = new ContactGroup("amis");
+//		cg.addContact(c1);
+//		cg.addContact(c2);
+//		cg.addContact(c3);
+//		
+//		cgd.save(cg);
+//		
+//		cgd.delete(cgd.findById(1l));
+		
+//		cg = cgd.findById(1l);
+//		cg.removeAllContacts();		
+//		
+//		cgd.update(cg);
+		
+//		PhoneNumberDAO cgd =  (PhoneNumberDAO) context.getBean("myPhoneNumberDAO");
+//		System.out.println(cgd.findAll());
 		
 	}
 	

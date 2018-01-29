@@ -1,6 +1,7 @@
 package com.codel.servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +13,8 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.codel.daos.ContactDAO;
 import com.codel.entities.Contact;
+import com.codel.entities.ContactGroup;
+import com.codel.services.ContactGroupServices;
 
 public class PeuplerServlet extends HttpServlet {
 
@@ -20,7 +23,7 @@ public class PeuplerServlet extends HttpServlet {
         super();
     }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 		Contact c1 = (Contact)context.getBean("myContact");
@@ -28,6 +31,12 @@ public class PeuplerServlet extends HttpServlet {
 		ContactDAO d = (ContactDAO)context.getBean("myContactDao");
 		d.save(c1);
 		d.save(c2);
+		
+
+		ContactGroupServices contactServices = (ContactGroupServices) context.getBean("myContactGroupServices");
+		List<ContactGroup> cg = contactServices.findAll();
+		request.getSession(true).setAttribute("contactGroups", cg);
+		getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
 		
 	}
 

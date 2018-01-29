@@ -2,16 +2,17 @@ package com.codel.servlets;
 
 import java.io.IOException;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.codel.enumeration.Response;
 import com.codel.services.ContactServices;
 
 public class AddContactServlet extends HttpServlet {
@@ -33,15 +34,17 @@ public class AddContactServlet extends HttpServlet {
 		String city = request.getParameter("city");
 		String country = request.getParameter("country");
 		
-		JSONObject result = null;
+
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		ContactServices contactServices = (ContactServices) context.getBean("myContactServices");
+		
+		JSONObject resultService = null;
 		try {
-			result = ContactServices.addContact(firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country);
+			resultService = contactServices.addContact(firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country);
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.setAttribute("response", result);
-		if(result.equals(Response.OK)){
+		if(resultService.has("errors")){
 			request.setAttribute("first_name", firstName);
 			request.setAttribute("last_name", lastName);
 			request.setAttribute("email", email);
@@ -51,7 +54,20 @@ public class AddContactServlet extends HttpServlet {
 			request.setAttribute("code_postal", codePostal);
 			request.setAttribute("city", city);
 			request.setAttribute("country", country);
-			request.setAttribute("reponse", result);
+			
+			StringBuilder result = new StringBuilder();
+			
+			try {
+				JSONArray array = new JSONArray();
+				array = resultService.getJSONArray("errors");
+				for(int i=0; i<array.length(); i++){
+					result.append(array.get(i)+", ");
+				}
+			} catch (JSONException e1) {
+				e1.printStackTrace();
+			}
+			
+			request.setAttribute("errors", "veuillez remplir correctement ces champs : "+result);
 			getServletContext().getRequestDispatcher("/addContact.jsp").forward(request, response);
 		}
 		else  getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);

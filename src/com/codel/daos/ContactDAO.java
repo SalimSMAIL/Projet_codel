@@ -46,7 +46,7 @@ public class ContactDAO extends HibernateDaoSupport implements IContactDAO{
 	@Override
 	public List<Contact> findAll() {
 		List<Contact> contacts =	getHibernateTemplate().getSessionFactory().getCurrentSession().createCriteria(Contact.class)
-	    .addOrder( Order.asc("lastName") )
+	    .addOrder( Order.asc("firstName") )
 	    .list();
 		return contacts;
 	}

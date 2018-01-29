@@ -52,6 +52,10 @@ public class ContactGroup {
 		}
 	}
 	
+	public void removeAllContacts(){
+		contacts.clear();
+	}
+	
     public boolean equals(Object other) {
         if (this == other) return true;
         if ( !(other instanceof ContactGroup) ) return false;

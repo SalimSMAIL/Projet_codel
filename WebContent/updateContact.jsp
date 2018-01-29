@@ -5,40 +5,57 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>modifier contact</title>
+<link rel="stylesheet" href="css/style1.css" />
+<title>Modifier contact</title>
 </head>
 <body>
 <%
 Contact contact = (Contact) request.getSession().getAttribute("contact");
 String errors = (request.getAttribute("errors")!=null)?(String)request.getAttribute("errors"):"";
 %>
-<section class="container">
-    <div class="create">
-      <h1>Modifier les valeurs que vous voulez: </h1>
-      <h2><% out.print(errors); %></h2>
-      <form method="post" action="update">
-        <p><label for="Prenom">Prenom : </label><input type="text" name="first_name" value="<% out.print(contact.getFirstName()); %>" placeholder="Prenom"></p>
-        <p><label for="Nom">Nom : </label><input type="text" name="last_name" value="<% out.print(contact.getLastName()); %>" placeholder="Nom"></p>
-        <p><label for="email">Email : </label><input type="email" name="email" value="<% out.print(contact.getEmail()); %>" placeholder="Email"></p>
-        
-        <p><label for="address">Adresse : </label>
-        <input type="number" name="street_number" value="<% out.print(contact.getAddress().getStreetNumber()); %>" placeholder="N&deg;" min="1" max="999">
-       <input type="text" name="street_type" value="<% out.print(contact.getAddress().getStreetType()); %>" placeholder="Type de rue">
-        <input type="text" name="street_name" value="<% out.print(contact.getAddress().getStreetName());%>" placeholder="Nom de rue">
-        <input type="text" name="city" value="<% out.print(contact.getAddress().getCity()); %>" placeholder="Ville">
-        <input type="text" name="code_postal" value="<% out.print(contact.getAddress().getCodePostal()); %>" placeholder="Code Postal">
-        <input type="text" name="country" value="<% out.print(contact.getAddress().getCountry()); %>" placeholder="Pays">
-        </p>
+<div class="container">  
+  <form id="contact" action="update" method="post">
+    <h3>Ajouter un contact</h3>
+    <h4 style="color:red;"><% out.print(errors); %></h4>
+    <fieldset>
+      <input name="first_name" value="<% out.print(contact.getFirstName()); %>"" placeholder="Firstname" type="text" tabindex="1" >
+    </fieldset>
+    <fieldset>
+      <input name="last_name" value="<% out.print(contact.getLastName()); %>" placeholder="lastname" type="text" tabindex="2" >
+    </fieldset>
+    <fieldset>
+      <input name="email" value="<% out.print(contact.getEmail()); %>" placeholder="Email" type="text" tabindex="3" >
+    </fieldset>
+    <fieldset>
+      <input name="street_number" value="<% out.print(contact.getAddress().getStreetNumber()); %>" placeholder="Street Number" type="text" tabindex="4" >
+    </fieldset>
+    <fieldset>
+      <input name="street_type" value="<% out.print(contact.getAddress().getStreetType()); %>" placeholder="Street Type" type="text" tabindex="5" >
+    </fieldset>    <fieldset>
+      <input name="street_name" value="<% out.print(contact.getAddress().getStreetName());%>" placeholder="Street Name" type="text" tabindex="6" >
+    </fieldset>    
+    <fieldset>
+      <input name="city" value="<% out.print(contact.getAddress().getCity()); %>" placeholder="City" type="text" tabindex="7" >
+    </fieldset>    
+    <fieldset>
+      <input name="code_postal" value="<% out.print(contact.getAddress().getCodePostal()); %>" placeholder="Code Postal" type="text" tabindex="8" >
+    </fieldset>
+        <fieldset>
+      <input name="country" value="<% out.print(contact.getAddress().getCountry()); %>" placeholder="Country" type="text" tabindex="9" >
+    </fieldset>
 
-        <p><input type="tel" name="mobile_phone" value="" placeholder="Telephone mobile"></p>
+    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Add</button>
+    </fieldset>
+    <fieldset>
+      <button name="reset" type="reset" id="contact-reset" data-submit="...reset">Reset</button>
+    </fieldset>
+    <fieldset>
+      <button name="return" type="button" onclick="history.back()">Return</button>
+    </fieldset>
+  </form>
 
-        <p><input type="tel" name="home_phone" value="" placeholder="Telephone maison"></p>
-        
-        <p><input type="tel" name="work_phone" value="" placeholder="Telephone bureau"></p>
+</div>
 
-        <p><input type="submit" name="submit" value="add"><input type="reset" name="reset" value="reset"></p>
-      </form>
-    </div>
-  </section>
 </body>
 </html>

@@ -17,9 +17,13 @@
 		<property name="sessionFactory" ref="mySessionFactory" />
 	</bean>
 	
-	<bean id="myPhoneDao" class="com.codel.daos.PhoneNumberDAO">
+	<bean id="myPhoneNumberDAO" class="com.codel.daos.PhoneNumberDAO">
 		<property name="sessionFactory" ref="mySessionFactory" />
 	</bean>
+	
+	<bean id="myContactServices" class="com.codel.services.ContactServices"/>
+	<bean id="myContactGroupServices" class="com.codel.services.ContactGroupServices"/>
+
  	<bean id="myDataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://localhost:3306/bdd_codel?useSSL=false"/>
@@ -51,8 +55,7 @@
 	<aop:advisor pointcut="execution(* com.codel.daos.*.*(..))" advice-ref="txAdvice"/>
 </aop:config>
 
-<bean id="myContactServices" class="com.codel.services.ContactServices"/>
-<bean id="myContactGroupServices" class="com.codel.services.GroupServices"/>
+
 
  <aop:config>
 	<aop:aspect id="checkAddContactBean" ref="checkAddContact">

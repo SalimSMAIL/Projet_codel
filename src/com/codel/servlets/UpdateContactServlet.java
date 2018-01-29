@@ -26,7 +26,7 @@ public class UpdateContactServlet extends HttpServlet {
 		String id  = request.getParameter("id");
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 		ContactServices contactServices = (ContactServices) context.getBean("myContactServices");
-		Contact contact = contactServices.find(Long.parseLong(id));
+		Contact contact = contactServices.findById(Long.parseLong(id));
 		
 		if(contact != null) {
 			request.getSession(true).setAttribute("contact", contact);

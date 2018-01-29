@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>ajouter contact</title>
+<link rel="stylesheet" href="css/style1.css" />
+
+<title>Ajouter contact</title>
 </head>
 <body>
 <%
@@ -17,41 +19,53 @@
 	String codePostal = (request.getAttribute("code_postal")!=null)?(String)request.getAttribute("code_postal"):"";
 	String city = (request.getAttribute("city")!=null)?(String)request.getAttribute("city"):"";
 	String country = (request.getAttribute("country")!=null)?(String)request.getAttribute("country"):"";
+	
+	String errors = (request.getAttribute("errors")!=null)?(String)request.getAttribute("errors"):"";
 %>
-<section class="container">
-    <div class="create">
-      <h1>Veuillez remplir le formulaire : </h1>
-      <form method="post" action="add">
-        <p><label for="Prenom">Prenom : </label><input type="text" name="first_name" value="<% out.print(firstName); %>" placeholder="Prenom"></p>
-        <p><label for="Nom">Nom : </label><input type="text" name="last_name" value="<% out.print(lastName); %>" placeholder="Nom"></p>
-        <p><label for="email">Email : </label><input type="email" name="email" value="<% out.print(email); %>" placeholder="Email"></p>
-        
-        <p><label for="address">Adresse : </label>
-        <input type="number" name="street_number" value="<% out.print(streetNumber); %>" placeholder="N&deg;" min="1" max="999">
-       <select name="street_type">
-           <option value="rue" selected>Rue</option>
-           <option value="boulevard">Boulevard</option>
-           <option value="avenue">Avenue</option>
-       </select>
-        <input type="text" name="street_name" value="<% out.print(streetName); %>" placeholder="Nom de rue">
-        <input type="text" name="city" value="<% out.print(city); %>" placeholder="Ville">
-        <input type="text" name="code_postal" value="<% out.print(codePostal); %>" placeholder="Code Postal">
-        <input type="text" name="country" value="<% out.print(country); %>" placeholder="Pays">
-        </p>
 
-        <p><input type="tel" name="mobile_phone" value="" placeholder="Telephone mobile"></p>
+<div class="container">  
+  <form id="contact" action="add" method="post">
+    <h3>Ajouter un contact</h3>
+    <h4 style="color:red;"><% out.print(errors); %></h4>
+    <fieldset>
+      <input name="first_name" value="<% out.print(firstName); %>" placeholder="Firstname" type="text" tabindex="1" >
+    </fieldset>
+    <fieldset>
+      <input name="last_name" value="<% out.print(lastName); %>" placeholder="lastname" type="text" tabindex="2" >
+    </fieldset>
+    <fieldset>
+      <input name="email" value="<% out.print(email); %>" placeholder="Email" type="text" tabindex="3" >
+    </fieldset>
+    <fieldset>
+      <input name="street_number" value="<% out.print(streetNumber); %>" placeholder="Street Number" type="text" tabindex="4" >
+    </fieldset>
+    <fieldset>
+      <input name="street_type" value="<% out.print(streetType); %>" placeholder="Street Type" type="text" tabindex="5" >
+    </fieldset>    <fieldset>
+      <input name="street_name" value="<% out.print(streetName);%>" placeholder="Street Name" type="text" tabindex="6" >
+    </fieldset>    
+    <fieldset>
+      <input name="city" value="<% out.print(city); %>" placeholder="City" type="text" tabindex="7" >
+    </fieldset>    
+    <fieldset>
+      <input name="code_postal" value="<% out.print(codePostal); %>" placeholder="Code Postal" type="text" tabindex="8" >
+    </fieldset>
+        <fieldset>
+      <input name="country" value="<% out.print(country); %>" placeholder="Country" type="text" tabindex="9" >
+    </fieldset>
 
-        <p><input type="tel" name="home_phone" value="" placeholder="Telephone maison"></p>
-        
-        <p><input type="tel" name="work_phone" value="" placeholder="Telephone bureau"></p>
+    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Add</button>
+    </fieldset>
+    <fieldset>
+      <button name="reset" type="reset" id="contact-reset" data-submit="...reset">Reset</button>
+    </fieldset>
+    <fieldset>
+      <button name="return" type="button" onclick="history.back()">Return</button>
+    </fieldset>
+  </form>
 
-        <p><input type="submit" name="submit" value="add"><input type="reset" name="reset" value="reset"></p>
-      </form>
-    </div>
-    
-    <form action="peupler" method="post">
-    	<p><input type="submit" name="submit" value="peupler"></p>
-    </form>
-  </section>
+</div>
+
 </body>
 </html>

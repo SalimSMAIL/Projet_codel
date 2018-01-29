@@ -1,17 +1,12 @@
 package com.codel.daos;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import com.codel.daos.interfaces.IContactGroupDAO;
-import com.codel.entities.Contact;
 import com.codel.entities.ContactGroup;
-import com.codel.utils.HibernateUtility;
 
 public class ContactGroupDAO extends HibernateDaoSupport implements IContactGroupDAO{
 	

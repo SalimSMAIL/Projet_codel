@@ -40,16 +40,16 @@ public class CheckServices {
 		if(streetType == null || !streetType.matches("^[A-Za-z]{2,}$")){
 			error.accumulate("errors", "streetType");
 		}
-		if(streetName == null || !streetName.matches("^[A-Za-z]{2,}$")){
+		if(streetName == null || !streetName.matches("^[A-Za-z ]{2,}$")){
 			error.accumulate("errors", "streetName");
 		}
 		if(codePostal == null || !codePostal.matches("^[1-9][0-9]{4}$")){
 			error.accumulate("errors", "codePostal");
 		}
-		if(city == null || !city.matches("^[A-Za-z]{2,}$")){
+		if(city == null || !city.matches("^[A-Za-z ]{2,}$")){
 			error.accumulate("errors", "city");
 		}
-		if(country == null || !country.matches("^[A-Za-z]{2,}$")){
+		if(country == null || !country.matches("^[A-Za-z ]{2,}$")){
 			error.accumulate("errors", "country");
 		}
 
