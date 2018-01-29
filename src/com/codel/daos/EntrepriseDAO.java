@@ -33,11 +33,7 @@ public class EntrepriseDAO extends HibernateDaoSupport implements IEntrepriseDAO
 	
 	@Override
 	public void delete(long id) {
-		getHibernateTemplate().execute(session -> {
-			String hql = "delete from Entreprise where contactId= "+id;
-			session.createQuery(hql).executeUpdate();
-			return null;
-		});
+		getHibernateTemplate().delete(findById(id));
 	}
 	
 
@@ -54,11 +50,7 @@ public class EntrepriseDAO extends HibernateDaoSupport implements IEntrepriseDAO
 	// requetes HQL query 
 	@Override
 	public void deleteAll() {
-		getHibernateTemplate().execute(session -> {
-			String hql = "delete from Entreprise";
-			session.createQuery(hql).executeUpdate();
-			return null;
-		});
+		getHibernateTemplate().deleteAll(findAll());
 	}
 
 }

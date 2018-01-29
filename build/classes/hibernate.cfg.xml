@@ -28,11 +28,11 @@
 		 
         <!-- Select our SQL dialect -->
         <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
-        
+
         <!-- Echo the SQL to stdout -->
         <property name="show_sql">true</property>
         
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">create</property>
         <property name="id.new_generator_mappings">false</property>
         <property name="connection.provider_disables_autocommit">false</property>
 

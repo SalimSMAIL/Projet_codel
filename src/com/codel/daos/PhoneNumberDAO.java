@@ -33,11 +33,7 @@ public class PhoneNumberDAO extends HibernateDaoSupport implements IPhoneNumberD
 	
 	@Override
 	public void delete(long id) {
-		getHibernateTemplate().execute(session -> {
-			String hql = "delete from PhoneNumber where contactId= "+id;
-			session.createQuery(hql).executeUpdate();
-			return null;
-		});
+		getHibernateTemplate().delete(findById(id));
 	}
 	
 
@@ -54,11 +50,7 @@ public class PhoneNumberDAO extends HibernateDaoSupport implements IPhoneNumberD
 	// requetes HQL query 
 	@Override
 	public void deleteAll() {
-		getHibernateTemplate().execute(session -> {
-			String hql = "delete from PhoneNumber";
-			session.createQuery(hql).executeUpdate();
-			return null;
-		});
+		getHibernateTemplate().deleteAll(findAll());
 	}
 
 }

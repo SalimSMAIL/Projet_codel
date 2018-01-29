@@ -33,15 +33,9 @@ public class ContactDAO extends HibernateDaoSupport implements IContactDAO{
 	
 	@Override
 	public void delete(long id) {
-		getHibernateTemplate().execute(session -> {
-			String hql = "delete from Contact where contactId= "+id;
-			session.createQuery(hql).executeUpdate();
-			return null;
-		});
+		getHibernateTemplate().delete(findById(id));
 	}
 	
-
-	// Utiliser une instance de critéria avec restriction sur l'ordre des resultats 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Contact> findAll() {
@@ -51,14 +45,9 @@ public class ContactDAO extends HibernateDaoSupport implements IContactDAO{
 		return contacts;
 	}
 
-	// requetes HQL query 
 	@Override
 	public void deleteAll() {
-		getHibernateTemplate().execute(session -> {
-			String hql = "delete from Contact";
-			session.createQuery(hql).executeUpdate();
-			return null;
-		});
+		getHibernateTemplate().deleteAll(findAll());
 	}
 
 }
