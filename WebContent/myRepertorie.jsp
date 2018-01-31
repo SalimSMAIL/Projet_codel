@@ -40,21 +40,19 @@
 					
 					<br>
 					<ul>	
-						<form action='searchContact' method='post'>
 						<div class="row uniform">
 									<div class="12u">
-											<center><input type="text" name="name" placeholder="Tape a text ..." /></center>
-			
+											<center><input type="text" name="user" id="user" value="" placeholder="Tape a text ..." /></center>
+								
 									</div>
 								</div>
 						<div class="row uniform">
 									<div class="12u">
 										<ul class="actions align-center">
-											<li><input type="submit" value="Search a contact" /></li>
+											<li><input onclick="location.href='searchContact';" type="submit" value="Search a contact" /></li>
 										</ul>
 									</div>
 								</div>
-								</form>
 								<br>
 						<a onclick="location.href='group';" class="button special"><center>Display all contacts</center></a>
 						<br><br>
@@ -68,13 +66,10 @@
 											<%
 	List<ContactGroup> groups = (List<ContactGroup>) request.getSession().getAttribute("contactGroups");
 %>
-											<% for(int i=0; i<groups.size(); i++){ %>
-									<div class="row uniform">
-									<div class="12u">
-      								<a name="<% out.print(groups.get(i).getGroupName()); %>"
+											<% for(int i=0; i<groups.size(); i++){ %>	
+      								<button name="<% out.print(groups.get(i).getGroupName()); %>"
       								 type="button" onclick="location.href='group?id=<% out.print(groups.get(i).getGroupId()); %>';">
-      								 <% out.print(groups.get(i).getGroupName()); %></a>
-      								 </div></div><br>
+      								 <% out.print(groups.get(i).getGroupName()); %></button>
       <% } %>
 											
 		
