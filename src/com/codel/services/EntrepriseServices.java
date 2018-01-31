@@ -34,10 +34,10 @@ public class EntrepriseServices {
 	}
 	
 	public JSONObject addEntreprise(String firstName, String lastName, String email, 
-				String streetNumber, String streetType, String streetName, String codePostal, String city, String country,long numSiret) throws JSONException{
+				String streetNumber, String streetType, String streetName, String codePostal, String city, String country,String numSiret) throws JSONException{
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		EntrepriseDAO entrepriseDAO = (EntrepriseDAO)context.getBean("myEntrepriseDao");
+		EntrepriseDAO entrepriseDAO = (EntrepriseDAO)context.getBean("myEntrepriseDAO");
 		long sn;
 		try{
 			sn = Long.parseLong(streetNumber);
@@ -45,7 +45,7 @@ public class EntrepriseServices {
 			sn=1000;
 		}
 		Entreprise entreprise = new Entreprise(firstName, lastName, email, new Address(sn, 
-									streetType, streetName, codePostal, city, country),numSiret);
+									streetType, streetName, codePostal, city, country),Long.parseLong(numSiret));
 		long id = entrepriseDAO.save(entreprise);
 		
 		return new JSONObject().put("id", id);

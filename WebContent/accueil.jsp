@@ -56,9 +56,12 @@
 								</div>
 								</form>
 								<br>
+								
 						<a onclick="location.href='group';" class="button special"><center>Display all contacts</center></a>
 						<br><br>
-						<a onclick="location.href='addContact.jsp';" class="button special"><center>Add a contact</center></a>
+						<a onclick="location.href='addContact.jsp';" class="button special"><center> Add a contact</center></a>
+						<br><br>
+						<a onclick="location.href='addEntreprise.jsp';" class="button special"><center>Add an entreprise</center></a>
 						<br><br>
 <!-- 						<a onclick="location.href='home.html';"><center><b>return</b></center></a>
 						<br><br> -->

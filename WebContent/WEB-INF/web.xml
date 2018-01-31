@@ -138,4 +138,5 @@
     <servlet-name>DisplayDetailsContactServlet</servlet-name>
     <url-pattern>/details</url-pattern>
   </servlet-mapping>
+  
 </web-app>

@@ -12,6 +12,8 @@
   text-rendering: optimizeLegibility;
 }
 
+.tabulation { margin: 0 0 0 40px; } 
+
 body {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
   font-weight: 100;

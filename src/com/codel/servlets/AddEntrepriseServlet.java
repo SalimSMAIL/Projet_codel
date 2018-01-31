@@ -41,7 +41,7 @@ public class AddEntrepriseServlet extends HttpServlet {
 		
 		JSONObject resultService = null;
 		try {
-			resultService = EntrepriseServices.addEntreprise(firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country,Long.parseLong(numSiret));
+			resultService = EntrepriseServices.addEntreprise(firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country,numSiret);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

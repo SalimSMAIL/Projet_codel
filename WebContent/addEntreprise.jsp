@@ -36,13 +36,15 @@
 					: "";
 			String city = (request.getAttribute("city") != null) ? (String) request.getAttribute("city") : "";
 			String country = (request.getAttribute("country") != null) ? (String) request.getAttribute("country") : "";
-
+			String numSiret = (request.getAttribute("num_siret") != null)
+					? (String) request.getAttribute("num_siret")
+					: "";
 			String errors = (request.getAttribute("errors") != null) ? (String) request.getAttribute("errors") : "";
 		%>
 
 		<div class="containerMenu">  
 			<div class="menun">
-			<form id="contact" action="add" method="post">
+			<form id="contact" action="addEntreprise" method="post">
 				<h3>Ajouter un contact</h3>
 				<h4 style="color: red;">
 					<%
@@ -84,6 +86,10 @@
 				<fieldset>
 					<input name="country" value="<%out.print(country);%>"
 						placeholder="Country" type="text" tabindex="9">
+				</fieldset>
+				<fieldset>
+					<input name="num_siret" value="<%out.print(numSiret);%>"
+						placeholder="Num Siret" type="text" tabindex="9">
 				</fieldset>
 				<br>
 				<fieldset>

@@ -22,6 +22,7 @@
 		display: block;
 	}
 	
+	.tabulation { margin: 0 0 0 40px; } 
 	.containerMenu {
   max-width: 500px;
   width: 100%;
