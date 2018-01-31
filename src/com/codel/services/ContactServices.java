@@ -1,5 +1,6 @@
 package com.codel.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONException;
@@ -70,6 +71,30 @@ public JSONObject updateContact(Contact contact, String firstName, String lastNa
 	return new JSONObject().put("id", contact.getContactId());
 	
 }
+
+	public List<Contact> searchContact(String query){
+//		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+//		ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
+//		List<Contact> contacts = new ArrayList<Contact>();
+//		List<Contact> contacts_results = new ArrayList<Contact>();
+//		contacts = contactDAO.findAll();
+//		for (int i = 0; i < contacts.size(); i++) {
+//			if (contacts.get(i).getFirstName().contains(query)
+//					|| contacts.get(i).getLastName().contains(query)
+//					) {
+//				contacts_results.add(contacts.get(i));
+//			}		
+//		}
+//		if(contacts.isEmpty()) {
+//			return null;
+//		}else {
+//			return contacts_results;
+//		}
+			
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
+		return contactDAO.searchContact(query);
+	}
 
 	
 }

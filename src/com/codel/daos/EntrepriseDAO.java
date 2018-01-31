@@ -42,7 +42,7 @@ public class EntrepriseDAO extends HibernateDaoSupport implements IEntrepriseDAO
 	@Override
 	public List<Entreprise> findAll() {
 		List<Entreprise> entreprises =	getHibernateTemplate().getSessionFactory().getCurrentSession().createCriteria(Entreprise.class)
-	    .addOrder( Order.asc("groupName") )
+	    .addOrder( Order.asc("firstName") )
 	    .list();
 		return entreprises;
 	}

@@ -17,36 +17,24 @@ import com.codel.entities.ContactGroup;
 import com.codel.services.ContactGroupServices;
 import com.codel.services.ContactServices;
 
-/**
- * Servlet implementation class DisplayContacts
- */
-public class DisplayGroup extends HttpServlet {
+public class SearchContactServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public DisplayGroup() {
+    public SearchContactServlet() {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id  = request.getParameter("id");
-		
-
-		if(id!=null){
-			ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
-			ContactGroupServices contactGroupServices = (ContactGroupServices) context.getBean("myContactGroupServices");
-			ContactGroup contactGroup = contactGroupServices.findById(Long.parseLong(id));
-			
-			if(contactGroup != null) {
-				request.setAttribute("id", id);
-				request.setAttribute("contacts", new ArrayList(contactGroup.getContacts()));
-			}
-		}else{
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String query  = request.getParameter("name");
+		System.out.println(query);
+		if(query!=null){
 			ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 			ContactServices contactServices = (ContactServices) context.getBean("myContactServices");
-			List<Contact> contacts = contactServices.findAll();
+			List<Contact> contacts = contactServices.searchContact(query);
 			
 			if(!contacts.isEmpty()) {
 				request.setAttribute("contacts", contacts);
+				System.out.println(contacts.iterator().next().getFirstName());
 			}
 		}
 		

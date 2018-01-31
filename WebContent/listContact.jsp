@@ -40,7 +40,7 @@
 		         		
 		         		<img src="img/update.png" alt="detail contact" height="20" width="20" onclick="location.href='update?id=<% out.print(c.getContactId()); %>';"> 
 		         		<img src="img/delete.ico" alt="detail contact" height="20" width="20" onclick="location.href='delete?id=<% out.print(c.getContactId()); if( request.getAttribute("id") != null) out.print("&group="+request.getAttribute("id"));%>';"> 
-		         		<img src="img/detail.ico" alt="detail contact" height="20" width="20" onclick="location.href='delail?id=<% out.print(c.getContactId()); %>';"> 
+		         		<img src="img/detail.ico" alt="detail contact" height="20" width="20" onclick="location.href='details?id=<% out.print(c.getContactId()); %>';"> 
 		         	</ul>
 		         </li>
 	     <%}

@@ -1,8 +1,12 @@
 package com.codel.daos;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import com.codel.daos.interfaces.IContactDAO;
@@ -33,7 +37,11 @@ public class ContactDAO extends HibernateDaoSupport implements IContactDAO{
 	
 	@Override
 	public void delete(long id) {
-		getHibernateTemplate().delete(findById(id));
+		getHibernateTemplate().execute(session -> {
+			String hql = "delete from Contact where contactId= "+id;
+			session.createQuery(hql).executeUpdate();
+			return null;
+		});
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -49,5 +57,18 @@ public class ContactDAO extends HibernateDaoSupport implements IContactDAO{
 	public void deleteAll() {
 		getHibernateTemplate().deleteAll(findAll());
 	}
+	
+	public List<Contact> searchContact(String search) {
+		List<Contact> contacts =getHibernateTemplate().getSessionFactory().getCurrentSession().createCriteria(Contact.class)
+				.add(Restrictions.like("firstName", "%"+search+"%")).list();
+		contacts.addAll(getHibernateTemplate().getSessionFactory().getCurrentSession().createCriteria(Contact.class).add(Restrictions.like("lastName", "%"+search+"%")).list());
+		contacts.addAll(getHibernateTemplate().getSessionFactory().getCurrentSession().createCriteria(Contact.class).add(Restrictions.like("email", "%"+search+"%")).list());
+		Set<Contact> setContact = new HashSet<>();
+		setContact.addAll(contacts);
+		contacts.clear();
+		contacts.addAll(setContact);
+		return contacts;
+	}
+	
 
 }

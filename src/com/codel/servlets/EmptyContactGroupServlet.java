@@ -12,10 +12,10 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.codel.services.ContactGroupServices;
 
-public class EmptyContactGroup extends HttpServlet {
+public class EmptyContactGroupServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public EmptyContactGroup() {
+    public EmptyContactGroupServlet() {
         super();
     }
 

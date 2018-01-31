@@ -56,22 +56,22 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>EmptyContactGroup</display-name>
-    <servlet-name>EmptyContactGroup</servlet-name>
-    <servlet-class>com.codel.servlets.EmptyContactGroup</servlet-class>
+    <display-name>EmptyContactGroupServlet</display-name>
+    <servlet-name>EmptyContactGroupServlet</servlet-name>
+    <servlet-class>com.codel.servlets.EmptyContactGroupServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>EmptyContactGroup</servlet-name>
+    <servlet-name>EmptyContactGroupServlet</servlet-name>
     <url-pattern>/emptygroup</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>DisplayGroup</display-name>
-    <servlet-name>DisplayGroup</servlet-name>
-    <servlet-class>com.codel.servlets.DisplayGroup</servlet-class>
+    <display-name>DisplayGroupServlet</display-name>
+    <servlet-name>DisplayGroupServlet</servlet-name>
+    <servlet-class>com.codel.servlets.DisplayGroupServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>DisplayGroup</servlet-name>
+    <servlet-name>DisplayGroupServlet</servlet-name>
     <url-pattern>/group</url-pattern>
   </servlet-mapping>
   <servlet>
@@ -93,5 +93,49 @@
   <servlet-mapping>
     <servlet-name>DeleteGroupServlet</servlet-name>
     <url-pattern>/deleteGroup</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>SearchContactServlet</display-name>
+    <servlet-name>SearchContactServlet</servlet-name>
+    <servlet-class>com.codel.servlets.SearchContactServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchContactServlet</servlet-name>
+    <url-pattern>/searchContact</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <description></description>
+    <display-name>AddEntrepriseServlet</display-name>
+    <servlet-name>AddEntrepriseServlet</servlet-name>
+    <servlet-class>com.codel.servlets.AddEntrepriseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddEntrepriseServlet</servlet-name>
+    <url-pattern>/addEntreprise</url-pattern>
+  </servlet-mapping>
+  
+      <servlet>
+    <description></description>
+    <display-name>UpdateEntrepriseServlet</display-name>
+    <servlet-name>UpdateEntrepriseServlet</servlet-name>
+    <servlet-class>com.codel.servlets.UpdateEntrepriseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateEntrepriseServlet</servlet-name>
+    <url-pattern>/updateEntreprise</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <description></description>
+    <display-name>DisplayDetailsContactServlet</display-name>
+    <servlet-name>DisplayDetailsContactServlet</servlet-name>
+    <servlet-class>com.codel.servlets.DisplayDetailsContactServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DisplayDetailsContactServlet</servlet-name>
+    <url-pattern>/details</url-pattern>
   </servlet-mapping>
 </web-app>

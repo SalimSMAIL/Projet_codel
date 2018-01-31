@@ -43,14 +43,14 @@ public class TestAspect  {
 		
 		// supp un contact et verfiei que ça supp tt ses nums
 //		
-		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
-		Contact c = new Contact("salim", "SMAIL", "salim@gail.com", new Address(0, "h", "h", "003", "g", "g"));
-		
-		PhoneNumberDAO p = (PhoneNumberDAO) context.getBean("myPhoneNumberDAO");
-		PhoneNumber pn = new PhoneNumber("phoneNumber","phoneKind",c);
-		PhoneNumber p1 = new PhoneNumber("bn","mine",c);
-		d.save(c);
-		d.deleteAll();
+//		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
+//		Contact c = new Contact("salim", "SMAIL", "salim@gail.com", new Address(0, "h", "h", "003", "g", "g"));
+//		
+//		PhoneNumberDAO p = (PhoneNumberDAO) context.getBean("myPhoneNumberDAO");
+//		PhoneNumber pn = new PhoneNumber("phoneNumber","phoneKind",c);
+//		PhoneNumber p1 = new PhoneNumber("bn","mine",c);
+//		d.save(c);
+//		d.deleteAll();
 		
 		// ze erreur
 //		
@@ -96,16 +96,14 @@ public class TestAspect  {
 //		c2.addContact(c1);
 //		cg.save(c2);
 		
+		PhoneNumberDAO cgd =  (PhoneNumberDAO) context.getBean("myPhoneNumberDAO");
+		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
+		Contact c1 = new Contact("saliseem", "SdMAeeIL", "salimee@gail.com", new Address(1, "ee", "eh", "00e3", "ge", "ge"));
 		
-//		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
-//		Contact c1 = new Contact("salism", "SdMAIL", "salim@gail.com", new Address(1, "h", "h", "003", "g", "g"));
-//		
-//		PhoneNumber p = new PhoneNumber();
-//		p.setPhoneKind("mobile");
-//		p.setPhoneNumber("002U5302834");
-//
-//		c1.addPhone(p);
-//
+		PhoneNumber p = new PhoneNumber("mob","4555",c1);
+		c1.addPhone(p);
+		d.save(c1);
+
 //		System.out.println(p.getContact().getContactId());
 //		c1.addPhone(p);
 		
@@ -135,6 +133,11 @@ public class TestAspect  {
 		
 //		PhoneNumberDAO cgd =  (PhoneNumberDAO) context.getBean("myPhoneNumberDAO");
 //		System.out.println(cgd.findAll());
+		
+//		EntrepriseDAO d = (EntrepriseDAO) context.getBean("myEntrepriseDAO");
+//		Entreprise c1 = new Entreprise("salis1", "SdMAIL", "salim@gail.com", new Address(1, "h", "h", "003", "g", "g"),255);
+//		d.save(c1);
+//		
 		
 	}
 	
