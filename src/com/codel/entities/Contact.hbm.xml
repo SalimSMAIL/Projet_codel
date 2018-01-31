@@ -26,7 +26,7 @@
 
 		<many-to-one name="address" column="address_id" class="com.codel.entities.Address" cascade="all" not-null="true"/>
 		
- 		<set name="phones" table="PHONE_NUMBER" cascade="delete-orphan" >
+ 		<set name="phones" table="PHONE_NUMBER" cascade="all" inverse="true" >
 			<key  column="contact_id" />
 			<one-to-many class="com.codel.entities.PhoneNumber" />
 		</set> 
