@@ -29,11 +29,11 @@ public class AddContactToGroupServlet extends HttpServlet {
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 		ContactServices contactServices = (ContactServices) context.getBean("myContactServices");
 		ContactGroupServices cgs = (ContactGroupServices) context.getBean("myContactGroupServices");
-		// creer une méthode dans le contactgroupeDAO pour get les contacts de tel groupe en lui passant l'id
-		List<Contact> contacts = null;// = cgs. à continuer
-		request.setAttribute("contacts", contacts);
 		if(idGroup!=null && idContact!=null) {
 			contactServices.addContactToGroup(idContact,idGroup);
+			List<Contact> contacts = cgs.getContacts(Long.parseLong(idGroup));
+			
+			request.setAttribute("contacts", contacts);
 			getServletContext().getRequestDispatcher("/listContactToAddGroup.jsp").forward(request, response);
 		}
 		

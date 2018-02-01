@@ -10,6 +10,7 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import com.codel.daos.interfaces.IContactDAO;
 import com.codel.entities.Contact;
+import com.codel.entities.ContactGroup;
 
 
 public class ContactDAO extends HibernateDaoSupport implements IContactDAO{
@@ -58,10 +59,6 @@ public class ContactDAO extends HibernateDaoSupport implements IContactDAO{
 	}
 	
 
-//	public void addContactToGroup() {
-//		getHibernateTemplate().deleteAll(findAll());
-//	}
-	
 	public List<Contact> searchContact(String search) {
 		List<Contact> contacts =getHibernateTemplate().getSessionFactory().getCurrentSession().createCriteria(Contact.class)
 				.add(Restrictions.like("firstName", "%"+search+"%")).list();
@@ -74,5 +71,14 @@ public class ContactDAO extends HibernateDaoSupport implements IContactDAO{
 		return contacts;
 	}
 	
+	public List<Contact> findRestContact(long idGroup) {
+		List<Contact> contacts = getHibernateTemplate().getSessionFactory().getCurrentSession().createSQLQuery("Select contact_id from contact where not exists(Select contact_id from group_contact_group where group_id='"+idGroup+ "')").list();
+		System.out.println("the size :"+contacts.size());
+		List<Contact> c = new ArrayList<Contact>();
+		for(int i=0;i< contacts.size();i++) {	
+			c.add((Contact)getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery("from Contact c where c.contactId='" + contacts.get(i) + "'").uniqueResult());
+			}
+		return c;
+	}
 
 }
