@@ -29,8 +29,8 @@ public class GetContactAddGroupServlet extends HttpServlet {
 		if(id!=null){
 			ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 			ContactServices contactServices = (ContactServices) context.getBean("myContactServices");
-			List<Contact> contact = contactServices.findRestContact(Long.parseLong(id));
-			
+			//List<Contact> contact = contactServices.findRestContact(Long.parseLong(id));
+			List<Contact> contact = contactServices.findAll();
 			if(contact != null) {
 				request.setAttribute("id", id);
 				request.setAttribute("contacts", contact);
