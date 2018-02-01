@@ -34,13 +34,13 @@
 	      
 	      <%
 	      if(contacts != null)
-	      	for(Contact c: contacts){
+	      	for(Contact cl: contacts){
 	      	%>
 	      	
 		         	<ul>
 		         	<div class="containerList">
-		         		<% out.print(c.getFirstName()+"     "+c.getLastName()+"  "+c.getEmail());  %>
-		         		<img src="images/update.png" alt="detail contact" height="20" width="20" onclick="location.href='addToGroup?id=<% out.print(c.getContactId()); %>&idg=<%=request.getAttribute("id")%>'" > 
+		         		<% out.print(cl.getFirstName()+"     "+cl.getLastName()+"  "+cl.getEmail());  %>
+		         		<img src="images/update.png" alt="detail contact" height="20" width="20" onclick="location.href='addToGroup?id=<% out.print(cl.getContactId()); %>&idg=<%=request.getAttribute("id")%>'" > 
 		         	</div>
 		         	</ul>
 	

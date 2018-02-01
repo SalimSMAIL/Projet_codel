@@ -107,5 +107,11 @@ public JSONObject updateContact(Contact contact, String firstName, String lastNa
 		return contactDAO.searchContact(query);
 	}
 
+	public List<Contact> findRestContact(long idGroup){
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
+		List<Contact> contacts =contactDAO.findRestContact(idGroup);
+		return contacts;
+	}
 	
 }
