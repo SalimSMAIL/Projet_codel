@@ -66,13 +66,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>DisplayGroupServlet</display-name>
-    <servlet-name>DisplayGroupServlet</servlet-name>
-    <servlet-class>com.codel.servlets.DisplayGroupServlet</servlet-class>
+    <display-name>DisplayContactServlet</display-name>
+    <servlet-name>DisplayContactServlet</servlet-name>
+    <servlet-class>com.codel.servlets.DisplayContactServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>DisplayGroupServlet</servlet-name>
-    <url-pattern>/group</url-pattern>
+    <servlet-name>DisplayContactServlet</servlet-name>
+    <url-pattern>/contacts</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -112,7 +112,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>AddEntrepriseServlet</servlet-name>
-    <url-pattern>/addEntreprise</url-pattern>
+    <url-pattern>/addE</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

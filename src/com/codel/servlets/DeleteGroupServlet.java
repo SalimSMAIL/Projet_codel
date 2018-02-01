@@ -28,7 +28,7 @@ public class DeleteGroupServlet extends HttpServlet {
 		
 		contactGroupServices.deleteGroup(Long.parseLong(id));
 
-		getServletContext().getRequestDispatcher("/accueil").forward(request, response);
+		response.sendRedirect("accueil");
 
 	}
 

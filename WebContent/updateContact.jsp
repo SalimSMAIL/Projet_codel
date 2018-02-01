@@ -80,7 +80,7 @@ String errors = (request.getAttribute("errors") != null) ? (String) request.getA
       <button name="reset" type="reset" id="contact-reset" data-submit="...reset">Reset</button>
     </fieldset>
     <fieldset>
-      <button name="return" type="button" onclick="history.back()">Return</button>
+      <button name="return" type="button" onclick="location.href='accueil';">Return</button>
     </fieldset>
   </form>
 

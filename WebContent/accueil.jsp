@@ -1,114 +1,53 @@
 <%@page import="com.codel.entities.ContactGroup"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE HTML>
-<!--
-	Alpha by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<head>
-		<title> </title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<style type="text/css">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="css/style1.css" />
+<title>Accueil</title>
+</head>
+<body>
 
-    #conteneur {
-      position: relative;
-      margin: 0 auto;
-      width: 760px;
-      border : 1px solid #fff;
-      background: #ffd url(http://sitedemikadooshop.free.fr/fond_20.jpg) no-repeat center;
-      }
-    </style>
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-	</head>
-	<body class="landing">
-	
-		<div id="page-wrapper">
-			<!-- Banner -->
-			<div class="containerMenu">  
-			<div class="menun">
-				
-				<center><p><span class="image featured">
-							<img src="images/group.png" alt="group" />
-							</span></p></center>
-					
-					<br>
-					<ul>	
-						<form action='searchContact' method='post'>
-						<div class="row uniform">
-									<div class="12u">
-											<center><input type="text" name="name" placeholder="Tape a text ..." /></center>
-			
-									</div>
-								</div>
-						<div class="row uniform">
-									<div class="12u">
-										<ul class="actions align-center">
-											<li><input type="submit" value="Search a contact" /></li>
-										</ul>
-									</div>
-								</div>
-								</form>
-								<br>
-						<a onclick="location.href='addContact.jsp';" class="button special"><center> Add a contact</center></a>
-						<br><br>
-						<a onclick="location.href='addEntreprise.jsp';" class="button special"><center>Add an entreprise</center></a>
-						<br><br>
-						<a onclick="location.href='addGroup.jsp';" class="button special"><center>Add a new group</center></a>
-						<br><br>		
-						<a onclick="location.href='group';" class="button special"><center>Display all contacts</center></a>
-						<br><br>
-						
-<!-- 						<a onclick="location.href='home.html';"><center><b>return</b></center></a>
-						<br><br> -->
-											</lu>
-											<div class="line-separator"></div>
-											<h3> Mes groupes </h3>
-											<%
+	<%
 	List<ContactGroup> groups = (List<ContactGroup>) request.getSession().getAttribute("contactGroups");
 %>
-											<% for(int i=0; i<groups.size(); i++){ %>
-									<div class="row uniform">
-									<div class="12u">
-      								<a name="<% out.print(groups.get(i).getGroupName()); %>"
-      								 type="button" onclick="location.href='displayContactGroup?id=<% out.print(groups.get(i).getGroupId()); %>';">
-      								 <% out.print(groups.get(i).getGroupName()); %></a>
-      								 </div></div><br>
-      <% } %>
-											
+
+	<div class="containerMenu">
+
+		<div class="menu">
 		
-			</div></div>
-			
-
-			<!-- Footer -->
-				<footer id="footer">
-					<ul class="icons">
-						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-					</ul>
-					<ul class="copyright">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
-				</footer>
-
+			<h1>Menu</h1>
+			<form action='searchContact' method='post'>
+				<fieldset>
+					<input type="text" name="name" placeholder="Text to search ..." />
+					<button class="button special" name="submit" type="submit"
+						id="contact-submit" data-submit="...Sending">Search a
+						contact</button>
+				</fieldset>
+			</form>
+			<div class="line-separator"></div>
+			<button name="displayContacts" type="button"
+				onclick="location.href='contacts';">List contacts</button>
+			<button name="addContact" type="button"
+				onclick="location.href='addContact.jsp';">Add contact</button>
+			<button name="addGroup" type="button"
+				onclick="location.href='addGroup.jsp';">Add group</button>
+			<button name="addEntreprise" type="button"
+				onclick="location.href='addEntreprise.jsp';">Add entreprise</button>
+			<div class="line-separator"></div>
+			<h2>Repertorie</h2>
+			<% for(int i=0; i<groups.size(); i++){ %>
+			<button name="<% out.print(groups.get(i).getGroupName()); %>"
+				type="button"
+				onclick="location.href='contacts?id=<% out.print(groups.get(i).getGroupId()); %>';">
+				<% out.print(groups.get(i).getGroupName()); %>
+			</button>
+			<% } %>
 		</div>
-		
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/jquery.scrollgress.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
-
-	</body>
+	</div>
+</body>
 </html>

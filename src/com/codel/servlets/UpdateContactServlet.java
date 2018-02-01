@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.codel.daos.ContactDAO;
 import com.codel.entities.Contact;
 import com.codel.services.ContactServices;
 
@@ -29,7 +30,7 @@ public class UpdateContactServlet extends HttpServlet {
 		String id  = request.getParameter("id");
 		
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
-		ContactServices contactServices = (ContactServices) context.getBean("myContactServices");
+		ContactServices contactServices = (ContactServices)context.getBean("myContactServices");
 		
 		Contact contact = contactServices.findById(Long.parseLong(id));
 		
@@ -62,7 +63,7 @@ public class UpdateContactServlet extends HttpServlet {
 		
 
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
-		ContactServices contactServices = (ContactServices) context.getBean("myContactServices");
+		ContactServices contactServices = (ContactServices)context.getBean("myContactServices");
 		Contact contact = (Contact) request.getSession().getAttribute("contact");
 		JSONObject resultService = null;
 		try {
@@ -95,13 +96,17 @@ public class UpdateContactServlet extends HttpServlet {
 					result.append(array.get(i)+", ");
 				}
 			} catch (JSONException e1) {
-				e1.printStackTrace();
+				try {
+					result.append(resultService.getString("errors"));
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
 			}
 			
 			request.setAttribute("errors", "veuillez remplir correctement ces champs : "+result);
 			getServletContext().getRequestDispatcher("/updateContact.jsp").forward(request, response);
 		}
-		else  getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
+		else response.sendRedirect("accueil");
 	}
 
 }

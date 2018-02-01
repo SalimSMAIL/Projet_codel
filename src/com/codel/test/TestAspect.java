@@ -7,6 +7,11 @@ import org.json.JSONException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.codel.daos.ContactDAO;
+import com.codel.daos.PhoneNumberDAO;
+import com.codel.entities.Address;
+import com.codel.entities.Contact;
+import com.codel.entities.PhoneNumber;
 import com.codel.services.ContactServices;
 
 public class TestAspect  {
@@ -41,15 +46,15 @@ public class TestAspect  {
 //		d.save(c);
 		
 		// supp un contact et verfiei que ça supp tt ses nums
-//		
-//		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
-//		Contact c = new Contact("salim", "SMAIL", "salim@gail.com", new Address(0, "h", "h", "003", "g", "g"));
-//		
-//		PhoneNumberDAO p = (PhoneNumberDAO) context.getBean("myPhoneNumberDAO");
-//		PhoneNumber pn = new PhoneNumber("phoneNumber","phoneKind",c);
-//		PhoneNumber p1 = new PhoneNumber("bn","mine",c);
-//		d.save(c);
-//		d.deleteAll();
+		
+		ContactDAO d = (ContactDAO) context.getBean("myContactDAO");
+		Contact c = new Contact("salim", "SMAIL", "salim@gail.com", new Address(0, "h", "h", "003", "g", "g"));
+		
+		PhoneNumberDAO p = (PhoneNumberDAO) context.getBean("myPhoneNumberDAO");
+		PhoneNumber pn = new PhoneNumber("phoneNumber","phoneKind",c);
+		PhoneNumber p1 = new PhoneNumber("bn","mine",c);
+		d.save(c);
+		d.delete(1l);
 		
 		// ze erreur
 //		
@@ -137,14 +142,7 @@ public class TestAspect  {
 //		Entreprise c1 = new Entreprise("salis1", "SdMAIL", "salim@gail.com", new Address(1, "h", "h", "003", "g", "g"),255);
 //		d.save(c1);
 //		
-		
 
-		ContactServices service = (ContactServices)context.getBean("myContactServices");
-		Map<String, String> listPhones = new HashMap<>();
-		listPhones.put("mobile", "0782482955");
-		System.out.println(service.addContact("salim", "smail", "salim@gmail.Com", "12", "rue", "Gallieni", "93360", "Neuilly PLaisance",
-				"France", listPhones));
-	}
 	
-
+	}
 }

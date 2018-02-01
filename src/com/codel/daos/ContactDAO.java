@@ -14,6 +14,7 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import com.codel.daos.interfaces.IContactDAO;
 import com.codel.entities.Contact;
+import com.codel.entities.ContactGroup;
 
 
 public class ContactDAO extends HibernateDaoSupport implements IContactDAO{
@@ -40,11 +41,7 @@ public class ContactDAO extends HibernateDaoSupport implements IContactDAO{
 	
 	@Override
 	public void delete(long id) {
-		getHibernateTemplate().execute(session -> {
-			String hql = "delete from Contact where contactId= "+id;
-			session.createQuery(hql).executeUpdate();
-			return null;
-		});
+		getHibernateTemplate().delete(findById(id));
 	}
 	
 	@SuppressWarnings("unchecked")

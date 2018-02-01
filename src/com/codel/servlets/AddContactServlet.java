@@ -80,13 +80,17 @@ public class AddContactServlet extends HttpServlet {
 					result.append(array.get(i)+", ");
 				}
 			} catch (JSONException e1) {
-				e1.printStackTrace();
+				try {
+					result.append(resultService.getString("errors"));
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
 			}
 			
 			request.setAttribute("errors", "veuillez remplir correctement ces champs : "+result);
 			getServletContext().getRequestDispatcher("/addContact.jsp").forward(request, response);
 		}
-		else  getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
+		else response.sendRedirect("accueil");
 	}
 
 }

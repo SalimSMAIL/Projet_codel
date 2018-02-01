@@ -10,25 +10,34 @@
         				http://www.springframework.org/schema/aop
         				http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-	<bean id="myContactDao" class="com.codel.daos.ContactDAO">
+	<bean id="myContactDAO" class="com.codel.daos.ContactDAO" scope="singleton">
 		<property name="sessionFactory" ref="mySessionFactory" />
 	</bean>
-	<bean id="myContactGroupDAO" class="com.codel.daos.ContactGroupDAO">
-		<property name="sessionFactory" ref="mySessionFactory" />
-	</bean>
-	
-	<bean id="myPhoneNumberDAO" class="com.codel.daos.PhoneNumberDAO">
+	<bean id="myContactGroupDAO" class="com.codel.daos.ContactGroupDAO" scope="singleton">
 		<property name="sessionFactory" ref="mySessionFactory" />
 	</bean>
 	
-	<bean id="myEntrepriseDAO" class="com.codel.daos.EntrepriseDAO">
+	<bean id="myPhoneNumberDAO" class="com.codel.daos.PhoneNumberDAO" scope="singleton">
 		<property name="sessionFactory" ref="mySessionFactory" />
 	</bean>
 	
-	<bean id="myContactServices" class="com.codel.services.ContactServices"/>
-	<bean id="myContactGroupServices" class="com.codel.services.ContactGroupServices"/>
-	<bean id="myEntrepriseServices" class="com.codel.services.EntrepriseServices"/>
-
+	<bean id="myEntrepriseDAO" class="com.codel.daos.EntrepriseDAO" scope="singleton">
+		<property name="sessionFactory" ref="mySessionFactory" />
+	</bean>
+	
+	<bean id="myContactServices" class="com.codel.services.ContactServices" scope="singleton">
+		<constructor-arg ref="myContactDAO"></constructor-arg>
+	</bean>
+	<bean id="myContactGroupServices" class="com.codel.services.ContactGroupServices" scope="singleton">
+		<constructor-arg ref="myContactGroupDAO"></constructor-arg>
+	</bean>	
+	<bean id="myPhoneNumberServices" class="com.codel.services.PhoneNumberServices" scope="singleton">
+		<constructor-arg ref="myPhoneNumberDAO"></constructor-arg>
+	</bean>	
+	<bean id="myEntrepriseServices" class="com.codel.services.EntrepriseServices" scope="singleton">
+		<constructor-arg ref="myEntrepriseDAO"></constructor-arg>
+	</bean>	
+ 	
  	<bean id="myDataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://localhost:3306/bdd_codel?useSSL=false"/>
@@ -77,9 +86,18 @@
 						and args(contact, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country, listPhones)"
 			method="checkUpdateContact" arg-names="pjp, contact, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country, listPhones"/>
 		</aop:aspect>
-	</aop:config>
+</aop:config>
+
+<aop:config>
+	<aop:aspect id="checkAddEntrepriseBean" ref="checkAddEntreprise">
+		<aop:around pointcut="execution(* com.codel.services.EntrepriseServices.addEntreprise(*,*,*,*,*,*,*,*,*,*,*)) 
+						and args(numSiret, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country, listPhones)"
+			method="checkAddEntreprise" arg-names="pjp, numSiret, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country, listPhones"/>
+		</aop:aspect>
+	</aop:config> 
 	
 	<bean id="checkAddContact" class="com.codel.services.aspect.CheckServices"/> 
 	<bean id="checkUpdateContact" class="com.codel.services.aspect.CheckServices"/> 
+	<bean id="checkAddEntreprise" class="com.codel.services.aspect.CheckServices"/> 
 
 </beans>

@@ -1,6 +1,8 @@
 package com.codel.servlets;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,6 +26,7 @@ public class AddEntrepriseServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String numSiret = request.getParameter("num_siret");
 		String firstName = request.getParameter("first_name");
 		String lastName = request.getParameter("last_name");
 		String email = request.getParameter("email");
@@ -33,19 +36,29 @@ public class AddEntrepriseServlet extends HttpServlet {
 		String codePostal = request.getParameter("code_postal");
 		String city = request.getParameter("city");
 		String country = request.getParameter("country");
-		String numSiret= request.getParameter("num_siret");
 		
 
+		String mobilePhone = request.getParameter("mobile_phone");
+		String homePhone = request.getParameter("home_phone");
+		String professionnalPhone = request.getParameter("professionnal_phone");
+		
+		Map<String, String> listPhones = new HashMap<>();
+		listPhones.put("mobilePhone", mobilePhone);
+		listPhones.put("homePhone", homePhone);
+		listPhones.put("professionnalPhone", professionnalPhone);
+
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
-		EntrepriseServices EntrepriseServices = (EntrepriseServices) context.getBean("myEntrepriseServices");
+		EntrepriseServices contactServices = (EntrepriseServices)context.getBean("myEntrepriseServices");
 		
 		JSONObject resultService = null;
 		try {
-			resultService = EntrepriseServices.addEntreprise(firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country,numSiret);
+			resultService = contactServices.addEntreprise(numSiret, firstName, lastName, email, streetNumber,
+					streetType, streetName, codePostal, city, country, listPhones);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 		if(resultService.has("errors")){
+			request.setAttribute("num_siret", numSiret);
 			request.setAttribute("first_name", firstName);
 			request.setAttribute("last_name", lastName);
 			request.setAttribute("email", email);
@@ -55,7 +68,11 @@ public class AddEntrepriseServlet extends HttpServlet {
 			request.setAttribute("code_postal", codePostal);
 			request.setAttribute("city", city);
 			request.setAttribute("country", country);
-			request.setAttribute("num_siret", numSiret);
+			
+			request.setAttribute("mobile_phone", mobilePhone);
+			request.setAttribute("home_phone", homePhone);
+			request.setAttribute("professionnal_phone", professionnalPhone);
+			
 			StringBuilder result = new StringBuilder();
 			
 			try {
@@ -65,13 +82,17 @@ public class AddEntrepriseServlet extends HttpServlet {
 					result.append(array.get(i)+", ");
 				}
 			} catch (JSONException e1) {
-				e1.printStackTrace();
+				try {
+					result.append(resultService.getString("errors"));
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
 			}
 			
 			request.setAttribute("errors", "veuillez remplir correctement ces champs : "+result);
-			getServletContext().getRequestDispatcher("/addContact.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/addEntreprise.jsp").forward(request, response);
 		}
-		else  getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
+		else  response.sendRedirect("accueil");
 	}
 
 }

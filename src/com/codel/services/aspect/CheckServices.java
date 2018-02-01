@@ -3,6 +3,7 @@ package com.codel.services.aspect;
 import java.util.Map;
 
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.codel.entities.Contact;
@@ -19,6 +20,19 @@ public class CheckServices {
 	public JSONObject checkUpdateContact(ProceedingJoinPoint pjp, Contact contact, String firstName, String lastName, String email, 
 			String streetNumber, String streetType, String streetName, String codePostal, String city, String country, Map<String, String> listPhones) throws Throwable {
 		
+		return checkInfoContact(pjp, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country);
+			
+	}
+	
+	public JSONObject checkAddEntreprise(ProceedingJoinPoint pjp, String numSiret, String firstName, String lastName, String email, 
+			String streetNumber, String streetType, String streetName, String codePostal, String city, String country, Map<String, String> listPhones) throws Throwable {
+		JSONObject error = new JSONObject();
+		if(numSiret == null || !numSiret.matches("^[0-9]{2,}$")){
+			error.accumulate("errors", "numSiret");
+		}
+		if(error.length()!=0){
+			return error;
+		}
 		return checkInfoContact(pjp, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country);
 			
 	}

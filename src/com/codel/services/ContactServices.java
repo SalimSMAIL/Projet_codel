@@ -1,56 +1,50 @@
 package com.codel.services;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.codel.daos.ContactDAO;
+import com.codel.daos.interfaces.IContactDAO;
 import com.codel.entities.Address;
 import com.codel.entities.Contact;
 import com.codel.entities.ContactGroup;
 import com.codel.entities.PhoneNumber;
 
 public class ContactServices {
-	
-	public void addContactToGroup(String idContact,String idGroup) {
-		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
-		Contact c1 = findById(Long.parseLong(idContact));
-		ContactGroupServices cgs = new ContactGroupServices();
-		ContactGroup c2 = cgs.findById(Long.parseLong(idGroup));
-		c1.addBooks(c2);
-		d.save(c1);
-		System.out.println("yes");
+
+	private IContactDAO contactDAO;
+
+	public ContactServices(){
+		super();
 	}
+
+	public ContactServices(IContactDAO contactDAO){
+		this.contactDAO = contactDAO;
+	}
+
+	public void addContactToGroup(Contact contact, ContactGroup contactGroup) {
+		contact.addBooks(contactGroup);
+		contactDAO.update(contact);
+	}
+
 	public Contact findById(long id){
-		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
 		return contactDAO.findById(id);
 	}
-	
+
 	public List<Contact> findAll(){
-		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
 		return contactDAO.findAll();
 	}
-	
+
 	public void deleteContactbyId(long id){
-		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
 		contactDAO.delete(id);
 	}
-	
+
 	public JSONObject addContact(String firstName, String lastName, String email, 
-				String streetNumber, String streetType, String streetName, String codePostal, 
-				String city, String country, Map<String, String> listPhones) throws JSONException{
-		
-		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
+			String streetNumber, String streetType, String streetName, String codePostal, 
+			String city, String country, Map<String, String> listPhones) throws JSONException{
+
 		long sn;
 		try{
 			sn = Long.parseLong(streetNumber);
@@ -58,80 +52,76 @@ public class ContactServices {
 			sn=1000;
 		}
 		Contact contact = new Contact(firstName, lastName, email, new Address(sn, 
-									streetType, streetName, codePostal, city, country));
+				streetType, streetName, codePostal, city, country));
 		if(listPhones.containsKey("mobilePhone") && listPhones.get("mobilePhone").matches("^0[1-9][0-9]{8,}$")) new PhoneNumber(listPhones.get("mobilePhone"), "mobile", contact);
 		if(listPhones.containsKey("homePhone") && listPhones.get("homePhone").matches("^0[1-9][0-9]{8,}$")) new PhoneNumber(listPhones.get("homePhone"), "home", contact);
 		if(listPhones.containsKey("professionnalPhone") && listPhones.get("professionnalPhone").matches("^0[1-9][0-9]{8,}$")) new PhoneNumber(listPhones.get("professionnalPhone"), "professionnal", contact);
 		long id = contactDAO.save(contact);
-		
+
 		return new JSONObject().put("id", id);
-		
+
 	}
-	
-public JSONObject updateContact(Contact contact, String firstName, String lastName, String email, 
+
+	public JSONObject updateContact(Contact contact, String firstName, String lastName, String email, 
 			String streetNumber, String streetType, String streetName, 
 			String codePostal, String city, String country, Map<String, String> listPhones) throws JSONException{
-	
-	ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-	ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
-	
-	contact.setFirstName(firstName);
-	contact.setLastName(lastName);
-	contact.setEmail(email);
-	contact.getAddress().setStreetNumber(Long.parseLong(streetNumber));
-	contact.getAddress().setStreetName(streetName);
-	contact.getAddress().setCodePostal(codePostal);
-	contact.getAddress().setCity(city);
-	contact.getAddress().setCountry(country);
-	
-	if(listPhones.containsKey("mobilePhone") && listPhones.get("mobilePhone").matches("^0[1-9][0-9]{8,}$")){
-		if(contact.getPhone("mobile")==null) new PhoneNumber(listPhones.get("mobilePhone"), "mobile", contact);	
-		else contact.getPhone("mobile").setPhoneNumber(listPhones.get("mobilePhone"));
+
+
+		contact.setFirstName(firstName);
+		contact.setLastName(lastName);
+		contact.setEmail(email);
+		contact.getAddress().setStreetNumber(Long.parseLong(streetNumber));
+		contact.getAddress().setStreetName(streetName);
+		contact.getAddress().setCodePostal(codePostal);
+		contact.getAddress().setCity(city);
+		contact.getAddress().setCountry(country);
+
+		if(listPhones.containsKey("mobilePhone") && listPhones.get("mobilePhone").matches("^0[1-9][0-9]{8,}$")){
+			if(contact.getPhone("mobile")==null) new PhoneNumber(listPhones.get("mobilePhone"), "mobile", contact);	
+			else contact.getPhone("mobile").setPhoneNumber(listPhones.get("mobilePhone"));
+		}
+		if(listPhones.containsKey("homePhone") && listPhones.get("homePhone").matches("^0[1-9][0-9]{8,}$")){
+			if(contact.getPhone("home")==null) new PhoneNumber(listPhones.get("homePhone"), "home", contact);	
+			else contact.getPhone("home").setPhoneNumber(listPhones.get("homePhone"));
+		}
+		if(listPhones.containsKey("professionnalPhone") && listPhones.get("professionnalPhone").matches("^0[1-9][0-9]{8,}$")){
+			if(contact.getPhone("professionnal")==null) new PhoneNumber(listPhones.get("professionnalPhone"), "professionnal", contact);	
+			else contact.getPhone("professionnal").setPhoneNumber(listPhones.get("professionnalPhone"));
+		}
+
+		contactDAO.update(contact);
+
+		return new JSONObject().put("id", contact.getContactId());
+
 	}
-	if(listPhones.containsKey("homePhone") && listPhones.get("homePhone").matches("^0[1-9][0-9]{8,}$")){
-		if(contact.getPhone("home")==null) new PhoneNumber(listPhones.get("homePhone"), "home", contact);	
-		else contact.getPhone("home").setPhoneNumber(listPhones.get("homePhone"));
-	}
-	if(listPhones.containsKey("professionnalPhone") && listPhones.get("professionnalPhone").matches("^0[1-9][0-9]{8,}$")){
-		if(contact.getPhone("professionnal")==null) new PhoneNumber(listPhones.get("professionnalPhone"), "professionnal", contact);	
-		else contact.getPhone("professionnal").setPhoneNumber(listPhones.get("professionnalPhone"));
-	}
-	
-	contactDAO.update(contact);
-	
-	return new JSONObject().put("id", contact.getContactId());
-	
-}
 
 	public List<Contact> searchContact(String query){
-//		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-//		ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
-//		List<Contact> contacts = new ArrayList<Contact>();
-//		List<Contact> contacts_results = new ArrayList<Contact>();
-//		contacts = contactDAO.findAll();
-//		for (int i = 0; i < contacts.size(); i++) {
-//			if (contacts.get(i).getFirstName().contains(query)
-//					|| contacts.get(i).getLastName().contains(query)
-//					) {
-//				contacts_results.add(contacts.get(i));
-//			}		
-//		}
-//		if(contacts.isEmpty()) {
-//			return null;
-//		}else {
-//			return contacts_results;
-//		}
-			
-		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
+		//		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		//		ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
+		//		List<Contact> contacts = new ArrayList<Contact>();
+		//		List<Contact> contacts_results = new ArrayList<Contact>();
+		//		contacts = contactDAO.findAll();
+		//		for (int i = 0; i < contacts.size(); i++) {
+		//			if (contacts.get(i).getFirstName().contains(query)
+		//					|| contacts.get(i).getLastName().contains(query)
+		//					) {
+		//				contacts_results.add(contacts.get(i));
+		//			}		
+		//		}
+		//		if(contacts.isEmpty()) {
+		//			return null;
+		//		}else {
+		//			return contacts_results;
+		//		}
+
 		return contactDAO.searchContact(query);
 	}
 
 	public List<Contact> findRestContact(long idGroup){
-		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
 		List<Contact> contacts =contactDAO.findRestContact(idGroup);
 		return contacts;
 	}
-	
+
+
+
 }

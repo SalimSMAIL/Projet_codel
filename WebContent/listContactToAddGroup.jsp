@@ -3,69 +3,52 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title></title>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-<link rel="stylesheet" href="assets/css/main.css" />
-<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="css/style1.css" />
+<title>Contacts</title>
 </head>
-<body class="landing">
-	<div id="page-wrapper">
-
+<body>
 
 <%
-
 	List<Contact> contacts = (List<Contact>) request.getAttribute("contacts");
-	out.println("j'ai un id de val  "+request.getAttribute("id"));
-
 %>
-<div class="containerMenu"> 
+
 <div class="containerList">  
-	<div class="menun">
+	
 	<div class="list">
 	<h1>List contacts</h1>
-	<p><%out.println("j'ai un id de val  "+request.getAttribute("id")); %>
-	<ol start="Mes contacts">
-	   
+	
+	<ol start="My contacts">
+	   <li>
 	      <ul>
 	      
 	      <%
 	      if(contacts != null)
-	      	for(Contact cl: contacts){
+	      	for(Contact c: contacts){
 	      	%>
 	      	
+		         <li>
 		         	<ul>
-		         	<div class="containerList">
-		         		<% out.print(cl.getFirstName()+"     "+cl.getLastName()+"  "+cl.getEmail());  %>
-		         		<img src="images/update.png" alt="detail contact" height="20" width="20" onclick="location.href='addToGroup?id=<% out.print(cl.getContactId()); %>&idg=<%=request.getAttribute("id")%>'" > 
-		         	</div>
+		         		<li><% out.print(c.getFirstName()); %></li>
+		         		<li><% out.print(c.getLastName()); %></li>
+		         		<li><% out.print(c.getEmail()); %></li>
+		         		
+		         		<img src="img/update.png" alt="detail contact" height="20" width="20" onclick="location.href='addToGroup?id=<% out.print(c.getContactId()); %>&idg=<%=request.getAttribute("id")%>';"> 
 		         	</ul>
-	
+		         </li>
 	     <%}
 	      %>
 
 	      </ul>
-	 
+	   </li>  
 	</ol>
-	
 	<button name="return" type="button" onclick="location.href='accueil';">return</button>
 	</div>
-</div>
-</div>
-</div>
-</div>
 
-	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.dropotron.min.js"></script>
-	<script src="assets/js/jquery.scrollgress.min.js"></script>
-	<script src="assets/js/skel.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-	<script src="assets/js/main.js"></script>
+</div>
 
 </body>
 </html>

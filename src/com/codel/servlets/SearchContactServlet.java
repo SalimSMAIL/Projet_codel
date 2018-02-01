@@ -26,7 +26,7 @@ public class SearchContactServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String query  = request.getParameter("name");
-		System.out.println(query);
+		
 		if(query!=null){
 			ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 			ContactServices contactServices = (ContactServices) context.getBean("myContactServices");
@@ -34,7 +34,6 @@ public class SearchContactServlet extends HttpServlet {
 			
 			if(!contacts.isEmpty()) {
 				request.setAttribute("contacts", contacts);
-				System.out.println(contacts.iterator().next().getFirstName());
 			}
 		}
 		

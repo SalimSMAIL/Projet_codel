@@ -26,7 +26,7 @@ public class EmptyContactGroupServlet extends HttpServlet {
 		ContactGroupServices contactGroupServices = (ContactGroupServices) context.getBean("myContactGroupServices");
 		
 		contactGroupServices.emptyContactGroup(Long.parseLong(id));
-		getServletContext().getRequestDispatcher("/group?id="+id).forward(request, response);
+		getServletContext().getRequestDispatcher("/contacts?id="+id).forward(request, response);
 	}
 
 }

@@ -12,8 +12,6 @@
   text-rendering: optimizeLegibility;
 }
 
-.tabulation { margin: 0 0 0 40px; } 
-
 body {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
   font-weight: 100;
@@ -237,5 +235,41 @@ img{
 	margin-top: 5px;
 }
 
+/* form search */
 
+.menu fieldset {
+  border: medium none !important;
+  margin: 0 0 10px;
+  min-width: 100%;
+  padding: 0;
+  width: 100%;
+}
 
+.menu input[type="text"],
+.menu input[type="email"],
+.menu input[type="tel"],
+.menu input[type="url"],
+.menu textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  background: #FFF;
+  margin: 0 0 5px;
+  padding: 10px;
+}
+
+.menu input[type="text"]:hover,
+.menu input[type="email"]:hover,
+.menu input[type="tel"]:hover,
+.menu input[type="url"]:hover,
+.menu textarea:hover {
+  -webkit-transition: border-color 0.3s ease-in-out;
+  -moz-transition: border-color 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out;
+  border: 1px solid #aaa;
+}
+
+.menu textarea {
+  height: 100px;
+  max-width: 100%;
+  resize: none;
+}

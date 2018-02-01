@@ -42,8 +42,10 @@ public class DeleteServlet extends HttpServlet {
 			contactServices.deleteContactbyId(Long.parseLong(id));
 			
 		}
+		
+		response.sendRedirect("contacts?id="+idGroup);
 
-		getServletContext().getRequestDispatcher("/accueil").forward(request, response);
+		
 	}
 
 }

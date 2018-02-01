@@ -20,10 +20,10 @@ import com.codel.services.ContactServices;
 /**
  * Servlet implementation class DisplayContacts
  */
-public class DisplayGroupServlet extends HttpServlet {
+public class DisplayContactServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public DisplayGroupServlet() {
+    public DisplayContactServlet() {
         super();
     }
 
@@ -42,7 +42,7 @@ public class DisplayGroupServlet extends HttpServlet {
 			}
 		}else{
 			ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
-			ContactServices contactServices = (ContactServices) context.getBean("myContactServices");
+			ContactServices contactServices = (ContactServices)context.getBean("myContactServices");
 			List<Contact> contacts = contactServices.findAll();
 			
 			if(!contacts.isEmpty()) {
