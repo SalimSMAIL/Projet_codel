@@ -19,17 +19,21 @@
 
 		<div class="containerMenu">  
 			<div class="menun">
-			<form id="contact" action="add" method="post">
-				<h3>Ajouter un nouveau groupe</h3>
-				<fieldset>
-					<input name="first_name" value="<%out.print(firstName);%>"
-						placeholder="Firstname" type="text" tabindex="1">
-				</fieldset>
-				<br>
-				<fieldset>
-					<button class="button special" name="submit" type="submit" id="contact-submit"
-						data-submit="...Sending"> Add </button>
-				</fieldset>
+				<form action='addGroup' method='post'>
+						<div class="row uniform">
+									<div class="12u">
+											<center><input type="text" name="name" placeholder="Tape a text ..." /></center>
+			
+									</div>
+								</div>
+						<div class="row uniform">
+									<div class="12u">
+										<ul class="actions align-center">
+											<li><input type="submit" value="Add a group" /></li>
+										</ul>
+									</div>
+								</div>
+								</form>
 				<br>
 				<fieldset>
 					<button class="button special" name="reset" type="reset" id="contact-reset"

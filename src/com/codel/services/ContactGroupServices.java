@@ -52,4 +52,12 @@ public class ContactGroupServices {
 		groupDao.update(contactGroup);
 		
 	}
+	
+	public List<Contact> getContacts(long idGroup) {
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ContactGroupDAO groupDao = (ContactGroupDAO)context.getBean("myContactGroupDAO");
+
+		List <Contact> contacts = groupDao.getContacts(idGroup);
+		return contacts;
+	}
 }
