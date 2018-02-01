@@ -7,9 +7,14 @@
 
 	<class name="com.codel.entities.PhoneNumber" table="PHONE_NUMBER">
 		
+				<!-- CACHE -->
+		<cache usage="read-write"/>
+		
 		<id name="phoneId" type="long" column="phone_id">
 			<generator class="increment" />
 		</id>
+		
+		<version name="version" access="field" column="version"/> 
 
 		<property name="phoneNumber" column="phone_number"  type="string" />
 		<property name="phoneKind" column="phone_kind"  type="string" />

@@ -13,16 +13,21 @@
 <link rel="stylesheet" href="assets/css/main.css" />
 <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 </head>
+
+<%
+String groupName = (request.getAttribute("group_name") != null)? (String) request.getAttribute("group_name") : "";
+	String errors = (request.getAttribute("errors") != null) ? (String) request.getAttribute("errors") : "";
+%>
 <body class="landing">
 	<div id="page-wrapper">
 		
-
+<% out.print(errors); %>
 		<div class="containerMenu">  
 			<div class="menun">
 				<form action='addGroup' method='post'>
 						<div class="row uniform">
 									<div class="12u">
-											<center><input type="text" name="group_name" placeholder="Tape a text ..." /></center>
+											<center><input type="text" name="group_name" value="<% out.print(groupName); %>" placeholder="Tape a text ..." /></center>
 			
 									</div>
 								</div>

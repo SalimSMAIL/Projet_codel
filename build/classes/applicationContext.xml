@@ -64,18 +64,18 @@
 
  <aop:config>
 	<aop:aspect id="checkAddContactBean" ref="checkAddContact">
-		<aop:around pointcut="execution(* com.codel.services.ContactServices.addContact(*,*,*,*,*,*,*,*,*)) 
-						and args(firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country)"
-			method="checkAddContact" arg-names="pjp, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country"/>
+		<aop:around pointcut="execution(* com.codel.services.ContactServices.addContact(*,*,*,*,*,*,*,*,*,*)) 
+						and args(firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country, listPhones)"
+			method="checkAddContact" arg-names="pjp, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country, listPhones"/>
 		</aop:aspect>
 	</aop:config>
 
 
  <aop:config>
 	<aop:aspect id="checkUpdateContactBean" ref="checkUpdateContact">
-		<aop:around pointcut="execution(* com.codel.services.ContactServices.updateContact(*,*,*,*,*,*,*,*,*,*)) 
-						and args(contact, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country)"
-			method="checkUpdateContact" arg-names="pjp, contact, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country"/>
+		<aop:around pointcut="execution(* com.codel.services.ContactServices.updateContact(*,*,*,*,*,*,*,*,*,*,*)) 
+						and args(contact, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country, listPhones)"
+			method="checkUpdateContact" arg-names="pjp, contact, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country, listPhones"/>
 		</aop:aspect>
 	</aop:config>
 	

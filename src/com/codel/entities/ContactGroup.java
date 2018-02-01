@@ -17,6 +17,16 @@ public class ContactGroup {
 		this.groupName = groupName;
 	}
 
+	private int version;
+	
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+	
 	public long getGroupId() {
 		return groupId;
 	}

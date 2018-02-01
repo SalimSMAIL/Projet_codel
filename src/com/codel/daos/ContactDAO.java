@@ -1,5 +1,6 @@
 package com.codel.daos;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,7 +11,6 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import com.codel.daos.interfaces.IContactDAO;
 import com.codel.entities.Contact;
-import com.codel.entities.ContactGroup;
 
 
 public class ContactDAO extends HibernateDaoSupport implements IContactDAO{

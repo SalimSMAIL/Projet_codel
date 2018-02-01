@@ -60,4 +60,17 @@ public class ContactGroupServices {
 		List <Contact> contacts = groupDao.getContacts(idGroup);
 		return contacts;
 	}
+	
+	public String addGroup(String groupName){
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ContactGroupDAO groupDao = (ContactGroupDAO)context.getBean("myContactGroupDAO");
+		
+		if(groupName==null || !groupName.matches("^[a-zA-Z0-9]{2,}$")) return "veuillez saisir un nom de groupe";
+		try{
+			groupDao.save(new ContactGroup(groupName));
+		}catch(Exception e){
+			return "Ce nom de groupe existe déja";
+		}
+		return null;
+	}
 }

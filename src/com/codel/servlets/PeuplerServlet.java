@@ -29,8 +29,13 @@ public class PeuplerServlet extends HttpServlet {
 		Contact c1 = (Contact)context.getBean("myContact");
 		Contact c2 = (Contact)context.getBean("myContactBis");
 		ContactDAO d = (ContactDAO)context.getBean("myContactDao");
-		d.save(c1);
-		d.save(c2);
+		try{
+			d.save(c1);
+			d.save(c2);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
 		
 
 		ContactGroupServices contactGroupServices = (ContactGroupServices) context.getBean("myContactGroupServices");

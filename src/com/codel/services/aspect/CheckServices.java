@@ -1,5 +1,7 @@
 package com.codel.services.aspect;
 
+import java.util.Map;
+
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.json.JSONObject;
 
@@ -8,14 +10,14 @@ import com.codel.entities.Contact;
 public class CheckServices {
 	
 	public JSONObject checkAddContact(ProceedingJoinPoint pjp, String firstName, String lastName, String email, 
-			String streetNumber, String streetType, String streetName, String codePostal, String city, String country) throws Throwable {
+			String streetNumber, String streetType, String streetName, String codePostal, String city, String country, Map<String, String> listPhones) throws Throwable {
 		
 		return checkInfoContact(pjp, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country);
 			
 	}
 	
 	public JSONObject checkUpdateContact(ProceedingJoinPoint pjp, Contact contact, String firstName, String lastName, String email, 
-			String streetNumber, String streetType, String streetName, String codePostal, String city, String country) throws Throwable {
+			String streetNumber, String streetType, String streetName, String codePostal, String city, String country, Map<String, String> listPhones) throws Throwable {
 		
 		return checkInfoContact(pjp, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country);
 			

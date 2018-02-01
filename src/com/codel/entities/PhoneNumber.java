@@ -11,6 +11,16 @@ public class PhoneNumber {
 	public PhoneNumber() {
 		super();
 	}
+	
+	private int version;
+	
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
 
 	public PhoneNumber(String phoneNumber, String phoneKind, Contact contact) {
 		super();

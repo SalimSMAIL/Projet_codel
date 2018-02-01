@@ -12,7 +12,22 @@
 		<persistence strategy="localTempSwap" />
 	</defaultCache>
 
+	<cache name="com.codel.entities.Address" maxEntriesLocalHeap="10000" eternal="false"
+		timeToIdleSeconds="30" timeToLiveSeconds="30">
+		<persistence strategy="localTempSwap" />
+	</cache>
+	
 	<cache name="com.codel.entities.Contact" maxEntriesLocalHeap="10000" eternal="false"
+		timeToIdleSeconds="30" timeToLiveSeconds="30">
+		<persistence strategy="localTempSwap" />
+	</cache>
+	
+	<cache name="com.codel.entities.ContactGroup" maxEntriesLocalHeap="10000" eternal="false"
+		timeToIdleSeconds="30" timeToLiveSeconds="30">
+		<persistence strategy="localTempSwap" />
+	</cache>
+	
+	<cache name="com.codel.entities.PhoneNumber" maxEntriesLocalHeap="10000" eternal="false"
 		timeToIdleSeconds="30" timeToLiveSeconds="30">
 		<persistence strategy="localTempSwap" />
 	</cache>

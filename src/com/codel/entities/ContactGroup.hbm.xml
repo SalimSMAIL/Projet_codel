@@ -7,11 +7,16 @@
 
 	<class name="com.codel.entities.ContactGroup" table="CONTACT_GROUP">
 
+		<!-- CACHE -->
+		<cache usage="read-write"/>
+		
 		<id name="groupId" type="long" column="group_id">
 			<generator class="increment" />
 		</id>
+		
+		<version name="version" access="field" column="version"/> 
 
-		<property name="groupName" column="group_name" type="string" />
+		<property name="groupName" column="group_name" unique="true" type="string" />
 
 		<set name="contacts" table="CONTACT_GROUP_CONTACT" cascade="save-update" >
 			<key column="group_id"/>

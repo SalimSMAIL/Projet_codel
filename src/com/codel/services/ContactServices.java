@@ -1,5 +1,6 @@
 package com.codel.services;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -83,14 +84,17 @@ public JSONObject updateContact(Contact contact, String firstName, String lastNa
 	contact.getAddress().setCity(city);
 	contact.getAddress().setCountry(country);
 	
-	if(listPhones.containsKey("mobilePhone") && listPhones.get("mobilePhone").matches("^0[1-9][0-9]{8,}$") && !contact.hasPhonesKids("mobile")){
-		new PhoneNumber(listPhones.get("mobilePhone"), "mobile", contact);
+	if(listPhones.containsKey("mobilePhone") && listPhones.get("mobilePhone").matches("^0[1-9][0-9]{8,}$")){
+		if(contact.getPhone("mobile")==null) new PhoneNumber(listPhones.get("mobilePhone"), "mobile", contact);	
+		else contact.getPhone("mobile").setPhoneNumber(listPhones.get("mobilePhone"));
 	}
-	if(listPhones.containsKey("homePhone") && listPhones.get("homePhone").matches("^0[1-9][0-9]{8,}$") && !contact.hasPhonesKids("home")){
-		new PhoneNumber(listPhones.get("homePhone"), "home", contact);
+	if(listPhones.containsKey("homePhone") && listPhones.get("homePhone").matches("^0[1-9][0-9]{8,}$")){
+		if(contact.getPhone("home")==null) new PhoneNumber(listPhones.get("homePhone"), "home", contact);	
+		else contact.getPhone("home").setPhoneNumber(listPhones.get("homePhone"));
 	}
-	if(listPhones.containsKey("professionnalPhone") && listPhones.get("professionnalPhone").matches("^0[1-9][0-9]{8,}$") && !contact.hasPhonesKids("professionnal")){
-		new PhoneNumber(listPhones.get("professionnalPhone"), "professionnal", contact);
+	if(listPhones.containsKey("professionnalPhone") && listPhones.get("professionnalPhone").matches("^0[1-9][0-9]{8,}$")){
+		if(contact.getPhone("professionnal")==null) new PhoneNumber(listPhones.get("professionnalPhone"), "professionnal", contact);	
+		else contact.getPhone("professionnal").setPhoneNumber(listPhones.get("professionnalPhone"));
 	}
 	
 	contactDAO.update(contact);

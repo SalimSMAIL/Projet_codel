@@ -24,7 +24,7 @@
 		<property name="lastName" column="last_name"  type="string" />
 		<property name="email" column="email"  type="string" />
 
-		<many-to-one name="address" column="address_id" class="com.codel.entities.Address" cascade="all" not-null="true"/>
+		<many-to-one name="address" column="address_id" class="com.codel.entities.Address" optimistic-lock="false" cascade="all" not-null="true"/>
 		
  		<set name="phones" table="PHONE_NUMBER" cascade="all" inverse="true" >
 			<key  column="contact_id" />

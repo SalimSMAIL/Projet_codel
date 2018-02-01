@@ -113,13 +113,14 @@ public class Contact {
 		phones.remove(phone);
 	}
 	
-	public boolean hasPhonesKids(String phoneKids){
-		Set<String> set = new HashSet<>();
+	public PhoneNumber getPhone(String phoneKids){
 		Iterator<PhoneNumber> it = this.phones.iterator();
+		PhoneNumber phone = null;
 		while(it.hasNext()){
-			set.add(it.next().getPhoneKind());
+			phone=it.next();
+			if(phone.getPhoneKind().equals(phoneKids)) return phone;
 		}
-		return set.contains(phoneKids);
+		return null;
 	}
 	
     public boolean equals(Object other) {

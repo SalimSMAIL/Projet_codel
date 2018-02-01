@@ -30,7 +30,7 @@ while(listPhones.hasNext()){
 		professionnal = phone.getPhoneNumber();	
 	}
 }
-String errors = (request.getAttribute("errors")!=null)?(String)request.getAttribute("errors"):"";
+String errors = (request.getAttribute("errors") != null) ? (String) request.getAttribute("errors") : "";
 %>
 <div class="container">  
   <form id="contact" action="update" method="post">
