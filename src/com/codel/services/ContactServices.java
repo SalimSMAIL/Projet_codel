@@ -1,6 +1,5 @@
 package com.codel.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONException;
@@ -9,11 +8,23 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.codel.daos.ContactDAO;
+import com.codel.daos.ContactGroupDAO;
 import com.codel.entities.Address;
 import com.codel.entities.Contact;
+import com.codel.entities.ContactGroup;
 
 public class ContactServices {
 	
+	public void addContactToGroup(String idContact,String idGroup) {
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
+		Contact c1 = findById(Long.parseLong(idContact));
+		ContactGroupServices cgs = new ContactGroupServices();
+		ContactGroup c2 = cgs.findById(Long.parseLong(idGroup));
+		c1.addBooks(c2);
+		d.save(c1);
+		System.out.println("yes");
+	}
 	public Contact findById(long id){
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");

@@ -75,7 +75,7 @@
 									<div class="row uniform">
 									<div class="12u">
       								<a name="<% out.print(groups.get(i).getGroupName()); %>"
-      								 type="button" onclick="location.href='group?id=<% out.print(groups.get(i).getGroupId()); %>';">
+      								 type="button" onclick="location.href='displayContactGroup?id=<% out.print(groups.get(i).getGroupId()); %>';">
       								 <% out.print(groups.get(i).getGroupName()); %></a>
       								 </div></div><br>
       <% } %>

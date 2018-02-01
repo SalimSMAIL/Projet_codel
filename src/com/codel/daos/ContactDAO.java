@@ -58,6 +58,11 @@ public class ContactDAO extends HibernateDaoSupport implements IContactDAO{
 		getHibernateTemplate().deleteAll(findAll());
 	}
 	
+
+//	public void addContactToGroup() {
+//		getHibernateTemplate().deleteAll(findAll());
+//	}
+	
 	public List<Contact> searchContact(String search) {
 		List<Contact> contacts =getHibernateTemplate().getSessionFactory().getCurrentSession().createCriteria(Contact.class)
 				.add(Restrictions.like("firstName", "%"+search+"%")).list();

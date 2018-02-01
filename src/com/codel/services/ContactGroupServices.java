@@ -14,8 +14,7 @@ public class ContactGroupServices {
 
 	public List<ContactGroup> findAll(){
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		ContactGroupDAO groupDao = (ContactGroupDAO)context.getBean("myContactGroupDAO");
-		
+		ContactGroupDAO groupDao = (ContactGroupDAO)context.getBean("myContactGroupDAO");	
 		return groupDao.findAll();
 
 	}

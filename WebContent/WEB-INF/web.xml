@@ -139,4 +139,37 @@
     <url-pattern>/details</url-pattern>
   </servlet-mapping>
   
+      <servlet>
+    <description></description>
+    <display-name>DisplayContactsGroupServlet</display-name>
+    <servlet-name>DisplayContactsGroupServlet</servlet-name>
+    <servlet-class>com.codel.servlets.DisplayContactsGroupServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DisplayContactsGroupServlet</servlet-name>
+    <url-pattern>/displayContactGroup</url-pattern>
+  </servlet-mapping>
+  
+        <servlet>
+    <description></description>
+    <display-name>GetContactAddGroupServlet</display-name>
+    <servlet-name>GetContactAddGroupServlet</servlet-name>
+    <servlet-class>com.codel.servlets.GetContactAddGroupServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetContactAddGroupServlet</servlet-name>
+    <url-pattern>/getContact</url-pattern>
+  </servlet-mapping>
+  
+          <servlet>
+    <description></description>
+    <display-name>AddContactToGroupServlet</display-name>
+    <servlet-name>AddContactToGroupServlet</servlet-name>
+    <servlet-class>com.codel.servlets.AddContactToGroupServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddContactToGroupServlet</servlet-name>
+    <url-pattern>/addToGroup</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

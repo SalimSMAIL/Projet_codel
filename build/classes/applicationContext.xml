@@ -21,14 +21,19 @@
 		<property name="sessionFactory" ref="mySessionFactory" />
 	</bean>
 	
+	<bean id="myEntrepriseDAO" class="com.codel.daos.EntrepriseDAO">
+		<property name="sessionFactory" ref="mySessionFactory" />
+	</bean>
+	
 	<bean id="myContactServices" class="com.codel.services.ContactServices"/>
 	<bean id="myContactGroupServices" class="com.codel.services.ContactGroupServices"/>
+	<bean id="myEntrepriseServices" class="com.codel.services.EntrepriseServices"/>
 
  	<bean id="myDataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://localhost:3306/bdd_codel?useSSL=false"/>
-		<property name="username" value="codel"/>
-		<property name="password" value="codel_secret"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/codelprojet"/>
+		<property name="username" value="root"/>
+		<property name="password" value=""/>
 	</bean> 
 	
 	<bean id="mySessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
