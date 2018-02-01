@@ -1,14 +1,13 @@
 package com.codel.test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.json.JSONException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.codel.daos.ContactDAO;
-import com.codel.daos.PhoneNumberDAO;
-import com.codel.entities.Address;
-import com.codel.entities.Contact;
-import com.codel.entities.PhoneNumber;
+import com.codel.services.ContactServices;
 
 public class TestAspect  {
 
@@ -96,13 +95,13 @@ public class TestAspect  {
 //		c2.addContact(c1);
 //		cg.save(c2);
 		
-		PhoneNumberDAO cgd =  (PhoneNumberDAO) context.getBean("myPhoneNumberDAO");
-		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
-		Contact c1 = new Contact("saliseem", "SdMAeeIL", "salimee@gail.com", new Address(1, "ee", "eh", "00e3", "ge", "ge"));
-		
-		PhoneNumber p = new PhoneNumber("mob","4555",c1);
-		c1.addPhone(p);
-		d.save(c1);
+//		PhoneNumberDAO cgd =  (PhoneNumberDAO) context.getBean("myPhoneNumberDAO");
+//		ContactDAO d = (ContactDAO) context.getBean("myContactDao");
+//		Contact c1 = new Contact("saliseem", "SdMAeeIL", "salimee@gail.com", new Address(1, "ee", "eh", "00e3", "ge", "ge"));
+//		
+//		PhoneNumber p = new PhoneNumber("mob","4555",c1);
+//		c1.addPhone(p);
+//		d.save(c1);
 
 //		System.out.println(p.getContact().getContactId());
 //		c1.addPhone(p);
@@ -139,6 +138,12 @@ public class TestAspect  {
 //		d.save(c1);
 //		
 		
+
+		ContactServices service = (ContactServices)context.getBean("myContactServices");
+		Map<String, String> listPhones = new HashMap<>();
+		listPhones.put("mobile", "0782482955");
+		System.out.println(service.addContact("salim", "smail", "salim@gmail.Com", "12", "rue", "Gallieni", "93360", "Neuilly PLaisance",
+				"France", listPhones));
 	}
 	
 

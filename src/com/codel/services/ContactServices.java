@@ -1,6 +1,7 @@
 package com.codel.services;
 
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -8,10 +9,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.codel.daos.ContactDAO;
-import com.codel.daos.ContactGroupDAO;
 import com.codel.entities.Address;
 import com.codel.entities.Contact;
 import com.codel.entities.ContactGroup;
+import com.codel.entities.PhoneNumber;
 
 public class ContactServices {
 	
@@ -44,7 +45,8 @@ public class ContactServices {
 	}
 	
 	public JSONObject addContact(String firstName, String lastName, String email, 
-				String streetNumber, String streetType, String streetName, String codePostal, String city, String country) throws JSONException{
+				String streetNumber, String streetType, String streetName, String codePostal, 
+				String city, String country, Map<String, String> listPhones) throws JSONException{
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
@@ -56,6 +58,9 @@ public class ContactServices {
 		}
 		Contact contact = new Contact(firstName, lastName, email, new Address(sn, 
 									streetType, streetName, codePostal, city, country));
+		if(listPhones.containsKey("mobilePhone") && listPhones.get("mobilePhone").matches("^0[1-9][0-9]{8,}$")) new PhoneNumber(listPhones.get("mobilePhone"), "mobile", contact);
+		if(listPhones.containsKey("homePhone") && listPhones.get("homePhone").matches("^0[1-9][0-9]{8,}$")) new PhoneNumber(listPhones.get("homePhone"), "home", contact);
+		if(listPhones.containsKey("professionnalPhone") && listPhones.get("professionnalPhone").matches("^0[1-9][0-9]{8,}$")) new PhoneNumber(listPhones.get("professionnalPhone"), "professionnal", contact);
 		long id = contactDAO.save(contact);
 		
 		return new JSONObject().put("id", id);
@@ -63,7 +68,8 @@ public class ContactServices {
 	}
 	
 public JSONObject updateContact(Contact contact, String firstName, String lastName, String email, 
-			String streetNumber, String streetType, String streetName, String codePostal, String city, String country) throws JSONException{
+			String streetNumber, String streetType, String streetName, 
+			String codePostal, String city, String country, Map<String, String> listPhones) throws JSONException{
 	
 	ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 	ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
@@ -76,6 +82,16 @@ public JSONObject updateContact(Contact contact, String firstName, String lastNa
 	contact.getAddress().setCodePostal(codePostal);
 	contact.getAddress().setCity(city);
 	contact.getAddress().setCountry(country);
+	
+	if(listPhones.containsKey("mobilePhone") && listPhones.get("mobilePhone").matches("^0[1-9][0-9]{8,}$") && !contact.hasPhonesKids("mobile")){
+		new PhoneNumber(listPhones.get("mobilePhone"), "mobile", contact);
+	}
+	if(listPhones.containsKey("homePhone") && listPhones.get("homePhone").matches("^0[1-9][0-9]{8,}$") && !contact.hasPhonesKids("home")){
+		new PhoneNumber(listPhones.get("homePhone"), "home", contact);
+	}
+	if(listPhones.containsKey("professionnalPhone") && listPhones.get("professionnalPhone").matches("^0[1-9][0-9]{8,}$") && !contact.hasPhonesKids("professionnal")){
+		new PhoneNumber(listPhones.get("professionnalPhone"), "professionnal", contact);
+	}
 	
 	contactDAO.update(contact);
 	

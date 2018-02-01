@@ -1,6 +1,8 @@
 package com.codel.servlets;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -48,12 +50,22 @@ public class UpdateContactServlet extends HttpServlet {
 		String city = request.getParameter("city");
 		String country = request.getParameter("country");
 		
+		String mobilePhone = request.getParameter("mobile_phone");
+		String homePhone = request.getParameter("home_phone");
+		String professionnalPhone = request.getParameter("professionnal_phone");
+		
+		Map<String, String> listPhones = new HashMap<>();
+		listPhones.put("mobilePhone", mobilePhone);
+		listPhones.put("homePhone", homePhone);
+		listPhones.put("professionnalPhone", professionnalPhone);
+		
 
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 		ContactServices contactServices = (ContactServices) context.getBean("myContactServices");
 		Contact contact = (Contact) request.getSession().getAttribute("contact");
 		try {
-			JSONObject result = contactServices.updateContact(contact, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country);
+			JSONObject result = contactServices.updateContact(contact, firstName, lastName, email, streetNumber, streetType, streetName, 
+					codePostal, city, country, listPhones);
 			if(result.has("errors")) {
 				request.setAttribute("errors", "veuillez remplir correctement ces champs : "+result.getString("errors"));
 				getServletContext().getRequestDispatcher("/updateContact.jsp").forward(request, response);

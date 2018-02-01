@@ -31,9 +31,9 @@
 
  	<bean id="myDataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://localhost:3306/codelprojet"/>
-		<property name="username" value="root"/>
-		<property name="password" value=""/>
+		<property name="url" value="jdbc:mysql://localhost:3306/bdd_codel?useSSL=false"/>
+		<property name="username" value="codel"/>
+		<property name="password" value="codel_secret"/>
 	</bean> 
 	
 	<bean id="mySessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">

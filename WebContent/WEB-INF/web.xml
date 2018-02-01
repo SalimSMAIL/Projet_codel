@@ -12,7 +12,7 @@
   </listener>
   <display-name>CodelProject</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
+    <welcome-file>home.html</welcome-file>
   </welcome-file-list>
   <servlet>
     <description></description>
@@ -94,7 +94,6 @@
     <servlet-name>DeleteGroupServlet</servlet-name>
     <url-pattern>/deleteGroup</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>SearchContactServlet</display-name>
@@ -105,8 +104,7 @@
     <servlet-name>SearchContactServlet</servlet-name>
     <url-pattern>/searchContact</url-pattern>
   </servlet-mapping>
-  
-    <servlet>
+  <servlet>
     <description></description>
     <display-name>AddEntrepriseServlet</display-name>
     <servlet-name>AddEntrepriseServlet</servlet-name>
@@ -116,8 +114,7 @@
     <servlet-name>AddEntrepriseServlet</servlet-name>
     <url-pattern>/addEntreprise</url-pattern>
   </servlet-mapping>
-  
-      <servlet>
+  <servlet>
     <description></description>
     <display-name>UpdateEntrepriseServlet</display-name>
     <servlet-name>UpdateEntrepriseServlet</servlet-name>
@@ -127,8 +124,7 @@
     <servlet-name>UpdateEntrepriseServlet</servlet-name>
     <url-pattern>/updateEntreprise</url-pattern>
   </servlet-mapping>
-  
-    <servlet>
+  <servlet>
     <description></description>
     <display-name>DisplayDetailsContactServlet</display-name>
     <servlet-name>DisplayDetailsContactServlet</servlet-name>
@@ -138,8 +134,7 @@
     <servlet-name>DisplayDetailsContactServlet</servlet-name>
     <url-pattern>/details</url-pattern>
   </servlet-mapping>
-  
-      <servlet>
+  <servlet>
     <description></description>
     <display-name>DisplayContactsGroupServlet</display-name>
     <servlet-name>DisplayContactsGroupServlet</servlet-name>
@@ -149,8 +144,7 @@
     <servlet-name>DisplayContactsGroupServlet</servlet-name>
     <url-pattern>/displayContactGroup</url-pattern>
   </servlet-mapping>
-  
-        <servlet>
+  <servlet>
     <description></description>
     <display-name>GetContactAddGroupServlet</display-name>
     <servlet-name>GetContactAddGroupServlet</servlet-name>
@@ -160,8 +154,7 @@
     <servlet-name>GetContactAddGroupServlet</servlet-name>
     <url-pattern>/getContact</url-pattern>
   </servlet-mapping>
-  
-          <servlet>
+  <servlet>
     <description></description>
     <display-name>AddContactToGroupServlet</display-name>
     <servlet-name>AddContactToGroupServlet</servlet-name>
@@ -171,5 +164,14 @@
     <servlet-name>AddContactToGroupServlet</servlet-name>
     <url-pattern>/addToGroup</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <description></description>
+    <display-name>addGroup</display-name>
+    <servlet-name>addGroup</servlet-name>
+    <servlet-class>com.codel.servlets.AddGroupServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addGroup</servlet-name>
+    <url-pattern>/addGroup</url-pattern>
+  </servlet-mapping>
 </web-app>

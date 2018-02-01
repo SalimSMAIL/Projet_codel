@@ -1,6 +1,7 @@
 package com.codel.entities;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 public class Contact {
@@ -110,6 +111,15 @@ public class Contact {
 	
 	public void removePhone(PhoneNumber phone){
 		phones.remove(phone);
+	}
+	
+	public boolean hasPhonesKids(String phoneKids){
+		Set<String> set = new HashSet<>();
+		Iterator<PhoneNumber> it = this.phones.iterator();
+		while(it.hasNext()){
+			set.add(it.next().getPhoneKind());
+		}
+		return set.contains(phoneKids);
 	}
 	
     public boolean equals(Object other) {

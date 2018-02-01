@@ -22,7 +22,7 @@
 				<form action='addGroup' method='post'>
 						<div class="row uniform">
 									<div class="12u">
-											<center><input type="text" name="name" placeholder="Tape a text ..." /></center>
+											<center><input type="text" name="group_name" placeholder="Tape a text ..." /></center>
 			
 									</div>
 								</div>

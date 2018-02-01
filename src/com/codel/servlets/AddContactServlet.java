@@ -1,6 +1,8 @@
 package com.codel.servlets;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,12 +37,22 @@ public class AddContactServlet extends HttpServlet {
 		String country = request.getParameter("country");
 		
 
+		String mobilePhone = request.getParameter("mobile_phone");
+		String homePhone = request.getParameter("home_phone");
+		String professionnalPhone = request.getParameter("professionnal_phone");
+		
+		Map<String, String> listPhones = new HashMap<>();
+		listPhones.put("mobilePhone", mobilePhone);
+		listPhones.put("homePhone", homePhone);
+		listPhones.put("professionnalPhone", professionnalPhone);
+
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 		ContactServices contactServices = (ContactServices) context.getBean("myContactServices");
 		
 		JSONObject resultService = null;
 		try {
-			resultService = contactServices.addContact(firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country);
+			resultService = contactServices.addContact(firstName, lastName, email, streetNumber,
+					streetType, streetName, codePostal, city, country, listPhones);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -54,6 +66,10 @@ public class AddContactServlet extends HttpServlet {
 			request.setAttribute("code_postal", codePostal);
 			request.setAttribute("city", city);
 			request.setAttribute("country", country);
+			
+			request.setAttribute("mobile_phone", mobilePhone);
+			request.setAttribute("home_phone", homePhone);
+			request.setAttribute("professionnal_phone", professionnalPhone);
 			
 			StringBuilder result = new StringBuilder();
 			
