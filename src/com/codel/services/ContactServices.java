@@ -96,32 +96,8 @@ public class ContactServices {
 	}
 
 	public List<Contact> searchContact(String query){
-		//		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		//		ContactDAO contactDAO = (ContactDAO)context.getBean("myContactDao");
-		//		List<Contact> contacts = new ArrayList<Contact>();
-		//		List<Contact> contacts_results = new ArrayList<Contact>();
-		//		contacts = contactDAO.findAll();
-		//		for (int i = 0; i < contacts.size(); i++) {
-		//			if (contacts.get(i).getFirstName().contains(query)
-		//					|| contacts.get(i).getLastName().contains(query)
-		//					) {
-		//				contacts_results.add(contacts.get(i));
-		//			}		
-		//		}
-		//		if(contacts.isEmpty()) {
-		//			return null;
-		//		}else {
-		//			return contacts_results;
-		//		}
-
 		return contactDAO.searchContact(query);
 	}
-
-	public List<Contact> findRestContact(long idGroup){
-		List<Contact> contacts =contactDAO.findRestContact(idGroup);
-		return contacts;
-	}
-
 
 
 }

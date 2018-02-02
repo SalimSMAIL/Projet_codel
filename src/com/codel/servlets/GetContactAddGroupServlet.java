@@ -25,7 +25,6 @@ public class GetContactAddGroupServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id  = request.getParameter("id");
-		System.out.println(id);
 
 		if(id!=null){
 			ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());

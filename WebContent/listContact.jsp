@@ -38,7 +38,7 @@
 		         		
 		         		<img src="images/update.png" alt="update contact" height="20" width="20" onclick="location.href='update?id=<% out.print(c.getContactId()); %>';"> 
 		         		<img src="images/trashh.png" alt="delete contact" height="20" width="20" onclick="location.href='delete?id=<% out.print(c.getContactId()); if( request.getAttribute("id") != null) out.print("&idg="+request.getAttribute("id"));%>';"> 
-		         		<img src="images/resume.png" alt="detail contact" height="20" width="20" onclick="location.href='detail?id=<% out.print(c.getContactId()); %>';"> 
+		         		<img src="images/resume.png" alt="detail contact" height="20" width="20" onclick="location.href='details?id=<% out.print(c.getContactId()); %>';"> 
 		         	</ul>
 		         </li>
 	     <%}

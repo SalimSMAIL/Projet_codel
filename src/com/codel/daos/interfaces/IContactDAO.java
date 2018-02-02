@@ -8,6 +8,4 @@ public interface IContactDAO extends IDAO<Contact>{
 
 	List<Contact> searchContact(String query);
 
-	List<Contact> findRestContact(long idGroup);
-
 }

@@ -59,6 +59,7 @@ public class ContactDAO extends HibernateDaoSupport implements IContactDAO{
 	}
 	
 
+	@SuppressWarnings("unchecked")
 	public List<Contact> searchContact(String search) {
 		List<Contact> contacts =getHibernateTemplate().getSessionFactory().getCurrentSession().createCriteria(Contact.class)
 				.add(Restrictions.like("firstName", "%"+search+"%")).list();
@@ -70,31 +71,6 @@ public class ContactDAO extends HibernateDaoSupport implements IContactDAO{
 		contacts.addAll(setContact);
 		return contacts;
 	}
-	
-	public List<Contact> findRestContact(long idGroup) {
-		
 
-		DetachedCriteria subquery = DetachedCriteria.forClass(Contact.class)
-		    .setProjection(Projections.property("contactId"));
-		// This corresponds to (select information where name not in (subquery))
-		List criteria = getHibernateTemplate().getSessionFactory().getCurrentSession()
-		    .createCriteria(ContactGroup.class)
-		    .createAlias("contacts", "myContact")
-		    .add(Subqueries.notIn("myContact.contactId", subquery)).list();
-//		List contacts = getHibernateTemplate().getSessionFactory().getCurrentSession().createSQLQuery("SELECT contact_id FROM contact_group_contact WHERE group_id='"+idGroup+"'").list();
-	System.out.println("the size :"+criteria.toString());
-		List<Contact> c = new ArrayList<Contact>();	
-		for(int i=0;i< criteria.size();i++) {
-//			c =getHibernateTemplate().getSessionFactory().getCurrentSession().createCriteria(Contact.class)
-//					.add(Restrictions.ne("contactId",Long.parseLong(contacts.get(i).toString()))).list();
-//			
-//			
-c.add((Contact)getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery("from Contact c where c.contactId='" + criteria.get(i) + "'").uniqueResult());
-//			}
-//		System.out.println(c.size());
-		
-	}
-		return c;
-}
 	
 }

@@ -11,7 +11,7 @@ import com.codel.entities.Contact;
 import com.codel.entities.ContactGroup;
 
 public class ContactGroupDAO extends HibernateDaoSupport implements IContactGroupDAO{
-	
+
 	@Override
 	public long save(ContactGroup entity) {
 		return (long) getHibernateTemplate().save(entity);
@@ -31,37 +31,35 @@ public class ContactGroupDAO extends HibernateDaoSupport implements IContactGrou
 	public void delete(ContactGroup entity) {
 		getHibernateTemplate().delete(entity);
 	}
-	
+
 	@Override
 	public void delete(long id) {
 		getHibernateTemplate().delete(findById(id));
 	}
-	
 
-	// Utiliser une instance de critéria avec restriction sur l'ordre des resultats 
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ContactGroup> findAll() {
 		List<ContactGroup> contactGroups =	getHibernateTemplate().getSessionFactory().getCurrentSession().createCriteria(ContactGroup.class)
-	    .addOrder( Order.asc("groupName") )
-	    .list();
+				.addOrder( Order.asc("groupName") )
+				.list();
 		return contactGroups;
 	}
 
-	// requetes HQL query 
 	@Override
 	public void deleteAll() {
 		getHibernateTemplate().deleteAll(findAll());
 	}
-	
+
 	public List<Contact> getContacts(long idGroup){
 		List contacts =	getHibernateTemplate().getSessionFactory().getCurrentSession().createSQLQuery("SELECT contact_id FROM contact_group_contact WHERE group_id='"+idGroup + "'").list();
 		System.out.println("the size :"+contacts.size());
 		List<Contact> c = new ArrayList<Contact>();
 		for(int i=0;i< contacts.size();i++) {
-			
+
 			c.add((Contact)getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery("from Contact c where c.contactId='" + contacts.get(i) + "'").uniqueResult());
-			}
+		}
 		return c;
 	}
 

@@ -23,7 +23,6 @@ public class DisplayDetailsContactServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id  = request.getParameter("id");
-		System.out.println(id);
 		if(id!=null){
 			ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 			ContactServices contactServices = (ContactServices) context.getBean("myContactServices");
@@ -31,10 +30,13 @@ public class DisplayDetailsContactServlet extends HttpServlet {
 			if(contact!=null) {
 				request.setAttribute("details", contact);
 			}
+			getServletContext().getRequestDispatcher("/details.jsp").forward(request, response);
 		}
-		
+		else{
+			response.sendRedirect("accueil");
+		}
 
-		getServletContext().getRequestDispatcher("/displayDetails.jsp").forward(request, response);
+		
 
 	}
 

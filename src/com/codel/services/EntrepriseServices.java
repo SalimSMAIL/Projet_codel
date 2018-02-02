@@ -37,9 +37,16 @@ public class EntrepriseServices {
 		}
 		Entreprise entreprise = new Entreprise(firstName, lastName, email, new Address(sn, 
 				streetType, streetName, codePostal, city, country), nSiret);
-		if(listPhones.containsKey("mobilePhone") && listPhones.get("mobilePhone").matches("^0[1-9][0-9]{8,}$")) new PhoneNumber(listPhones.get("mobilePhone"), "mobile", entreprise);
-		if(listPhones.containsKey("homePhone") && listPhones.get("homePhone").matches("^0[1-9][0-9]{8,}$")) new PhoneNumber(listPhones.get("homePhone"), "home", entreprise);
-		if(listPhones.containsKey("professionnalPhone") && listPhones.get("professionnalPhone").matches("^0[1-9][0-9]{8,}$")) new PhoneNumber(listPhones.get("professionnalPhone"), "professionnal", entreprise);
+		
+		if(listPhones.containsKey("mobilePhone") && listPhones.get("mobilePhone").matches("^0[1-9][0-9]{8,}$")){
+			new PhoneNumber(listPhones.get("mobilePhone"), "mobile", entreprise);
+		}
+		if(listPhones.containsKey("homePhone") && listPhones.get("homePhone").matches("^0[1-9][0-9]{8,}$")){
+			new PhoneNumber(listPhones.get("homePhone"), "home", entreprise);
+		}
+		if(listPhones.containsKey("professionnalPhone") && listPhones.get("professionnalPhone").matches("^0[1-9][0-9]{8,}$")){
+			new PhoneNumber(listPhones.get("professionnalPhone"), "professionnal", entreprise);
+		}
 		long id = entrepriseDAO.save(entreprise);
 
 		return new JSONObject().put("id", id);

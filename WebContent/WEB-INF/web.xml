@@ -174,4 +174,14 @@
     <servlet-name>addGroup</servlet-name>
     <url-pattern>/addGroup</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeletePhoneServlet</display-name>
+    <servlet-name>DeletePhoneServlet</servlet-name>
+    <servlet-class>com.codel.servlets.DeletePhoneServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeletePhoneServlet</servlet-name>
+    <url-pattern>/deletePhone</url-pattern>
+  </servlet-mapping>
 </web-app>

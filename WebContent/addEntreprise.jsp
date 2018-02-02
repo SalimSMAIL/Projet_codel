@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="css/style1.css" />
-<title>Modifier contact</title>
+<title>Ajouter entreprise</title>
 </head>
 <body>
 	<%
@@ -29,7 +29,7 @@ String errors = (request.getAttribute("errors") != null) ? (String) request.getA
 %>
 	<div class="container">
 		<form id="contact" action="addE" method="post">
-			<h3>Ajouter un contact</h3>
+			<h3>Add entreperise</h3>
 			<h4 style="color: red;">
 				<%
 							out.print(errors);

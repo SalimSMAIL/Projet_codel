@@ -12,4 +12,8 @@ public class PhoneNumberServices {
 	public PhoneNumberServices(IPhoneNumberDAO phoneNumberDAO){
 		this.phoneNumberDAO = phoneNumberDAO;
 	}
+	
+	public void delete(long id){
+		phoneNumberDAO.delete(id);
+	}
 }

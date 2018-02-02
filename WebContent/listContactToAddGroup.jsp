@@ -36,7 +36,7 @@
 		         		<li><% out.print(c.getLastName()); %></li>
 		         		<li><% out.print(c.getEmail()); %></li>
 		         		
-		         		<img src="img/update.png" alt="detail contact" height="20" width="20" onclick="location.href='addToGroup?id=<% out.print(c.getContactId()); %>&idg=<%=request.getAttribute("id")%>';"> 
+		         		<img src="images/add.png" alt="detail contact" height="20" width="20" onclick="location.href='addToGroup?id=<% out.print(c.getContactId()); %>&idg=<%=request.getAttribute("id")%>';"> 
 		         	</ul>
 		         </li>
 	     <%}
@@ -45,7 +45,7 @@
 	      </ul>
 	   </li>  
 	</ol>
-	<button name="return" type="button" onclick="location.href='accueil';">return</button>
+	<button name="return" type="button" onclick="location.href='contacts?&id=<%=request.getAttribute("id")%>';">return</button>
 	</div>
 
 </div>

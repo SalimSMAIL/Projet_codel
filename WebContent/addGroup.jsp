@@ -14,7 +14,7 @@
 %>
 	<div class="container">
 		<form id="contact" action="addGroup" method="post">
-			<h3>Ajouter un groupe</h3>
+			<h3>Add group</h3>
 			<h4 style="color: red;">
 				<%
 							out.print(errors);
