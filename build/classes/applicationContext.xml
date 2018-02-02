@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-    xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 						http://www.springframework.org/schema/beans/spring-beans.xsd
 						http://www.springframework.org/schema/tx
@@ -13,91 +12,115 @@
 	<bean id="myContactDAO" class="com.codel.daos.ContactDAO" scope="singleton">
 		<property name="sessionFactory" ref="mySessionFactory" />
 	</bean>
-	<bean id="myContactGroupDAO" class="com.codel.daos.ContactGroupDAO" scope="singleton">
+	<bean id="myContactGroupDAO" class="com.codel.daos.ContactGroupDAO"
+		scope="singleton">
 		<property name="sessionFactory" ref="mySessionFactory" />
 	</bean>
-	
-	<bean id="myPhoneNumberDAO" class="com.codel.daos.PhoneNumberDAO" scope="singleton">
+
+	<bean id="myPhoneNumberDAO" class="com.codel.daos.PhoneNumberDAO"
+		scope="singleton">
 		<property name="sessionFactory" ref="mySessionFactory" />
 	</bean>
-	
-	<bean id="myEntrepriseDAO" class="com.codel.daos.EntrepriseDAO" scope="singleton">
+
+	<bean id="myEntrepriseDAO" class="com.codel.daos.EntrepriseDAO"
+		scope="singleton">
 		<property name="sessionFactory" ref="mySessionFactory" />
 	</bean>
-	
-	<bean id="myContactServices" class="com.codel.services.ContactServices" scope="singleton">
+
+	<bean id="myContactServices" class="com.codel.services.ContactServices"
+		scope="singleton">
 		<constructor-arg ref="myContactDAO"></constructor-arg>
 	</bean>
-	<bean id="myContactGroupServices" class="com.codel.services.ContactGroupServices" scope="singleton">
+	<bean id="myContactGroupServices" class="com.codel.services.ContactGroupServices"
+		scope="singleton">
 		<constructor-arg ref="myContactGroupDAO"></constructor-arg>
-	</bean>	
-	<bean id="myPhoneNumberServices" class="com.codel.services.PhoneNumberServices" scope="singleton">
-		<constructor-arg ref="myPhoneNumberDAO"></constructor-arg>
-	</bean>	
-	<bean id="myEntrepriseServices" class="com.codel.services.EntrepriseServices" scope="singleton">
-		<constructor-arg ref="myEntrepriseDAO"></constructor-arg>
-	</bean>	
- 	
- 	<bean id="myDataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://localhost:3306/bdd_codel?useSSL=false"/>
-		<property name="username" value="codel"/>
-		<property name="password" value="codel_secret"/>
-	</bean> 
-	
-	<bean id="mySessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-        <property name="dataSource" ref="myDataSource"/>
-        <property name="configLocation" value="classpath:hibernate.cfg.xml" />
 	</bean>
-	
-<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-    <property name="sessionFactory" ref="mySessionFactory" />
-</bean>
+	<bean id="myPhoneNumberServices" class="com.codel.services.PhoneNumberServices"
+		scope="singleton">
+		<constructor-arg ref="myPhoneNumberDAO"></constructor-arg>
+	</bean>
+	<bean id="myEntrepriseServices" class="com.codel.services.EntrepriseServices"
+		scope="singleton">
+		<constructor-arg ref="myEntrepriseDAO"></constructor-arg>
+	</bean>
 
-<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+	<bean id="myDataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/bdd_codel?useSSL=false" />
+		<property name="username" value="codel" />
+		<property name="password" value="codel_secret" />
+	</bean>
 
-<tx:advice id="txAdvice" transaction-manager="transactionManager">
-	<tx:attributes>
-		<tx:method name="get*" read-only="true" />
-		<tx:method name="sav*" propagation="REQUIRED" />
-		<tx:method name="find*" read-only="true" />
-		<tx:method name="*" propagation="REQUIRED" />
-	</tx:attributes>
-</tx:advice>
+	<bean id="mySessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource" />
+		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+			</props>
+		</property>
+	</bean>
 
-<aop:config>
-	<aop:advisor pointcut="execution(* com.codel.daos.*.*(..))" advice-ref="txAdvice"/>
-</aop:config>
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="mySessionFactory" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="true" />
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="sav*" propagation="REQUIRED" />
+			<tx:method name="find*" read-only="true" />
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:advisor pointcut="execution(* com.codel.daos.*.*(..))"
+			advice-ref="txAdvice" />
+	</aop:config>
 
 
 
- <aop:config>
-	<aop:aspect id="checkAddContactBean" ref="checkAddContact">
-		<aop:around pointcut="execution(* com.codel.services.ContactServices.addContact(*,*,*,*,*,*,*,*,*,*)) 
+	<aop:config>
+		<aop:aspect id="checkAddContactBean" ref="checkAddContact">
+			<aop:around
+				pointcut="execution(* com.codel.services.ContactServices.addContact(*,*,*,*,*,*,*,*,*,*)) 
 						and args(firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country, listPhones)"
-			method="checkAddContact" arg-names="pjp, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country, listPhones"/>
+				method="checkAddContact"
+				arg-names="pjp, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country, listPhones" />
 		</aop:aspect>
 	</aop:config>
 
 
- <aop:config>
-	<aop:aspect id="checkUpdateContactBean" ref="checkUpdateContact">
-		<aop:around pointcut="execution(* com.codel.services.ContactServices.updateContact(*,*,*,*,*,*,*,*,*,*,*)) 
+	<aop:config>
+		<aop:aspect id="checkUpdateContactBean" ref="checkUpdateContact">
+			<aop:around
+				pointcut="execution(* com.codel.services.ContactServices.updateContact(*,*,*,*,*,*,*,*,*,*,*)) 
 						and args(contact, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country, listPhones)"
-			method="checkUpdateContact" arg-names="pjp, contact, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country, listPhones"/>
+				method="checkUpdateContact"
+				arg-names="pjp, contact, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country, listPhones" />
 		</aop:aspect>
-</aop:config>
+	</aop:config>
 
-<aop:config>
-	<aop:aspect id="checkAddEntrepriseBean" ref="checkAddEntreprise">
-		<aop:around pointcut="execution(* com.codel.services.EntrepriseServices.addEntreprise(*,*,*,*,*,*,*,*,*,*,*)) 
+	<aop:config>
+		<aop:aspect id="checkAddEntrepriseBean" ref="checkAddEntreprise">
+			<aop:around
+				pointcut="execution(* com.codel.services.EntrepriseServices.addEntreprise(*,*,*,*,*,*,*,*,*,*,*)) 
 						and args(numSiret, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country, listPhones)"
-			method="checkAddEntreprise" arg-names="pjp, numSiret, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country, listPhones"/>
+				method="checkAddEntreprise"
+				arg-names="pjp, numSiret, firstName, lastName, email, streetNumber, streetType, streetName, codePostal, city, country, listPhones" />
 		</aop:aspect>
-	</aop:config> 
-	
-	<bean id="checkAddContact" class="com.codel.services.aspect.CheckServices"/> 
-	<bean id="checkUpdateContact" class="com.codel.services.aspect.CheckServices"/> 
-	<bean id="checkAddEntreprise" class="com.codel.services.aspect.CheckServices"/> 
+	</aop:config>
+
+	<bean id="checkAddContact" class="com.codel.services.aspect.CheckServices" />
+	<bean id="checkUpdateContact" class="com.codel.services.aspect.CheckServices" />
+	<bean id="checkAddEntreprise" class="com.codel.services.aspect.CheckServices" />
 
 </beans>

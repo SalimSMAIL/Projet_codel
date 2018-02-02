@@ -47,14 +47,15 @@ public class TestAspect  {
 		
 		// supp un contact et verfiei que ça supp tt ses nums
 		
-		ContactDAO d = (ContactDAO) context.getBean("myContactDAO");
-		Contact c = new Contact("salim", "SMAIL", "salim@gail.com", new Address(0, "h", "h", "003", "g", "g"));
+//		ContactDAO d = (ContactDAO) context.getBean("myContactDAO");
+//		Contact c = new Contact("salim", "SMAIL", "salim@gail.com", new Address(0, "h", "h", "003", "g", "g"));
+//		
+//		PhoneNumberDAO p = (PhoneNumberDAO) context.getBean("myPhoneNumberDAO");
+//		PhoneNumber pn = new PhoneNumber("phoneNumber","phoneKind",c);
+//		PhoneNumber p1 = new PhoneNumber("bn","mine",c);
+//		d.save(c);
+//		d.delete(1l);
 		
-		PhoneNumberDAO p = (PhoneNumberDAO) context.getBean("myPhoneNumberDAO");
-		PhoneNumber pn = new PhoneNumber("phoneNumber","phoneKind",c);
-		PhoneNumber p1 = new PhoneNumber("bn","mine",c);
-		d.save(c);
-		d.delete(1l);
 		
 		// ze erreur
 //		
@@ -143,6 +144,7 @@ public class TestAspect  {
 //		d.save(c1);
 //		
 
+		ContactServices c = (ContactServices) context.getBean("myContactServices");
 	
 	}
 }

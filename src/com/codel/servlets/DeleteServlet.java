@@ -26,7 +26,7 @@ public class DeleteServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id  = request.getParameter("id");
-		String idGroup  = request.getParameter("group");
+		String idGroup  = request.getParameter("idg");
 		
 
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
@@ -36,14 +36,15 @@ public class DeleteServlet extends HttpServlet {
 		if(idGroup!=null){
 			
 			ContactGroup contactGroup = contactGroupServices.findById(Long.parseLong(idGroup));
-			contactGroupServices.deleteContact(contactGroup, contactServices.findById(Long.parseLong(id)));			
+			contactGroupServices.deleteContact(contactGroup, contactServices.findById(Long.parseLong(id)));
+			response.sendRedirect("contacts?id="+idGroup);
 			
 		}else{
 			contactServices.deleteContactbyId(Long.parseLong(id));
-			
+			response.sendRedirect("contacts");
 		}
 		
-		response.sendRedirect("contacts?id="+idGroup);
+		
 
 		
 	}

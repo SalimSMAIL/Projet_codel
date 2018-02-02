@@ -44,9 +44,15 @@
 		<property name="password" value="codel_secret"/>
 	</bean> 
 	
-	<bean id="mySessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-        <property name="dataSource" ref="myDataSource"/>
-        <property name="configLocation" value="classpath:hibernate.cfg.xml" />
+	<bean id="mySessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource" />
+		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+			</props>
+		</property>
 	</bean>
 	
 <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">

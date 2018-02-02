@@ -33,15 +33,10 @@ public class PeuplerServlet extends HttpServlet {
 			d.save(c1);
 			d.save(c2);
 		}catch(Exception e){
+			e.printStackTrace();
 		}
 
-		
-
-		ContactGroupServices contactGroupServices = (ContactGroupServices) context.getBean("myContactGroupServices");
-		List<ContactGroup> cg = contactGroupServices.findAll();
-		
-		request.getSession(true).setAttribute("contactGroups", cg);
-		getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
+		response.sendRedirect("accueil");
 		
 	}
 
